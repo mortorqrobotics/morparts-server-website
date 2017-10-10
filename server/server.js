@@ -8,6 +8,6 @@ module.exports = function(imports) {
     let app = express();
 
     app.set("view engine", "ejs");
-
+    
     return app;
 }
