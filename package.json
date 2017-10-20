@@ -1,0 +1,25 @@
+{
+  "name": "morparts-server-website",
+  "version": "0.0.1",
+  "description": "The CAD nomenclature and inventory management system to be used alongside MorTeam",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mortorqrobotics/morparts-server-website",
+  },
+  "author": "",
+  "licence": "ISC",
+  "bugs": {
+    "url": "https://github.com/mortorqrobotics/morparts-server-website/issues",
+  },
+  "homepage": "https://github.com/mortorqrobotics/morparts-server-website",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  },
+
+}
