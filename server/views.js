@@ -4,6 +4,8 @@ module.exports = function(imports) {
 
     let express = imports.modules.express;
     let Promise = imports.modules.Promise;
+    let util = imports.util;
+    let handler = util.handler;
 
     let router = express.Router();
 
@@ -23,6 +25,12 @@ module.exports = function(imports) {
             page: page,
         });
     });
+
+    for (let page in pages) {
+        router.get("/" + page, handler(function*(req, res) {
+          renderPage(res, page[page], req.user);
+        }));
+    }
 
     return router;
 
