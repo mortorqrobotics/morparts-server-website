@@ -9,6 +9,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <Root pageName="home">
+        <h1>testing</h1>
       </Root>
     )
   }

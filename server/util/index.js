@@ -2,14 +2,14 @@
 
 module.exports = function(improts) {
 
-  let fs = require("fs");
+  // let fs = require("fs");
   let config = imports.config;
   let Promise = imports.modules.Promise;
 
   let util = imports.util;
 
   util.handler = function(generator) {
-    let func = Promis.coroutine(generator);
+    let func = Promise.coroutine(generator);
     return function (req, res, next) {
       return func
         .apply(null, arguments)
