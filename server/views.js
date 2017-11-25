@@ -19,7 +19,7 @@ module.exports = function(imports) {
         //         _id: user.team,
         //     });
         // }
-        res.render(webDir + "/src/page.html.ejs", {
+        res.render(imports.webDir + "/src/page.html.ejs", {
             options: options || {},
             userInfo: user,
             page: page,
