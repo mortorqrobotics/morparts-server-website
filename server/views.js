@@ -28,7 +28,7 @@ module.exports = function(imports) {
 
     for (let page in pages) {
         router.get("/" + page, handler(function*(req, res) {
-          renderPage(res, page[page], req.user);
+          renderPage(res, pages[page], req.user);
         }));
     }
 
