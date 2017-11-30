@@ -4,21 +4,23 @@ import ReactDOM from "react-dom";
 import { StyleRoot } from "radium";
 import { Provider } from "react-redux";
 
+const styles = {
+  global: {
+      margin: "0",
+      padding: "0",
+      fontFamily: "'exo 2', sans-serif",
+      fontWeight: "200",
+      outline: "0",
+  },
+};
+
 export default class Root extends React.Component {
 
-  const styles = {
-    global: {
-        margin: "0",
-        padding: "0",
-        fontFamily: "'exo 2', sans-serif",
-        fontWeight: "200",
-        outline: "0",
-    },
-}
+
 
   getChildContext() {
     return {
-      pageName: this.props.pageName;
+      pageName: this.props.pageName
     }
   }
 

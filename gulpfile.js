@@ -46,7 +46,7 @@ function stuff(bundler) {
                 "transform-decorators-legacy",
                 "transform-class-properties",
                 "transform-object-rest-spread",
-                ["babel-root-import", { rootPathSuffix: "src" }],
+                ["babel-root-import", { rootPathSuffix: "website/src" }],
                 ["transform-runtime", { polyfill: false, regenerator: true }],
             ],
         })
