@@ -5,16 +5,16 @@ import Root, { pageInit } from "../shared/components/Root";
 import Navbar from "../shared/components/navbar/Navbar";
 
 @radium
-export default class Home extends React.Component {
+export default class Inventory extends React.Component {
 
   render() {
     return (
-      <Root pageName="home">
+      <Root pageName="inventory">
         <Navbar />
-        <h1>testing</h1>
+        <h1>The inventory!</h1>
       </Root>
     )
   }
 }
 
-pageInit(Home);
+pageInit(Inventory);
