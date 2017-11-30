@@ -54,7 +54,7 @@ function stuff(bundler) {
 
 function build(pages) {
     return gulp.src(pages.map(page => (
-        "./src/" + page + "/components/" + capitalize(page) + ".js"
+        "./website/src/" + page + "/components/" + capitalize(page) + ".js"
     )), { read: false, })
         .pipe(tap(file => {
             let options = {};
@@ -69,7 +69,7 @@ function build(pages) {
             console.log(err.toString());
             console.log(err.codeFrame);
         })
-        .pipe(gulp.dest("./build/"));
+        .pipe(gulp.dest("./website/build/"));
 }
 
 gulp.task("build", () => {
@@ -83,7 +83,7 @@ for (let page of allPages) {
 }
 
 function watchPage(page) {
-    let path = "./src/" + page + "/components/" + capitalize(page) + ".js";
+    let path = "./website/src/" + page + "/components/" + capitalize(page) + ".js";
     let bundler = watchify(browserify({
         entries: [path],
         debug: true,
@@ -99,7 +99,7 @@ function watchPage(page) {
                 this.emit("end");
             })
             .pipe(source(capitalize(page) + ".js"))
-            .pipe(gulp.dest("./build/"));
+            .pipe(gulp.dest("./website/build/"));
     }
     bundler.on("update", watcher);
     bundler.on("log", gutil.log);
@@ -132,7 +132,7 @@ gulp.task("vendor", function() {
     if (process.env.NODE_ENV === "production") {
         thing = thing.pipe(streamify(uglify()));
     }
-    return thing.pipe(gulp.dest("./build/"));
+    return thing.pipe(gulp.dest("./website/build/"));
 });
 
 function capitalize(str) {
