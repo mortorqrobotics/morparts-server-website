@@ -31,6 +31,7 @@ let libs = [
 
 let allPages = [
     "home",
+    "inventory",
 ];
 
 function stuff(bundler) {

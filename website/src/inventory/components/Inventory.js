@@ -1,8 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
-import Root, { pageInit } from "../shared/components/Root";
-import Navbar from "../shared/components/navbar/Navbar";
+import Root, { pageInit } from "~/shared/components/Root";
+import Navbar from "~/shared/components/navbar/Navbar";
 
 @radium
 export default class Inventory extends React.Component {

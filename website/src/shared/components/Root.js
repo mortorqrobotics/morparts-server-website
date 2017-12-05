@@ -16,8 +16,6 @@ const styles = {
 
 export default class Root extends React.Component {
 
-
-
   getChildContext() {
     return {
       pageName: this.props.pageName
@@ -47,8 +45,8 @@ export default class Root extends React.Component {
   }
 }
 
-export function pageInit(page) {
-  window._pageInit = {
+export function pageInit(Page) {
+  window.__pageInit = {
     React: React,
     ReactDOM: ReactDOM,
     Page: Page,
