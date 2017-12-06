@@ -4,7 +4,7 @@ import Radium from "radium";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 
-@radium
+@Radium
 export default class Home extends React.Component {
 
   render() {

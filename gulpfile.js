@@ -16,17 +16,9 @@ let libs = [
     "dompurify",
     "radium",
     "react",
-    "react-bootstrap",
-    "react-context-menus",
     "react-dom",
-    "react-google-maps",
-    "react-masonry-component",
-    "react-modal",
     "react-redux",
     "redux",
-    "redux-sounds",
-    "redux-thunk",
-    "socket.io-client",
 ];
 
 let allPages = [

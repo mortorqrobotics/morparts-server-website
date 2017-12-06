@@ -14,16 +14,20 @@
     </head>
 
     <body>
+
+        <script src="/js/vendor.js"></script>
+        <script src="/js/<%= page %>.js"></script>
+
         <div id="allContent"></div>
         <script type="text/javascript">
-            // This is the script that renders each page of the website
+            // defined __pageInit global variable
             window.__pageInit.ReactDOM.render(
                 window.__pageInit.React.createElement(
                     window.__pageInit.Page,
                     null
                 ),
                 document.getElementById("allContent")
-              );
+            );
         </script>
     </body>
 

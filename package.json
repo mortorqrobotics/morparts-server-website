@@ -7,7 +7,10 @@
     "build-prod": "NODE_ENV=production ./node_modules/.bin/gulp build",
     "gulp": "./node_modules/.bin/gulp",
     "gulp-prod": "NODE_ENV=production ./node_modules/.bin/gulp",
-    "watch": "./node_modules/.bin/gulp watch"
+    "watch": "./node_modules/.bin/gulp watch",
+    "vendor": "./node_modules/.bin/gulp vendor",
+    "vendor-prod": "NODE_ENV=production ./node_modules/.bin/gulp vendor",
+    "postinstall": "npm run vendor"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,8 @@
   },
   "homepage": "https://github.com/mortorqrobotics/morparts-server-website",
   "dependencies": {
+    "axios": "^0.15.3",
+    "dompurify": "^0.8.3",
     "radium": "^0.18.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

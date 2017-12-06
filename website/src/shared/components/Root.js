@@ -16,11 +16,11 @@ const styles = {
 
 export default class Root extends React.Component {
 
-  getChildContext() {
-    return {
-      pageName: this.props.pageName
-    }
-  }
+  // getChildContext() {
+  //   return {
+  //     pageName: this.props.pageName
+  //   }
+  // }
 
   wrap = (contents) => {
     if (this.props.store) {

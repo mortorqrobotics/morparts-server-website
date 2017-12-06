@@ -5,6 +5,7 @@ module.exports = function(imports) {
     let express = imports.modules.express;
     let Promise = imports.modules.Promise;
     let util = imports.util;
+    let webDir = imports.webDir;
     let handler = util.handler;
 
     let router = express.Router();
@@ -19,7 +20,7 @@ module.exports = function(imports) {
         //         _id: user.team,
         //     });
         // }
-        res.render(imports.webDir + "/src/page.html.ejs", {
+        res.render(webDir + "/src/page.html.ejs", {
             options: options || {},
             userInfo: user,
             page: page,
@@ -31,6 +32,8 @@ module.exports = function(imports) {
           renderPage(res, pages[page], req.user);
         }));
     }
+
+    router.use("/js", express.static(webDir + "/build"));
 
     return router;
 
