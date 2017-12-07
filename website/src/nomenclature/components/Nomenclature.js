@@ -5,16 +5,16 @@ import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 
 @Radium
-export default class Inventory extends React.Component {
+export default class Nomenclature extends React.Component {
 
   render() {
     return (
-      <Root pageName="inventory">
+      <Root pageName="nomenclature">
         <Navbar />
-        <h1>The inventory!</h1>
+        <h1>no nomenclature for you</h1>
       </Root>
     )
   }
 }
 
-pageInit(Inventory);
+pageInit(Nomenclature);

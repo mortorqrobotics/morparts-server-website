@@ -1,13 +1,25 @@
 import React from "react";
 import Radium from "radium";
 
+import styles from "~/shared/styles/navbar";
+import GlyphLink from "~/shared/components/navbar/GlyphLink";
+import Link from "~/shared/components/Link";
+
+
 @Radium
 export default class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <a href="/">Inventory</a>
-        <a href="/inventory">Inventory</a>
+        <div style={styles.container}>
+          <Link
+            style={[styles.link, styles.title]}
+            text="MorParts"
+            location="/"
+          />
+          <GlyphLink path="/inventory" glyph="wrench" name="inventory" />
+          <GlyphLink path="/nomenclature" glyph="circle-arrow-up" name="nomenclature" />
+        </div>
       </div>
     )
   }

@@ -24,6 +24,7 @@ let libs = [
 let allPages = [
     "home",
     "inventory",
+    "nomenclature",
 ];
 
 function stuff(bundler) {
