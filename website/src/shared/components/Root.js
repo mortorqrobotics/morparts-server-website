@@ -38,7 +38,7 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <StyleRoot styles = {styles.global}>
+      <StyleRoot style={styles.global}>
         {this.wrap(this.props.children)}
       </StyleRoot>
     )

@@ -10,6 +10,6 @@ module.exports = function(imports) {
     app.set("view engine", "ejs");
 
     app.use(require("./views")(imports));
-    
+
     return app;
 }
