@@ -5,11 +5,11 @@ import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 
 @Radium
-export default class Nomenclature extends React.Component {
+export default class Projects extends React.Component {
 
   render() {
     return (
-      <Root pageName="nomenclature">
+      <Root pageName="projects">
         <Navbar />
         <h1>no nomenclature for you</h1>
       </Root>
@@ -17,4 +17,4 @@ export default class Nomenclature extends React.Component {
   }
 }
 
-pageInit(Nomenclature);
+pageInit(Projects);
