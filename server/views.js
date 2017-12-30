@@ -11,9 +11,9 @@ module.exports = function(imports) {
     let router = express.Router();
 
     let pages = {
-      "": "Home",
-      "inventory": "Inventory",
-      "projects": "Projects",
+        "": "Home",
+        "inventory": "Inventory",
+        "projects": "Projects",
     }
 
     let renderPage = Promise.coroutine(function*(res, page, user, options) {
@@ -31,7 +31,7 @@ module.exports = function(imports) {
 
     for (let page in pages) {
         router.get("/" + page, handler(function*(req, res) {
-          renderPage(res, pages[page], req.user);
+            renderPage(res, pages[page], req.user);
         }));
     }
 

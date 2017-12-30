@@ -29,23 +29,23 @@ export function request(method, path, data, cancellable) {
         let cancel;
         return {
             req:
-                method === "GET" && data ?
-                axios.get("/api" + path, {
-                    params: data,
-                    cancelToken: new CancelToken(c => cancel = c)
-                }).catch(err => {
-                    console.log(err.response);
-                    throw err;
-                }) :
-                axios({
-                    method: method,
-                    url: "/api" + path,
-                    data: data,
-                    cancelToken: new CancelToken (c => cancel = c)
-                }).catch(err => {
-                    console.log(err.response);
-                    throw err;
-                }),
+            method === "GET" && data ?
+            axios.get("/api" + path, {
+                params: data,
+                cancelToken: new CancelToken(c => cancel = c)
+            }).catch(err => {
+                console.log(err.response);
+                throw err;
+            }) :
+            axios({
+                method: method,
+                url: "/api" + path,
+                data: data,
+                cancelToken: new CancelToken (c => cancel = c)
+            }).catch(err => {
+                console.log(err.response);
+                throw err;
+            }),
             cancel: () => cancel(),
         }
     }

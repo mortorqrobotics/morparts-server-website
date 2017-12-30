@@ -30,10 +30,10 @@ export default class SearchBox extends React.Component {
                     styles.link,
                     styles.glyphLink.li,
                     this.props.name === this.context.pageName ?
-                        styles.glyphLink.selected : styles.glyphLink.unselected
+                    styles.glyphLink.selected : styles.glyphLink.unselected
                 ]}
-                >
-                     <Glyphicon glyph={this.props.glyph} />
+            >
+                <Glyphicon glyph={this.props.glyph} />
             </Link>
         )
     }
