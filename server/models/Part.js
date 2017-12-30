@@ -4,6 +4,7 @@ module.exports = function(imports) {
 
     let mongoose = imports.modules.mongoose;
     let Schema = mongoose.Schema;
+    let ObjectId = Schema.Types.ObjectId;
 
     let partSchema = new Schema({
         number: {
@@ -14,8 +15,20 @@ module.exports = function(imports) {
             type: String,
             required: true,
         },
-        path: {
-            type: String,
+        isAssembly: Boolean,
+        ancestors: [{
+            type: ObjectId,
+            ref: "Part",
+            required: false
+        }],
+        parent: {
+            type: ObjectId,
+            ref: "Part",
+            required: false
+        },
+        project: {
+            type: ObjectId,
+            ref: "Project",
             required: true,
         },
         created_at: Date,

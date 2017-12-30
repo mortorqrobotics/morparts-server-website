@@ -10,7 +10,7 @@ module.exports = function(imports) {
     app.use(require("./views")(imports));
 
     let api = express.Router();
-    api.use(require("./parts")(imports));
+    api.use(require("./projects")(imports));
     app.use("/api", api);
 
     return app;
