@@ -12,9 +12,18 @@ module.exports = function(imports) {
         let project = yield Project.create({
             name: req.body.name,
             prefix: req.body.prefix,
+            team: req.user.team,
         });
-        console.log("a")
         res.json(project);
+
+    }));
+
+    router.get("/projects", handler(function*(req, res) {
+        let projects = yield Project.find({
+            team: req.user.team,
+        });
+
+        res.json(projects);
 
     }));
 

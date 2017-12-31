@@ -4,6 +4,7 @@ module.exports = function(imports) {
 
     let mongoose = imports.modules.mongoose;
     let Schema = mongoose.Schema;
+    let ObjectId = Schema.Types.ObjectId;
 
     let projectSchema = new Schema({
         prefix: {
@@ -12,6 +13,11 @@ module.exports = function(imports) {
         },
         name: {
             type: String,
+            required: true,
+        },
+        team: {
+            type: ObjectId,
+            ref: "Team",
             required: true,
         },
         created_at: Date,

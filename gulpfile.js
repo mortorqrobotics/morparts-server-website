@@ -19,6 +19,7 @@ let libs = [
     "react-dom",
     "react-redux",
     "redux",
+    "redux-thunk",
 ];
 
 let allPages = [
