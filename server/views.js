@@ -13,7 +13,7 @@ module.exports = function(imports) {
     let pages = {
         "": "Home",
         "inventory": "Inventory",
-        "projects": "Projects",
+        "dashboard": "Dashboard",
     }
 
     let renderPage = Promise.coroutine(function*(res, page, user, options) {

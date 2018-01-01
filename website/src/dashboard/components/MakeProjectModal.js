@@ -5,7 +5,7 @@ import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import StandardModal from "~/shared/components/StandardModal";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { makeChangeHandlerFactory } from "~/util";
-import { addProject } from "~/projects/actions";
+import { addProject } from "~/dashboard/actions";
 
 import { connect } from "react-redux";
 

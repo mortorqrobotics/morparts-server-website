@@ -18,7 +18,7 @@ export default class Navbar extends React.Component {
                         location="/"
                     />
                     <GlyphLink path="/inventory" glyph="wrench" name="inventory" />
-                    <GlyphLink path="/projects" glyph="list" name="projects" />
+                    <GlyphLink path="/dashboard" glyph="list" name="dashboard" />
                 </div>
             </div>
         )
