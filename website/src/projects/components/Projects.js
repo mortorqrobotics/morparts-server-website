@@ -5,6 +5,7 @@ import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 import Button from "~/shared/components/Button";
 import ProjectList from "~/projects/components/ProjectList";
+import styles from "~/projects/styles";
 import { request } from "~/util/ajax";
 
 import { makeStore } from "~/util/redux";
@@ -20,7 +21,7 @@ export default class Projects extends React.Component {
         return (
             <Root pageName="projects" store={store}>
                 <Navbar />
-                <h1>no nomenclature for you</h1>
+                <h1 style={styles.h1}>Projects</h1>
                 <ProjectList />
             </Root>
         )

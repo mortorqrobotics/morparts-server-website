@@ -9,16 +9,19 @@ module.exports = function(imports) {
     let handler = imports.util.handler;
 
     router.post("/projects", handler(function*(req, res) {
+
         let project = yield Project.create({
             name: req.body.name,
             prefix: req.body.prefix,
             team: req.user.team,
         });
+
         res.json(project);
 
     }));
 
     router.get("/projects", handler(function*(req, res) {
+
         let projects = yield Project.find({
             team: req.user.team,
         });
@@ -28,6 +31,7 @@ module.exports = function(imports) {
     }));
 
     router.post("/projects/id/:projectId/parts", handler(function*(req, res) {
+
         let project = yield Project.findOne({
             _id: req.params.projectId,
         });
@@ -67,6 +71,16 @@ module.exports = function(imports) {
         }
 
         res.json(part);
+
+    }));
+
+    router.get("/projects/id/:projectId/parts", handler(function*(req, res) {
+
+        let parts = yield Part.find({
+            project: req.params.projectId,
+        });
+
+        res.json(parts);
 
     }));
 

@@ -16,6 +16,11 @@ module.exports = function(imports) {
             required: true,
         },
         isAssembly: Boolean,
+        status: {
+            type: String,
+            enum: ["In progres", "Done"],
+            default: "In progress",
+        },
         ancestors: [{
             type: ObjectId,
             ref: "Part",
