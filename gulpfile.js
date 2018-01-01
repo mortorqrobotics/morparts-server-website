@@ -17,6 +17,7 @@ let libs = [
     "radium",
     "react",
     "react-dom",
+    "react-modal",
     "react-redux",
     "redux",
     "redux-thunk",
