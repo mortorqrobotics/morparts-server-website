@@ -3,25 +3,25 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
-import ProjectList from "~/dashboard/components/ProjectList";
+import Tree from "~/project/components/Tree"
 
 import { makeStore } from "~/util/redux";
-import reducers from "~/dashboard/reducers";
+import reducers from "~/project/reducers";
 const store = makeStore(reducers);
-import { initialActions } from "~/dashboard/actions";
+import { initialActions } from "~/project/actions";
 initialActions(store.dispatch);
 
 @Radium
-export default class Dashboard extends React.Component {
+export default class Project extends React.Component {
 
     render() {
         return (
-            <Root pageName="dashboard" store={store}>
+            <Root pageName="project" store={store}>
                 <Navbar />
-                <ProjectList />
+                <Tree />
             </Root>
         )
     }
 }
 
-pageInit(Dashboard);
+pageInit(Project);

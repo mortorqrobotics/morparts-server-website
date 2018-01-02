@@ -74,6 +74,16 @@ module.exports = function(imports) {
 
     }));
 
+    router.get("/projects/id/:projectId", handler(function*(req, res) {
+
+        let project = yield Project.findOne({
+            _id: req.params.projectId,
+        });
+
+        res.json(project);
+
+    }));
+
     router.get("/projects/id/:projectId/parts", handler(function*(req, res) {
 
         let parts = yield Part.find({

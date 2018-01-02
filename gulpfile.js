@@ -27,6 +27,7 @@ let allPages = [
     "home",
     "inventory",
     "dashboard",
+    "project",
 ];
 
 function stuff(bundler) {

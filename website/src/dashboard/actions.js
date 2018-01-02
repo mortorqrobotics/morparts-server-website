@@ -8,7 +8,7 @@ export const addProject = (project) => async (dispatch) => {
     });
 }
 
-export const loadProjects = () => async (dispatch) => {
+const loadProjects = () => async (dispatch) => {
     const { data } = await request("GET", "/projects");
     dispatch({
         type: "LOAD_PROJECTS",

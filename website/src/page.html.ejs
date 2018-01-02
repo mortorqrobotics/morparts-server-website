@@ -17,6 +17,10 @@
 
     <body style="background-color: #E9E9E9;">
 
+        <script type="text/javascript">
+            window.__options = <%- JSON.stringify(options || null) %>;
+        </script>
+
         <script src="/js/vendor.js"></script>
         <script src="/js/<%= page %>.js"></script>
 

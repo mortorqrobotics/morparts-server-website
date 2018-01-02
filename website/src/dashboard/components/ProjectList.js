@@ -16,24 +16,30 @@ class ProjectList extends React.Component {
 
     render() {
         return (
-            <ul style={styles.container}>
-                {this.props.projects.map(project => (
-                    <div>
-                        <li
-                            key={project._id}
-                            style={styles.project}
-                        >
-                            {project.name}
-                        </li>
-                    </div>
-                ))}
-                <hr style={styles.hr}/>
-                <Button
-                    text="Add Project"
-                    onClick={() => this.setState({ isModalOpen: true })}
-                />
+            <div>
+                <h1 style={styles.h1}>Projects</h1>
+                <ul style={styles.container}>
+                    {this.props.projects.map(project => (
+                        <div>
+                            <li
+                                key={project._id}
+                                style={styles.project}
+                                onClick={() => window.location.assign(`/projects/id/${project._id}`)}
+                            >
+                                {project.name}
+                            </li>
+                        </div>
+                    ))}
+                    <hr style={styles.hr}/>
+                    <Button
+                        text="Add Project"
+                        onClick={() => this.setState({ isModalOpen: true })}
+                    />
+                </ul>
+
                 <MakeProjectModal { ...modalProps(this, "isModalOpen") } />
-            </ul>
+
+            </div>
         )
     }
 }

@@ -13,3 +13,5 @@ export function makeChangeHandlerFactory(ctx) {
         }
     }.bind(ctx);
 }
+
+export const pageOptions = window.__options;

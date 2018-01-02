@@ -35,6 +35,12 @@ module.exports = function(imports) {
         }));
     }
 
+    router.get("/projects/id/:projectId", handler(function*(req, res) {
+        renderPage(res, "Project", req.user, {
+            projectId: req.params.projectId,
+        });
+    }));
+
     router.use("/js", express.static(webDir + "/build"));
 
     return router;
