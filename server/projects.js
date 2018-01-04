@@ -72,9 +72,13 @@ module.exports = function(imports) {
         });
 
         if (req.body.parent) {
-            parent.children.push(part);
+            if (req.body.isAssembly) {
+                parent.childAssemblies.push(part);
+            } else {
+                parent.childParts.push(part);
+            }
             yield parent.save();
-        } else if (!req.body.isAssembly) { // if a non-assembly has no parent
+        } else if (!req.body.isAssembly) {
             project.spareParts.push(part);
             yield project.save()
         }
