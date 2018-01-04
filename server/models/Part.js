@@ -18,19 +18,24 @@ module.exports = function(imports) {
         isAssembly: Boolean,
         status: {
             type: String,
-            enum: ["In progres", "Done"],
+            enum: ["In progress", "Done"],
             default: "In progress",
         },
-        ancestors: [{
-            type: ObjectId,
-            ref: "Part",
-            required: false
-        }],
         parent: {
             type: ObjectId,
             ref: "Part",
             required: false
         },
+        childParts: [{
+            type: ObjectId,
+            ref: "Part",
+            required: false,
+        }],
+        childAssemblies: [{
+            type: ObjectId,
+            ref: "Part",
+            required: false,
+        }],
         project: {
             type: ObjectId,
             ref: "Project",

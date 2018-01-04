@@ -6,7 +6,8 @@ module.exports = function(imports) {
     let Part = imports.models.Part;
     let Project = imports.models.Project;
     let router = express.Router();
-    let handler = imports.util.handler;
+    let util = imports.util;
+    let handler = util.handler;
 
     router.post("/projects", handler(function*(req, res) {
 
@@ -40,34 +41,42 @@ module.exports = function(imports) {
             return res.status(404).end("This project does not exist");
         }
 
-        let number = project.prefix + req.body.isAssembly ? "-A-" : "-P-";
+        if (req.body.parent) {
+            parent = yield Part.findOne({
+                _id: req.body.parent,
+            });
+            if (!parent.isAssembly) {
+                return res.status(404).end("This assembly does not exist");
+            }
+        }
+
+        let number = project.prefix;
+        if (req.body.isAssembly) {
+            number += "-A-" + util.toDoubleDigit(project.numAssemblies) + "00";
+            project.numAssemblies++;
+            yield project.save();
+        } else {
+            number += "-P-" + (req.body.parent
+                ? /(\d{2})*$/.exec(parent.number)[1]
+                    + util.toDoubleDigit(parent.childAssemblies.length + 1)
+                : util.toDoubleDigit(project.spareParts.length + 1)
+            );
+        }
 
         let part = yield Part.create({
             name: req.body.name,
             number,
             isAssembly: req.body.isAssembly,
-            project: req.params.projectId
+            project: req.params.projectId,
+            parent: req.body.parent,
         });
 
         if (req.body.parent) {
-            parent = yield Part.findOne({
-                _id: req.body.parent,
-            });
-
-            // TODO: more detailed response
-            if (!parent.isAssembly) {
-                return res.status(404).end("This assembly does not exist");
-            }
-
-            part.parent = req.body.parent;
-            ancestors = [];
-            if (parentAssembly.ancestors) {
-                ancestors = parent.ancestors;
-            }
-            ancestors.push(req.body.parent);
-            part.ancestors = ancestors;
-
-            yield part.save();
+            parent.children.push(part);
+            yield parent.save();
+        } else if (!req.body.isAssembly) { // if a non-assembly has no parent
+            project.spareParts.push(part);
+            yield project.save()
         }
 
         res.json(part);

@@ -20,5 +20,9 @@ module.exports = function(imports) {
         };
     };
 
+    util.toDoubleDigit = function(num) {
+        return (num < 10 ? "0" : "") + num;
+    }
+
     return util;
 }
