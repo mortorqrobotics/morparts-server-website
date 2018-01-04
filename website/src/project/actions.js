@@ -11,6 +11,23 @@ const fetchProject = () => async (dispatch) => {
     });
 }
 
+const loadParts = () => async (dispatch) => {
+    const { data } = await request("GET",`/projects/id/${projectId}/parts`);
+    dispatch({
+        type: "LOAD_PARTS",
+        parts: data,
+    });
+}
+
+export const addPart = (part) => async (dispatch) => {
+    const { data } = await request("POST", `/projects/id/${projectId}/parts`, part);
+    dispatch({
+        type: "ADD_PART",
+        part: data,
+    });
+}
+
 export function initialActions(dispatch) {
     dispatch(fetchProject());
+    dispatch(loadParts());
 }

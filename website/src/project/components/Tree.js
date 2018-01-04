@@ -10,6 +10,9 @@ class Tree extends React.Component {
         return (
             <div>
                 {this.props.project.name}
+                {this.props.parts.map(part => (
+                    <div key={part._id}>{part.number}</div>
+                ))}
             </div>
         )
     }
@@ -18,6 +21,7 @@ class Tree extends React.Component {
 const mapStateToProps = (state) => {
     return {
         project: state.project,
+        parts: state.parts,
     }
 }
 
