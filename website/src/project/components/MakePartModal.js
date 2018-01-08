@@ -14,6 +14,7 @@ class MakePartModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
+        parentId: React.PropTypes.String,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);
@@ -31,6 +32,7 @@ class MakePartModal extends React.Component {
         this.props.dispatch(addPart({
             name: this.state.name,
             isAssembly: this.state.isAssembly,
+            parent: this.props.parentId,
         }))
         this.setState(this.initialState);
         this.props.onRequestClose();

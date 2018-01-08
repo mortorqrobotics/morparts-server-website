@@ -19,6 +19,7 @@ let libs = [
     "react-dom",
     "react-modal",
     "react-redux",
+    "react-treeview",
     "redux",
     "redux-thunk",
 ];
