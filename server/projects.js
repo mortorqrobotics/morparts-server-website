@@ -59,7 +59,7 @@ module.exports = function(imports) {
         } else {
             number += "-P-" + (req.body.parent
                 ? /(\d{2})*$/.exec(parent.number)[1]
-                    + util.toDoubleDigit(parent.childAssemblies.length + 1)
+                    + util.toDoubleDigit(parent.childParts.length + 1)
                 : util.toDoubleDigit(project.spareParts.length + 1)
             );
         }
