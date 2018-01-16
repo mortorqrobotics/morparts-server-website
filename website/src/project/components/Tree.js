@@ -6,6 +6,7 @@ import Button from "~/shared/components/Button";
 import { modalProps } from "~/util/modal"
 import TreeView from "react-treeview";
 import { connect } from "react-redux";
+import styles from "~/project/styles";
 
 @Radium
 class Tree extends React.Component {
@@ -29,9 +30,13 @@ class Tree extends React.Component {
         )
     }
 
+    handleCollapseClick() {
+
+    }
+
     assemblyTree(assembly) {
         return (
-            <div>
+            <div style={styles.assemblyDiv}>
                 {assembly.childAssemblies.map(part => (
                     <TreeView
                         key={part}
@@ -58,8 +63,12 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.tree}>
                 {this.props.project.name}
+                <Button
+                    onClick = {this.handleCollapseClick()}
+                    text = "Collapse All"
+                />
 
                 {this.props.parts.filter(part => !part.parent && part.isAssembly).map(part => (
                     <TreeView
