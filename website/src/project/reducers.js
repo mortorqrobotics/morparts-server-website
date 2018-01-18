@@ -16,25 +16,27 @@ const parts = ( state = [], action) => {
         case "LOAD_PARTS":
             return state.concat(action.parts);
         case "ADD_PART":
-            index = state.findIndex(part => part._id === action.part.parent);
-            if (action.part.isAssembly) {
-                newState = update(state, {
-                    [index]: {
-                        childAssemblies: {
-                            $push: [action.part._id]
+            newState = [action.part].concat(state);
+            index = newState.findIndex(part => part._id === action.part.parent);
+            if (action.part.parent) {
+                if (action.part.isAssembly) {
+                    newState = update(newState, {
+                        [index]: {
+                            childAssemblies: {
+                                $push: [action.part._id]
+                            }
                         }
-                    }
-                })
-            } else {
-                newState = update(state, {
-                    [index]: {
-                        childParts: {
-                            $push: [action.part._id]
+                    })
+                } else {
+                    newState = update(newState, {
+                        [index]: {
+                            childParts: {
+                                $push: [action.part._id]
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
-            newState = [action.part].concat(newState);
             return newState;
         default:
             return state;
