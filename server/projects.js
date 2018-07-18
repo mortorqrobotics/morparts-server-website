@@ -74,16 +74,15 @@ module.exports = function(imports) {
 
         if (req.body.parent) {
             if (req.body.isAssembly) {
-                parent.childAssemblies.push(part);
+                parent.childAssemblies.concat(part);
             } else {
-                parent.childParts.push(part);
+                parent.childParts.concat(part);
             }
             yield parent.save();
         } else if (!req.body.isAssembly) {
-            project.spareParts.push(part);
+            project.spareParts.concat(part);
             yield project.save()
         }
-
         res.json(part);
 
     }));
