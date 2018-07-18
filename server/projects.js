@@ -51,22 +51,26 @@ module.exports = function(imports) {
             }
         }
 
-        let number = project.prefix;
+        let partNumber = "00";
+        let assemblyNumber = "00";
         if (req.body.isAssembly) {
-            number += "-A-" + util.toDoubleDigit(project.numAssemblies) + "00";
+            assemblyNumber = util.toDoubleDigit(project.numAssemblies);
             project.numAssemblies++;
+            console.log(project.numAssemblies)
             yield project.save();
         } else {
-            number += "-P-" + (req.body.parent
-                ? /(\d{2})*$/.exec(parent.number)[1]
-                    + util.toDoubleDigit(parent.childParts.length + 1)
-                : util.toDoubleDigit(project.spareParts.length + 1)
-            );
+            if (req.body.parent) {
+                assemblyNumber = parent.assemblyNumber;
+                partNumber = util.toDoubleDigit(parent.childParts.length + 1);
+            } else {
+                partNumber = util.toDouvleDigit(project.spareParts.length + 1);
+            }
         }
 
         let part = yield Part.create({
             name: req.body.name,
-            number,
+            partNumber,
+            assemblyNumber,
             isAssembly: req.body.isAssembly,
             project: req.params.projectId,
             parent: req.body.parent,
@@ -74,13 +78,13 @@ module.exports = function(imports) {
 
         if (req.body.parent) {
             if (req.body.isAssembly) {
-                parent.childAssemblies.concat(part);
+                parent.childAssemblies = parent.childAssemblies.concat(part);
             } else {
-                parent.childParts.concat(part);
+                parent.childParts = parent.childParts.concat(part);
             }
             yield parent.save();
         } else if (!req.body.isAssembly) {
-            project.spareParts.concat(part);
+            project.spareParts = project.spareParts.concat(part);
             yield project.save()
         }
         res.json(part);

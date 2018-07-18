@@ -7,9 +7,13 @@ module.exports = function(imports) {
     let ObjectId = Schema.Types.ObjectId;
 
     let partSchema = new Schema({
-        number: {
+        assemblyNumber: {
             type: String,
             required: true,
+        },
+        partNumber: {
+            type: String,
+            required: false,
         },
         name: {
             type: String,

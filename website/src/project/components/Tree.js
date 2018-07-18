@@ -7,6 +7,7 @@ import { modalProps } from "~/util/modal"
 import TreeView from "react-treeview";
 import { connect } from "react-redux";
 import styles from "~/project/styles";
+import { getIdentifier } from "~/util/part";
 
 @Radium
 class Tree extends React.Component {
@@ -40,7 +41,7 @@ class Tree extends React.Component {
                 {assembly.childAssemblies.map(part => (
                     <TreeView
                         key={part}
-                        nodeLabel={this.findPart(part).number}
+                        nodeLabel={this.props.project.prefix + getIdentifier(this.findPart(part))}
                         collapsed={false}
                     >
                         {this.assemblyTree(this.findPart(part))}
@@ -49,7 +50,7 @@ class Tree extends React.Component {
                 {assembly.childParts.map(part => (
                     <TreeView
                         key={part}
-                        nodeLabel={this.findPart(part).number}
+                        nodeLabel={this.props.project.prefix + getIdentifier(this.findPart(part))}
                     />
                 ))}
                 {this.renderAddPartButton(assembly)}
@@ -66,14 +67,14 @@ class Tree extends React.Component {
             <div style={styles.tree}>
                 {this.props.project.name}
                 <Button
-                    onClick = {this.handleCollapseClick()}
-                    text = "Collapse All"
+                    onClick={this.handleCollapseClick()}
+                    text="Collapse All"
                 />
 
                 {this.props.parts.filter(part => !part.parent && part.isAssembly).map(part => (
                     <TreeView
                         key={part._id}
-                        nodeLabel={part.number}
+                        nodeLabel={this.props.project.prefix + getIdentifier(part)}
                         collapsed={false}
                     >
                         {this.assemblyTree(part)}
@@ -82,7 +83,7 @@ class Tree extends React.Component {
                 {this.props.parts.filter(part => !part.parent && !part.isAssembly).map(part => (
                     <TreeView
                         key={part._id}
-                        nodeLabel={part.number}
+                        nodeLabel={this.props.project.prefix + getIdentifier(part)}
                         collapsed={true}
                     />
                 ))}
