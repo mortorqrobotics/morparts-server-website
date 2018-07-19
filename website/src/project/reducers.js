@@ -43,7 +43,17 @@ const parts = ( state = [], action) => {
     }
 }
 
+const selectedPart = ( state = null, action) => {
+    switch (action.type) {
+        case "SELECT_PART":
+            return action.part;
+        default:
+            return state;
+    }
+}
+
 export default {
     project,
     parts,
+    selectedPart,
 }

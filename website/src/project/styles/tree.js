@@ -1,5 +1,18 @@
 import { hoverColor, selectedColor } from "~/shared/styles/colors";
 
+const part = {
+    fontSize: "20px",
+    borderTop: "solid 1px",
+    borderBottom: "solid 1px",
+    borderLeft: "solid 1px",
+    borderBottomLeftRadius: "5px",
+    borderTopLeftRadius: "5px",
+    margin: "10px 0px 10px 10px",
+    padding: "2px",
+    width: "250px",
+    backgroundColor: "#E9E9E9",
+}
+
 export default {
     assemblyDiv: {
         marginLeft: "15px",
@@ -17,18 +30,7 @@ export default {
     radio: {
         width: "10px",
     },
-    part: {
-        fontSize: "20px",
-        borderTop: "solid 1px",
-        borderBottom: "solid 1px",
-        borderLeft: "solid 1px",
-        borderBottomLeftRadius: "5px",
-        borderTopLeftRadius: "5px",
-        margin: "10px 0px 10px 10px",
-        padding: "2px",
-        width: "250px",
-        backgroundColor: "#E9E9E9",
-    },
+    part,
     hovered: [part, {
         backgroundColor: hoverColor,
     }],

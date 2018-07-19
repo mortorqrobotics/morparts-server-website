@@ -1,16 +1,16 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from  "~/project/styles";
-import { getIdentifier } from "~/util/part";
 import { connect } from "react-redux";
 
 @Radium
-class Part extends React.Component {
+class Middle extends React.Component {
 
     render() {
         return (
-            <div style={styles.part}>
+            <div
+                style={[ styles.part, (this.props.isHovered && styles.partHover) ]}
+            >
                 <span>{getIdentifier(this.props.part)}</span>
                 {this.props.children}
             </div>
@@ -18,4 +18,4 @@ class Part extends React.Component {
     }
 }
 
-export default connect()(Part)
+export default connect()(Middle)

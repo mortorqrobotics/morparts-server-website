@@ -27,6 +27,13 @@ export const addPart = (part) => async (dispatch) => {
     });
 }
 
+export const selectPart = (part) => (dispatch) => {
+    dispatch({
+        type: "SELECT_PART",
+        part,
+    })
+}
+
 export function initialActions(dispatch) {
     dispatch(fetchProject());
     dispatch(loadParts());

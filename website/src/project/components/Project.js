@@ -3,7 +3,8 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
-import Tree from "~/project/components/Tree";
+import Tree from "~/project/components/tree/Tree";
+import Middle from "~/project/components/middle/Middle";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/project/reducers";
@@ -19,6 +20,7 @@ export default class Project extends React.Component {
             <Root pageName="project" store={store}>
                 <Navbar />
                 <Tree />
+                <Middle />
             </Root>
         )
     }

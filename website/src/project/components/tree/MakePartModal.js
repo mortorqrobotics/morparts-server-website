@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium"
 
 import StandardModal from "~/shared/components/StandardModal";
+import Radio from "~/shared/components/Radio";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { makeChangeHandlerFactory } from "~/util";
@@ -44,13 +45,11 @@ class MakePartModal extends React.Component {
                 title="New Part"
                 { ...modalPropsForward(this) }
             >
-                <input
-                    type="radio"
+                <Radio
                     name="type"
                     onClick={() => this.setState({ isAssembly: true })}
                 />Assembly
-                <input
-                    type="radio"
+                <Radio
                     name="type"
                     onClick={() => this.setState({ isAssembly: false })}
                 />Part
