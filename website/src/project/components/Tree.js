@@ -3,11 +3,10 @@ import Radium from "radium";
 
 import MakePartModal from "~/project/components/MakePartModal";
 import Button from "~/shared/components/Button";
-import { modalProps } from "~/util/modal"
-import TreeView from "react-treeview";
+import Part from "~/project/components/Part";
 import { connect } from "react-redux";
+import { modalProps } from "~/util/modal"
 import styles from "~/project/styles";
-import { getIdentifier } from "~/util/part";
 
 @Radium
 class Tree extends React.Component {
@@ -25,35 +24,26 @@ class Tree extends React.Component {
                         isModalOpen: true,
                         parentId: parent ? parent._id : null,
                     })}
-                    text="Add part"
+                    text="Add Part"
+                    style={styles.button}
                 />
             </div>
         )
     }
 
-    handleCollapseClick() {
-
-    }
-
-    assemblyTree(assembly) {
+    renderParts(parts) {
         return (
-            <div style={styles.assemblyDiv}>
-                {assembly.childAssemblies.map(part => (
-                    <TreeView
-                        key={part}
-                        nodeLabel={this.props.project.prefix + getIdentifier(this.findPart(part))}
-                        collapsed={false}
-                    >
-                        {this.assemblyTree(this.findPart(part))}
-                    </TreeView>
+            <div>
+                {parts.map(part => (
+                    <div>
+                        <Part
+                            key={part._id}
+                            part={part}
+                        >
+                            {part.isAssembly && this.assemblyTree(part)}
+                        </Part>
+                    </div>
                 ))}
-                {assembly.childParts.map(part => (
-                    <TreeView
-                        key={part}
-                        nodeLabel={this.props.project.prefix + getIdentifier(this.findPart(part))}
-                    />
-                ))}
-                {this.renderAddPartButton(assembly)}
             </div>
         )
     }
@@ -62,31 +52,27 @@ class Tree extends React.Component {
         return this.props.parts.find(part => part._id === partId);
     }
 
+    findParts(partIds) {
+        return partIds.map(id => this.findPart(id))
+    }
+
+    assemblyTree(assembly) {
+        return (
+            <div style={styles.assemblyDiv}>
+                {this.renderParts(this.findParts(assembly.childAssemblies))}
+                {this.renderParts(this.findParts(assembly.childParts))}
+                {this.renderAddPartButton(assembly)}
+            </div>
+        )
+    }
+
     render() {
         return (
-            <div style={styles.tree}>
+            <div style={styles.container}>
                 {this.props.project.name}
-                <Button
-                    onClick={this.handleCollapseClick()}
-                    text="Collapse All"
-                />
 
-                {this.props.parts.filter(part => !part.parent && part.isAssembly).map(part => (
-                    <TreeView
-                        key={part._id}
-                        nodeLabel={this.props.project.prefix + getIdentifier(part)}
-                        collapsed={false}
-                    >
-                        {this.assemblyTree(part)}
-                    </TreeView>
-                ))}
-                {this.props.parts.filter(part => !part.parent && !part.isAssembly).map(part => (
-                    <TreeView
-                        key={part._id}
-                        nodeLabel={this.props.project.prefix + getIdentifier(part)}
-                        collapsed={true}
-                    />
-                ))}
+                {this.renderParts(this.props.parts.filter(part => !part.parent && part.isAssembly))}
+                {this.renderParts(this.props.parts.filter(part => !part.parent && !part.isAssembly))}
                 {this.renderAddPartButton(null)}
 
                 <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />

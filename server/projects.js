@@ -56,14 +56,13 @@ module.exports = function(imports) {
         if (req.body.isAssembly) {
             assemblyNumber = util.toDoubleDigit(project.numAssemblies);
             project.numAssemblies++;
-            console.log(project.numAssemblies)
             yield project.save();
         } else {
             if (req.body.parent) {
                 assemblyNumber = parent.assemblyNumber;
                 partNumber = util.toDoubleDigit(parent.childParts.length + 1);
             } else {
-                partNumber = util.toDouvleDigit(project.spareParts.length + 1);
+                partNumber = util.toDoubleDigit(project.spareParts.length + 1);
             }
         }
 
