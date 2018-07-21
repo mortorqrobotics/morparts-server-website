@@ -1,7 +1,8 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from  "~/project/styles/tree";
+import styles, { statusColors }  from  "~/project/styles/tree";
+import { lightenColor, darkenColor } from "~/util/colors";
 import { getIdentifier } from "~/util/part";
 import { connect } from "react-redux";
 
@@ -9,13 +10,15 @@ import { connect } from "react-redux";
 class Part extends React.Component {
 
     getStyle() {
+        let color = statusColors[this.props.part.status];
         if (this.props.selectedPart == this.props.part._id) {
-            return styles.selected;
+            color = darkenColor(color);
         }
         if (this.props.isHovered) {
-            return styles.hovered;
+            color = lightenColor(color);
         }
-        return styles.part;
+        console.log(color)
+        return [styles.part, { "backgroundColor": color }];
     }
 
     render() {
@@ -23,7 +26,7 @@ class Part extends React.Component {
             <div
                 style={this.getStyle()}
             >
-                <span>{getIdentifier(this.props.part)}</span>
+                <span>{this.props.prefix + getIdentifier(this.props.part)}</span>
                 {this.props.children}
             </div>
         )
@@ -33,6 +36,7 @@ class Part extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedPart: state.selectedPart,
+        prefix: state.project.prefix,
     }
 }
 

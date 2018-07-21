@@ -1,5 +1,17 @@
 "use strict"
 
+const allStatuses = [
+    "designing",
+    "material",
+    "ordered",
+    "drawing",
+    "ready",
+    "manufacturing",
+    "outsourced",
+    "assembly",
+    "done",
+];
+
 module.exports = function(imports) {
 
     let mongoose = imports.modules.mongoose;
@@ -22,8 +34,8 @@ module.exports = function(imports) {
         isAssembly: Boolean,
         status: {
             type: String,
-            enum: ["In progress", "Done"],
-            default: "In progress",
+            enum: allStatuses,
+            default: "designing",
         },
         parent: {
             type: ObjectId,
