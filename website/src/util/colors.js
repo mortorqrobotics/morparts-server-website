@@ -1,9 +1,16 @@
-export const lightenColor = (color) => {
-    return (color & 0x7f7f7f) << 1;
+export const lightenColor = (color, amount) => {
+    let output = "#";
+    let rgb = [color.substring(1, 3), color.substring(3, 5), color.substring(5)];
+    for (let value in rgb) {
+        output += decimalToHex(Math.min(hexToDecimal(rgb[value]) + amount, 255));
+    }
+    return output;
 }
 
-export const darkenColor = (color) => {
-    return (color & 0xfefefe) >> 1;
+const hexToDecimal = (hex) => {
+    return parseInt(hex, 16);
 }
 
-
+const decimalToHex = (decimal) => {
+    return decimal.toString(16);
+}

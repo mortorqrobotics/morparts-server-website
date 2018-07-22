@@ -1,7 +1,5 @@
-import { hoverColor, selectedColor } from "~/shared/styles/colors";
-
 export const statusColors = {
-    designing: "#0000ff",
+    designing: "#4286f4",
     material: "#ff0000",
     ordered: "#ff9900",
     drawing: "#9900ff",
@@ -18,7 +16,9 @@ export default {
     },
     container: {
         marginLeft: "15px",
-        width: "350px",
+        width: "25%",
+        display: "inline-block",
+        padding: "30px",
     },
     button: {
         backgroundColor: "#ffc547",
@@ -29,17 +29,13 @@ export default {
     radio: {
         width: "10px",
     },
-    part: {
-        fontSize: "20px",
-        borderTop: "solid 1px",
-        borderBottom: "solid 1px",
+    treeLine: {
         borderLeft: "solid 1px",
-        borderBottomLeftRadius: "5px",
-        borderTopLeftRadius: "5px",
         margin: "10px 0px 10px 10px",
-        padding: "2px",
-        width: "400px",
         backgroundColor: "#E9E9E9",
+    },
+    label: {
+        fontSize: "15px",
     },
 }
 

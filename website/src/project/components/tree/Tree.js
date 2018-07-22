@@ -88,7 +88,6 @@ class Tree extends React.Component {
         return (
             <div style={styles.container}>
                 {this.props.project.name}
-
                 {this.renderParts(this.props.parts.filter(part => !part.parent && part.isAssembly))}
                 {this.renderParts(this.props.parts.filter(part => !part.parent && !part.isAssembly))}
                 {this.renderAddPartButton(null)}
