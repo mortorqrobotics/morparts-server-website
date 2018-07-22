@@ -7,7 +7,6 @@ import Part from "~/project/components/tree/Part";
 import { modalProps } from "~/util/modal"
 import styles from "~/project/styles/tree";
 
-import { selectPart } from "~/project/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -16,7 +15,6 @@ class Tree extends React.Component {
     state = {
         isModalOpen: false,
         parentId: null,
-        hoveredPart: null,
     }
 
     renderAddPartButton(parent) {
@@ -38,32 +36,14 @@ class Tree extends React.Component {
         return (
             <div>
                 {parts.map(part => (
-                    <div
-                        onMouseOver={(e) => this.hover(e, part._id)}
-                        onMouseLeave={() => this.setState({ hoveredPart: null })}
-                        onClick={(e) => this.select(e, part._id)}
-                    >
-                        <Part
-                            key={part._id}
-                            part={part}
-                            isHovered={this.state.hoveredPart == part._id}
-                        >
+                    <div key={part._id}>
+                        <Part part={part}>
                             {part.isAssembly && this.assemblyTree(part)}
                         </Part>
                     </div>
                 ))}
             </div>
         )
-    }
-
-    hover(e, partId) {
-        e.stopPropagation()
-        this.setState({ hoveredPart: partId })
-    }
-
-    select(e, partId) {
-        e.stopPropagation()
-        this.props.dispatch(selectPart(partId))
     }
 
     findPart(partId) {

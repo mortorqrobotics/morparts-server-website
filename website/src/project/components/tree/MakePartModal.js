@@ -15,7 +15,7 @@ class MakePartModal extends React.Component {
 
     static propTypes = {
         ...modalPropTypes,
-        parentId: React.PropTypes.String,
+        parentId: React.PropTypes.string,
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);

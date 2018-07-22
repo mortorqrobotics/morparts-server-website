@@ -5,23 +5,23 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles, { statusColors }  from  "~/project/styles/tree";
 import { lightenColor } from "~/util/colors";
 import { getIdentifier } from "~/util/part";
+
+import { selectPart } from "~/project/actions";
 import { connect } from "react-redux";
 
 @Radium
 class Part extends React.Component {
 
-    getStyle() {
-        let fontWeight = 200;
-        if (this.props.selectedPart == this.props.part._id || this.props.isHovered) {
-            fontWeight = 500;
-        }
-        return [styles.part, { "fontWeight": fontWeight }];
-    }
-
     render() {
         return (
             <div>
-                <div style={styles.label}>
+                <div
+                    style={[ styles.label,
+                        this.props.selectedPart == this.props.part._id && styles.selected,
+                        this.props.isHovered && styles.hovered,
+                    ]}
+                    onClick={() => this.props.dispatch(selectPart(this.props.part._id))}
+                >
                     <Glyphicon
                         style={styles.glyph}
                         glyph={this.props.part.isAssembly ? "th" : "cog"}

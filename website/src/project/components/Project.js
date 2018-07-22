@@ -19,7 +19,7 @@ export default class Project extends React.Component {
         return (
             <Root pageName="project" store={store}>
                 <Navbar />
-                <div style={{ height: "100%" }}>
+                <div>
                     <Tree />
                     <Middle />
                 </div>
