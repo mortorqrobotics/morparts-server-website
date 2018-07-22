@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import MakePartModal from "~/project/components/tree/MakePartModal";
+import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Button from "~/shared/components/Button";
 import Part from "~/project/components/tree/Part";
 import { modalProps } from "~/util/modal"
@@ -19,15 +20,15 @@ class Tree extends React.Component {
 
     renderAddPartButton(parent) {
         return (
-            <div>
-                <Button
-                    onClick={() => this.setState({
+            <div
+                onClick={() => this.setState({
                         isModalOpen: true,
                         parentId: parent ? parent._id : null,
-                    })}
-                    text="Add Part"
-                    style={styles.button}
-                />
+                })}
+                style={styles.button}
+            >
+                <Glyphicon glyph="plus" />
+                Add Part
             </div>
         )
     }
@@ -59,7 +60,7 @@ class Tree extends React.Component {
             <div style={styles.assemblyDiv}>
                 {this.renderParts(this.findParts(assembly.childAssemblies))}
                 {this.renderParts(this.findParts(assembly.childParts))}
-                {this.renderAddPartButton(assembly)}
+                {this.props.selectedPart == assembly._id && this.renderAddPartButton(assembly)}
             </div>
         )
     }
@@ -67,7 +68,6 @@ class Tree extends React.Component {
     render() {
         return (
             <div style={styles.container}>
-                {this.props.project.name}
                 {this.renderParts(this.props.parts.filter(part => !part.parent && part.isAssembly))}
                 {this.renderParts(this.props.parts.filter(part => !part.parent && !part.isAssembly))}
                 {this.renderAddPartButton(null)}
@@ -80,8 +80,8 @@ class Tree extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        project: state.project,
         parts: state.parts,
+        selectedPart: state.selectedPart,
     }
 }
 

@@ -16,15 +16,17 @@ export default {
     },
     container: {
         marginLeft: "15px",
-        width: "50%",
         display: "inline-block",
-        padding: "30px",
+        padding: "30px 100px 0px 30px",
         float: "left",
     },
     button: {
         backgroundColor: "#ffc547",
-        width: "100px",
-        fontSize: "15px",
+        fontSize: "10px",
+        padding: "5px",
+        borderRadius: "5px",
+        cursor: "pointer",
+        width: "fit-content",
     },
     radio: {
         width: "10px",
@@ -38,6 +40,7 @@ export default {
         fontSize: "15px",
         cursor: "pointer",
         width: "fit-content",
+        display: "inline-block",
         ":hover": {
             fontWeight: "500",
         },
@@ -46,5 +49,11 @@ export default {
         fontSize: "18px",
         fontWeight: "500",
     },
+    statusLabel: {
+        borderRadius: "3px",
+        color: "white",
+        padding: "2px",
+        marginLeft: "2px",
+    }
 }
 
