@@ -110,5 +110,18 @@ module.exports = function(imports) {
 
     }));
 
+    router.post("/parts/id/:partId/status", handler(function*(req, res) {
+
+        yield Part.findOneAndUpdate({
+            _id: req.params.partId,
+        }, {
+            $set: {
+                status: req.body.status,
+            }
+        });
+
+        res.end()
+    }));
+
     return router;
 };

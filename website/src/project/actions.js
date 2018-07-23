@@ -31,7 +31,16 @@ export const selectPart = (part) => (dispatch) => {
     dispatch({
         type: "SELECT_PART",
         part,
-    })
+    });
+}
+
+export const updateStatus = (partId, status) => async (dispatch) => {
+    await request("POST", `/parts/id/${partId}/status`, { status });
+    dispatch({
+        type: "UPDATE_STATUS",
+        partId,
+        status,
+    });
 }
 
 export function initialActions(dispatch) {

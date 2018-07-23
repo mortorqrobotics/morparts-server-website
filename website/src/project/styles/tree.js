@@ -1,15 +1,3 @@
-export const statusColors = {
-    designing: "#4286f4",
-    material: "#ff0000",
-    ordered: "#ff9900",
-    drawing: "#9900ff",
-    ready: "##9900ff",
-    manufacturing: "#ff0055",
-    outsourced: "#663300",
-    assembly: "#cccc00",
-    done: "#00cc00",
-};
-
 export default {
     assemblyDiv: {
         marginLeft: "15px",
@@ -49,11 +37,8 @@ export default {
         fontSize: "18px",
         fontWeight: "500",
     },
-    statusLabel: {
-        borderRadius: "3px",
-        color: "white",
-        padding: "2px",
-        marginLeft: "2px",
-    }
+    glyph: {
+        marginRight: "2px",
+    },
 }
 

@@ -27,7 +27,7 @@ class Tree extends React.Component {
                 })}
                 style={styles.button}
             >
-                <Glyphicon glyph="plus" />
+                <Glyphicon style={styles.glyph} glyph="plus" />
                 Add Part
             </div>
         )
@@ -60,7 +60,7 @@ class Tree extends React.Component {
             <div style={styles.assemblyDiv}>
                 {this.renderParts(this.findParts(assembly.childAssemblies))}
                 {this.renderParts(this.findParts(assembly.childParts))}
-                {this.props.selectedPart == assembly._id && this.renderAddPartButton(assembly)}
+                {this.props.selectedPart === assembly._id && this.renderAddPartButton(assembly)}
             </div>
         )
     }

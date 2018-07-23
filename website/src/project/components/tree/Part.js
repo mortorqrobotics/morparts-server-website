@@ -2,8 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-import styles, { statusColors }  from  "~/project/styles/tree";
-import { lightenColor } from "~/util/colors";
+import styles from  "~/project/styles/tree";
 import { getIdentifier } from "~/util/part";
 
 import { selectPart } from "~/project/actions";
@@ -16,7 +15,7 @@ class Part extends React.Component {
         return (
             <div>
                 <div
-                    style={[ styles.label,
+                    style={[styles.label,
                         this.props.selectedPart == this.props.part._id && styles.selected,
                         this.props.isHovered && styles.hovered,
                     ]}

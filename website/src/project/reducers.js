@@ -1,6 +1,6 @@
 import update from "react/lib/update";
 
-const project = ( state = {}, action) => {
+const project = (state = {}, action) => {
     switch (action.type) {
         case "SET_PROJECT":
             return action.project;
@@ -9,7 +9,7 @@ const project = ( state = {}, action) => {
     }
 }
 
-const parts = ( state = [], action) => {
+const parts = (state = [], action) => {
     let newState = [];
     let index;
     switch (action.type) {
@@ -38,12 +38,19 @@ const parts = ( state = [], action) => {
                 }
             }
             return newState;
+        case "UPDATE_STATUS":
+            index = state.findIndex(part => part._id === action.partId);
+            return update(state, {
+                [index]: {
+                    status: { $set: action.status }
+                }
+            });
         default:
             return state;
     }
 }
 
-const selectedPart = ( state = null, action) => {
+const selectedPart = (state = null, action) => {
     switch (action.type) {
         case "SELECT_PART":
             return action.part;
