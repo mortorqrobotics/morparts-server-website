@@ -3,10 +3,13 @@ export default {
         marginLeft: "15px",
     },
     container: {
-        marginLeft: "15px",
+        marginRight: "20px",
         display: "inline-block",
-        padding: "30px 100px 0px 30px",
+        padding: "30px",
         float: "left",
+        backgroundColor: "white",
+        boxShadow: "rgb(169, 169, 169) 1.5px 3px 8px -2px",
+        width: "400px",
     },
     button: {
         backgroundColor: "#ffc547",
@@ -22,7 +25,6 @@ export default {
     treeLine: {
         borderLeft: "solid 1px",
         margin: "10px 0px 10px 10px",
-        backgroundColor: "#E9E9E9",
     },
     label: {
         fontSize: "15px",
@@ -39,6 +41,13 @@ export default {
     },
     glyph: {
         marginRight: "2px",
+    },
+    statusDot: {
+        width: "8px",
+        height: "8px",
+        display: "inline-block",
+        borderRadius: "4px",
+        margin: "3px",
     },
 }
 

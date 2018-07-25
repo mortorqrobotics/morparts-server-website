@@ -24,11 +24,11 @@ export const statuses = {
     },
     ready: {
         text: "Ready to manufacture",
-        color: "#9900ff",
+        color: "#448e7e",
     },
     manufacturing: {
         text: "Manufacturing in progress",
-        color: "#ff0055",
+        color: "#ff00cb",
     },
     outsourced: {
         text: "Waiting for outsourced manufacturing",
@@ -40,6 +40,6 @@ export const statuses = {
     },
     done: {
         text: "Done",
-        color: "#00cc00",
+        color: "#35f700",
     },
 }

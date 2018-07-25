@@ -21,8 +21,10 @@ export default class Project extends React.Component {
             <Root pageName="project" store={store}>
                 <Navbar />
                 <Heading />
-                <Tree />
-                <Middle />
+                <div style={{ margin: "0 auto", width: "70%" }}>
+                    <Tree />
+                    <Middle />
+                </div>
             </Root>
         )
     }
