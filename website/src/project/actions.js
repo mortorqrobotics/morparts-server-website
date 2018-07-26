@@ -43,6 +43,15 @@ export const updateStatus = (partId, status) => async (dispatch) => {
     });
 }
 
+export const deletePart = (part) => async (dispatch) => {
+    await request("DELETE", `/parts/id/${part._id}`);
+    dispatch({
+        type: "DELETE_PART",
+        part,
+    });
+}
+
+
 export function initialActions(dispatch) {
     dispatch(fetchProject());
     dispatch(loadParts());

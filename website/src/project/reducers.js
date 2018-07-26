@@ -12,6 +12,8 @@ const project = (state = {}, action) => {
 const parts = (state = [], action) => {
     let newState = [];
     let index;
+    let parentIndex;
+    let childIndex;
     switch (action.type) {
         case "LOAD_PARTS":
             return state.concat(action.parts);
@@ -45,6 +47,27 @@ const parts = (state = [], action) => {
                     status: { $set: action.status }
                 }
             });
+        case "DELETE_PART":
+            newState = state.filter(part => part._id !== action.part._id);
+            if (action.part.parent) {
+                let parentIndex = newState.findIndex(part => part._id === action.part.parent);
+                if (action.part.isAssembly) {
+                    childIndex = newState[parentIndex].childAssemblies.findIndex(part => part === action.part._id);
+                    newState = update(newState, {
+                        [parentIndex]: {
+                            childAssemblies: { $splice: [[childIndex, 1]] }
+                        }
+                    });
+                } else {
+                    childIndex = newState[parentIndex].childParts.findIndex(part => part === action.part._id);
+                    newState = update(newState, {
+                        [parentIndex]: {
+                            childParts: { $splice: [[childIndex, 1]] }
+                        }
+                    });
+                }
+            }
+            return newState;
         default:
             return state;
     }

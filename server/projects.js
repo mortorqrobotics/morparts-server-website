@@ -123,5 +123,37 @@ module.exports = function(imports) {
         res.end()
     }));
 
+    router.delete("/parts/id/:partId", handler(function*(req, res) {
+
+        // TODO: deleting completely messes up identifier numbering
+        let part = yield Part.findOne({
+            _id: req.params.partId,
+        });
+
+        if (!part) {
+            res.end("This part does not exist");
+        }
+
+        if (part.isAssembly && part.childParts.length + part.childAssemblies.length > 0) {
+            res.end("You cannot delete an assembly with children");
+        }
+
+        if (part.parent) {
+            let parent = yield Part.findOne({
+                _id: part.parent,
+            });
+            if (part.isAssembly) {
+                parent.childAssemblies = parent.childAssemblies.filter(a => a.toString() !== part._id.toString());
+            } else {
+                parent.childParts = parent.childParts.filter(p => p.toString() !== part._id.toString());
+            }
+            yield parent.save();
+        }
+
+        yield part.remove();
+        res.end()
+
+    }));
+
     return router;
 };

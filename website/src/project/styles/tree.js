@@ -1,16 +1,14 @@
+import styles from "~/project/styles";
+
 export default {
     assemblyDiv: {
         marginLeft: "15px",
     },
-    container: {
+    container: [styles.container, {
         marginRight: "20px",
-        display: "inline-block",
-        padding: "30px",
         float: "left",
-        backgroundColor: "white",
-        boxShadow: "rgb(169, 169, 169) 1.5px 3px 8px -2px",
         width: "400px",
-    },
+    }],
     button: {
         backgroundColor: "#ffc547",
         fontSize: "10px",
@@ -18,9 +16,6 @@ export default {
         borderRadius: "5px",
         cursor: "pointer",
         width: "fit-content",
-    },
-    radio: {
-        width: "10px",
     },
     treeLine: {
         borderLeft: "solid 1px",
@@ -42,12 +37,6 @@ export default {
     glyph: {
         marginRight: "2px",
     },
-    statusDot: {
-        width: "8px",
-        height: "8px",
-        display: "inline-block",
-        borderRadius: "4px",
-        margin: "3px",
-    },
+    statusDot: styles.statusDot,
 }
 
