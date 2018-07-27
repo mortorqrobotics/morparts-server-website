@@ -21,23 +21,13 @@ const parts = (state = [], action) => {
             newState = [action.part].concat(state);
             index = newState.findIndex(part => part._id === action.part.parent);
             if (action.part.parent) {
-                if (action.part.isAssembly) {
-                    newState = update(newState, {
-                        [index]: {
-                            childAssemblies: {
-                                $push: [action.part._id]
-                            }
+                newState = update(newState, {
+                    [index]: {
+                        children: {
+                            parts: { $push: [action.part._id] }
                         }
-                    })
-                } else {
-                    newState = update(newState, {
-                        [index]: {
-                            childParts: {
-                                $push: [action.part._id]
-                            }
-                        }
-                    })
-                }
+                    }
+                })
             }
             return newState;
         case "UPDATE_STATUS":
@@ -50,22 +40,15 @@ const parts = (state = [], action) => {
         case "DELETE_PART":
             newState = state.filter(part => part._id !== action.part._id);
             if (action.part.parent) {
-                let parentIndex = newState.findIndex(part => part._id === action.part.parent);
-                if (action.part.isAssembly) {
-                    childIndex = newState[parentIndex].childAssemblies.findIndex(part => part === action.part._id);
-                    newState = update(newState, {
-                        [parentIndex]: {
-                            childAssemblies: { $splice: [[childIndex, 1]] }
+                parentIndex = newState.findIndex(part => part._id === action.part.parent);
+                childIndex = newState[parentIndex].children.parts.findIndex(part => part === action.part._id);
+                newState = update(newState, {
+                    [parentIndex]: {
+                        children: {
+                            parts: { $splice: [[childIndex, 1]] }
                         }
-                    });
-                } else {
-                    childIndex = newState[parentIndex].childParts.findIndex(part => part === action.part._id);
-                    newState = update(newState, {
-                        [parentIndex]: {
-                            childParts: { $splice: [[childIndex, 1]] }
-                        }
-                    });
-                }
+                    }
+                });
             }
             return newState;
         default:

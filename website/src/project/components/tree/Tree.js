@@ -7,6 +7,7 @@ import Button from "~/shared/components/Button";
 import Part from "~/project/components/tree/Part";
 import { modalProps } from "~/util/modal"
 import styles from "~/project/styles/tree";
+import { filterPartType } from "~/util/part";
 
 import { connect } from "react-redux";
 
@@ -58,8 +59,8 @@ class Tree extends React.Component {
     assemblyTree(assembly) {
         return (
             <div style={styles.assemblyDiv}>
-                {this.renderParts(this.findParts(assembly.childAssemblies))}
-                {this.renderParts(this.findParts(assembly.childParts))}
+                {this.renderParts(filterPartType(this.findParts(assembly.children.parts), true))}
+                {this.renderParts(filterPartType(this.findParts(assembly.children.parts), false))}
                 {this.props.selectedPart === assembly._id && this.renderAddPartButton(assembly)}
             </div>
         )

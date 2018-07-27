@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import { getIdentifier, statuses } from "~/util/part";
+import { getIdentifierString, statuses } from "~/util/part";
 import DropdownButton from "react-bootstrap/lib/DropdownButton";
 import MenuItem from "react-bootstrap/lib/MenuItem";
 import styles from "~/project/styles/middle"
@@ -18,7 +18,7 @@ class Middle extends React.Component {
             return (
                 <div style={styles.container}>
                     <h3>{this.props.selectedPart.name}</h3>
-                    <h5>{this.props.prefix + getIdentifier(this.props.selectedPart)}</h5>
+                    <h5>{getIdentifierString(this.props.selectedPart)}</h5>
                     <DropdownButton
                         id="status-dropdown"
                         title={statuses[this.props.selectedPart.status].text}
@@ -49,7 +49,6 @@ class Middle extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedPart: state.parts.find(part => part._id === state.selectedPart),
-        prefix: state.project.prefix,
     }
 }
 

@@ -3,7 +3,7 @@ import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from  "~/project/styles/tree";
-import { getIdentifier, statuses } from "~/util/part";
+import { getIdentifierString, statuses } from "~/util/part";
 
 import { selectPart } from "~/project/actions";
 import { connect } from "react-redux";
@@ -25,7 +25,7 @@ class Part extends React.Component {
                         style={styles.glyph}
                         glyph={this.props.part.isAssembly ? "th" : "cog"}
                     />
-                    <span>{this.props.prefix + getIdentifier(this.props.part)}</span>
+                    <span>{getIdentifierString(this.props.part)}</span>
                     <span style={[ styles.statusDot, { backgroundColor: statuses[this.props.part.status].color }]}/>
                 </div>
                 <div style={styles.treeLine}>
@@ -39,7 +39,6 @@ class Part extends React.Component {
 const mapStateToProps = (state) => {
     return {
         selectedPart: state.selectedPart,
-        prefix: state.project.prefix,
     }
 }
 

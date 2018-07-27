@@ -19,13 +19,19 @@ module.exports = function(imports) {
     let ObjectId = Schema.Types.ObjectId;
 
     let partSchema = new Schema({
-        assemblyNumber: {
-            type: String,
-            required: true,
-        },
-        partNumber: {
-            type: String,
-            required: false,
+        identifier: {
+            assembly: {
+                type: String,
+                required: true,
+            },
+            part: {
+                type: String,
+                required: false,
+            },
+            prefix: {
+                type: String,
+                required: true,
+            },
         },
         name: {
             type: String,
@@ -42,16 +48,17 @@ module.exports = function(imports) {
             ref: "Part",
             required: false
         },
-        childParts: [{
-            type: ObjectId,
-            ref: "Part",
-            required: false,
-        }],
-        childAssemblies: [{
-            type: ObjectId,
-            ref: "Part",
-            required: false,
-        }],
+        children: {
+            parts: [{
+                type: ObjectId,
+                ref: "Part",
+                required: false,
+            }],
+            highestOrderPart: {
+                type: Number,
+                default: 0,
+            },
+        },
         project: {
             type: ObjectId,
             ref: "Project",

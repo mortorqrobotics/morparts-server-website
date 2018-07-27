@@ -20,16 +20,16 @@ module.exports = function(imports) {
             ref: "Team",
             required: true,
         },
-        numAssemblies: {
-            type: Number,
-            default: 0,
+        children: {
+            highestOrderPart: {
+                type: Number,
+                default: 0,
+            },
+            highestOrderAssembly: {
+                type: Number,
+                default: 0,
+            },
         },
-        // parts that are not under an assembly
-        spareParts: [{
-            type: ObjectId,
-            ref: "Part",
-            required: false,
-        }],
         created_at: Date,
         updated_at: Date,
     });

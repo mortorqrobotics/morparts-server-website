@@ -47,45 +47,51 @@ module.exports = function(imports) {
                 _id: req.body.parent,
             });
             if (!parent.isAssembly) {
-                return res.status(404).end("This assembly does not exist");
+                return res.status(400).end("Only assemblies can have children.");
             }
         }
 
         let partNumber = "00";
         let assemblyNumber = "00";
         if (req.body.isAssembly) {
-            assemblyNumber = util.toDoubleDigit(project.numAssemblies);
-            project.numAssemblies++;
-            yield project.save();
+            assemblyNumber = util.toDoubleDigit(project.children.highestOrderAssembly);
         } else {
             if (req.body.parent) {
-                assemblyNumber = parent.assemblyNumber;
-                partNumber = util.toDoubleDigit(parent.childParts.length + 1);
+                assemblyNumber = parent.identifier.assembly;
+                partNumber = util.toDoubleDigit(parent.children.highestOrderPart + 1);
             } else {
-                partNumber = util.toDoubleDigit(project.spareParts.length + 1);
+                partNumber = util.toDoubleDigit(project.children.highestOrderPart + 1);
             }
         }
 
         let part = yield Part.create({
             name: req.body.name,
-            partNumber,
-            assemblyNumber,
+            identifier: {
+                part: partNumber,
+                assembly: assemblyNumber,
+                prefix: project.prefix,
+            },
             isAssembly: req.body.isAssembly,
             project: req.params.projectId,
             parent: req.body.parent,
         });
 
-        if (req.body.parent) {
-            if (req.body.isAssembly) {
-                parent.childAssemblies = parent.childAssemblies.concat(part);
-            } else {
-                parent.childParts = parent.childParts.concat(part);
+        if (parent) {
+            if (!parent.children.parts) parent.children.parts = [];
+            parent.children.parts = parent.children.parts.concat(part);
+            if (!req.body.isAssembly) {
+                parent.children.highestOrderPart++;
             }
             yield parent.save();
-        } else if (!req.body.isAssembly) {
-            project.spareParts = project.spareParts.concat(part);
+        } else {
+            if (!req.body.isAssembly) {
+                project.children.highestOrderPart++;
+            } else {
+                project.children.highestOrderAssembly++;
+            }
             yield project.save()
         }
+
         res.json(part);
 
     }));
@@ -131,22 +137,18 @@ module.exports = function(imports) {
         });
 
         if (!part) {
-            res.end("This part does not exist");
+            return res.status(404).end("This part does not exist");
         }
 
-        if (part.isAssembly && part.childParts.length + part.childAssemblies.length > 0) {
-            res.end("You cannot delete an assembly with children");
+        if (part.isAssembly && part.children.parts.length > 0) {
+            return res.status(400).end("You cannot delete an assembly with children");
         }
 
         if (part.parent) {
             let parent = yield Part.findOne({
                 _id: part.parent,
             });
-            if (part.isAssembly) {
-                parent.childAssemblies = parent.childAssemblies.filter(a => a.toString() !== part._id.toString());
-            } else {
-                parent.childParts = parent.childParts.filter(p => p.toString() !== part._id.toString());
-            }
+            parent.children.parts = parent.children.parts.filter(p => p.toString() !== part._id.toString());
             yield parent.save();
         }
 

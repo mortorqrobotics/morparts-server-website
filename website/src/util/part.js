@@ -1,8 +1,12 @@
-export const getIdentifier = (part) => {
-    let identifier = "";
-    identifier += "-" + (part.isAssembly ? "A" : "P") + "-";
-    identifier += part.assemblyNumber + part.partNumber;
-    return identifier;
+export const getIdentifierString = (part) => {
+    let str = part.identifier.prefix;
+    str += "-" + (part.isAssembly ? "A" : "P") + "-";
+    str += part.identifier.assembly + part.identifier.part;
+    return str;
+}
+
+export const filterPartType = (parts, getAssemblies) => {
+    return parts.filter(part => getAssemblies == part.isAssembly);
 }
 
 export const statuses = {
