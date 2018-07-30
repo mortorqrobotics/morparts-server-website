@@ -33,6 +33,7 @@ module.exports = function(imports) {
                 required: true,
             },
         },
+
         name: {
             type: String,
             required: true,
@@ -46,7 +47,7 @@ module.exports = function(imports) {
         parent: {
             type: ObjectId,
             ref: "Part",
-            required: false
+            required: false,
         },
         children: {
             parts: [{
@@ -63,6 +64,10 @@ module.exports = function(imports) {
             type: ObjectId,
             ref: "Project",
             required: true,
+        },
+        description: {
+            type: String,
+            required: false,
         },
         created_at: Date,
         updated_at: Date

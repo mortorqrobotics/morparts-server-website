@@ -4,7 +4,7 @@ export default {
         height: "8px",
         display: "inline-block",
         borderRadius: "4px",
-        margin: "3px",
+        margin: "0px 4px",
     },
     container: {
         display: "inline-block",

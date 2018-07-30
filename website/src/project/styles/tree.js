@@ -11,7 +11,7 @@ export default {
     }],
     button: {
         backgroundColor: "#ffc547",
-        fontSize: "10px",
+        fontSize: "11px",
         padding: "5px",
         borderRadius: "5px",
         cursor: "pointer",
@@ -24,11 +24,14 @@ export default {
     label: {
         fontSize: "15px",
         cursor: "pointer",
-        width: "fit-content",
-        display: "inline-block",
         ":hover": {
             fontWeight: "500",
         },
+    },
+    identifier: {
+        fontSize: "13px",
+        color: "#A4A4A4",
+        padding: "2px",
     },
     selected: {
         fontSize: "18px",

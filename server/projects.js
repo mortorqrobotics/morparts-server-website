@@ -157,5 +157,32 @@ module.exports = function(imports) {
 
     }));
 
+    router.post("/parts/id/:partId/name", handler(function*(req, res) {
+
+        yield Part.findOneAndUpdate({
+            _id: req.params.partId,
+        }, {
+            $set: {
+                name: req.body.name,
+            }
+        });
+
+        res.end()
+    }));
+
+    router.post("/parts/id/:pardId/description", handler(function*(req, res) {
+
+        //TODO: check for hmtl injections
+        yield Part.findOneAndUpdate({
+            _id: req.params.partId,
+        }, {
+            $set: {
+                description: req.body.description,
+            }
+        });
+
+        res.end();
+    }));
+
     return router;
 };

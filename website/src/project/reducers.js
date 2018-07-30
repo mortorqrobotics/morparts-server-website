@@ -18,7 +18,7 @@ const parts = (state = [], action) => {
         case "LOAD_PARTS":
             return state.concat(action.parts);
         case "ADD_PART":
-            newState = [action.part].concat(state);
+            newState = state.concat(action.part);
             index = newState.findIndex(part => part._id === action.part.parent);
             if (action.part.parent) {
                 newState = update(newState, {
@@ -35,6 +35,20 @@ const parts = (state = [], action) => {
             return update(state, {
                 [index]: {
                     status: { $set: action.status }
+                }
+            });
+        case "SET_NAME":
+            index = state.findIndex(part => part._id === action.partId);
+            return upate(state, {
+                [index]: {
+                    name: { $set: action.name }
+                }
+            });
+        case "SET_DESCRIPTION":
+            index = state.findIndex(part => part._id === action.partId);
+            return upate(state, {
+                [index]: {
+                    description: { $set: action.name }
                 }
             });
         case "DELETE_PART":

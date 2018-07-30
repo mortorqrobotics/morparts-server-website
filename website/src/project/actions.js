@@ -43,6 +43,24 @@ export const updateStatus = (partId, status) => async (dispatch) => {
     });
 }
 
+export const setName = (partId, name) => async (dispatch) => {
+    await request("POST", `/parts/id/${partId}/name`, { name });
+    dispatch({
+        type: "SET_NAME",
+        partId,
+        name,
+    });
+}
+
+export const setDescription = (partId, description) => async (dispatch) => {
+    await request("POST", `/parts/id/${partId}/description`, { description });
+    dispatch({
+        type: "SET_DESCRIPTION",
+        partId,
+        description,
+    });
+}
+
 export const deletePart = (part) => async (dispatch) => {
     await request("DELETE", `/parts/id/${part._id}`);
     dispatch({
@@ -50,7 +68,6 @@ export const deletePart = (part) => async (dispatch) => {
         part,
     });
 }
-
 
 export function initialActions(dispatch) {
     dispatch(fetchProject());

@@ -25,8 +25,10 @@ class Part extends React.Component {
                         style={styles.glyph}
                         glyph={this.props.part.isAssembly ? "th" : "cog"}
                     />
-                    <span>{getIdentifierString(this.props.part)}</span>
+                    <span>{this.props.part.name}</span>
+                    <span style={styles.identifier}>[{getIdentifierString(this.props.part)}]</span>
                     <span style={[ styles.statusDot, { backgroundColor: statuses[this.props.part.status].color }]}/>
+
                 </div>
                 <div style={styles.treeLine}>
                     {this.props.children}
