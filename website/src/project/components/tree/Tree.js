@@ -61,6 +61,7 @@ class Tree extends React.Component {
             <div style={styles.assemblyDiv}>
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), true))}
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), false))}
+
                 {this.props.selectedPart === assembly._id && this.renderAddPartButton(assembly)}
             </div>
         )
@@ -69,10 +70,7 @@ class Tree extends React.Component {
     render() {
         return (
             <div style={styles.container}>
-                {this.renderParts(this.props.parts.filter(part => !part.parent && part.isAssembly))}
-                {this.renderParts(this.props.parts.filter(part => !part.parent && !part.isAssembly))}
-                {this.renderAddPartButton(null)}
-
+                {this.props.parts.length > 0 && this.renderParts([this.props.parts.find(part => part.isRootAssembly)])}
                 <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />
             </div>
         )

@@ -20,15 +20,9 @@ module.exports = function(imports) {
             ref: "Team",
             required: true,
         },
-        children: {
-            highestOrderPart: {
-                type: Number,
-                default: 0,
-            },
-            highestOrderAssembly: {
-                type: Number,
-                default: 0,
-            },
+        highestOrderAssembly: {
+            type: Number,
+            default: 0,
         },
         created_at: Date,
         updated_at: Date,

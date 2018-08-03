@@ -33,12 +33,15 @@ module.exports = function(imports) {
                 required: true,
             },
         },
-
         name: {
             type: String,
             required: true,
         },
         isAssembly: Boolean,
+        isRootAssembly: {
+            type: Boolean,
+            default: false,
+        },
         status: {
             type: String,
             enum: allStatuses,

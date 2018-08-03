@@ -17,6 +17,18 @@ module.exports = function(imports) {
             team: req.user.team,
         });
 
+        yield Part.create({
+            name: "Full Assembly",
+            identifier: {
+                part: "00",
+                assembly: "00",
+                prefix: project.prefix,
+            },
+            isAssembly: true,
+            isRootAssembly: true,
+            project: project._id,
+        });
+
         res.json(project);
 
     }));
@@ -41,27 +53,21 @@ module.exports = function(imports) {
             return res.status(404).end("This project does not exist");
         }
 
-        let parent;
-        if (req.body.parent) {
-            parent = yield Part.findOne({
-                _id: req.body.parent,
-            });
-            if (!parent.isAssembly) {
-                return res.status(400).end("Only assemblies can have children.");
-            }
+        let parent = yield Part.findOne({
+            _id: req.body.parent,
+        });
+
+        if (!parent.isAssembly) {
+            return res.status(400).end("Only assemblies can have children.");
         }
 
         let partNumber = "00";
         let assemblyNumber = "00";
         if (req.body.isAssembly) {
-            assemblyNumber = util.toDoubleDigit(project.children.highestOrderAssembly);
+            assemblyNumber = util.toDoubleDigit(project.highestOrderAssembly + 1);
         } else {
-            if (req.body.parent) {
-                assemblyNumber = parent.identifier.assembly;
-                partNumber = util.toDoubleDigit(parent.children.highestOrderPart + 1);
-            } else {
-                partNumber = util.toDoubleDigit(project.children.highestOrderPart + 1);
-            }
+            assemblyNumber = parent.identifier.assembly;
+            partNumber = util.toDoubleDigit(parent.children.highestOrderPart + 1);
         }
 
         let part = yield Part.create({
@@ -76,21 +82,15 @@ module.exports = function(imports) {
             parent: req.body.parent,
         });
 
-        if (parent) {
-            if (!parent.children.parts) parent.children.parts = [];
-            parent.children.parts = parent.children.parts.concat(part);
-            if (!req.body.isAssembly) {
-                parent.children.highestOrderPart++;
-            }
-            yield parent.save();
+        if (!parent.children.parts) parent.children.parts = [];
+        parent.children.parts = parent.children.parts.concat(part);
+        if (req.body.isAssembly) {
+            project.highestOrderAssembly++;
         } else {
-            if (!req.body.isAssembly) {
-                project.children.highestOrderPart++;
-            } else {
-                project.children.highestOrderAssembly++;
-            }
-            yield project.save()
+            parent.children.highestOrderPart++;
         }
+        yield parent.save();
+        yield project.save()
 
         res.json(part);
 
@@ -138,6 +138,10 @@ module.exports = function(imports) {
 
         if (!part) {
             return res.status(404).end("This part does not exist");
+        }
+
+        if (part.isRootAssembly) {
+            return res.status(400).end("You cannot delete the root assembly");
         }
 
         if (part.isAssembly && part.children.parts.length > 0) {

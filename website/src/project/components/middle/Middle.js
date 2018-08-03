@@ -13,6 +13,10 @@ import { connect } from "react-redux";
 @Radium
 class Middle extends React.Component {
 
+    state = {
+        isModalOpen: false,
+    }
+
     render() {
         if (this.props.selectedPart) {
             return (
@@ -34,6 +38,7 @@ class Middle extends React.Component {
                             </MenuItem>
                         ))}
                     </DropdownButton>
+                    <p>{this.props.selectedPart.description}</p>
                     <Glyphicon
                         onClick={() => this.props.dispatch(deletePart(this.props.selectedPart))}
                         glyph="trash"
