@@ -62,7 +62,7 @@ class Tree extends React.Component {
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), true))}
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), false))}
 
-                {this.props.selectedPart === assembly._id && this.renderAddPartButton(assembly)}
+                {this.props.selectedPartId === assembly._id && this.renderAddPartButton(assembly)}
             </div>
         )
     }
@@ -80,7 +80,7 @@ class Tree extends React.Component {
 const mapStateToProps = (state) => {
     return {
         parts: state.parts,
-        selectedPart: state.selectedPart,
+        selectedPartId: state.selectedPartId,
     }
 }
 

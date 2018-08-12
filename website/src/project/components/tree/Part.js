@@ -5,7 +5,7 @@ import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from  "~/project/styles/tree";
 import { getIdentifierString, statuses } from "~/util/part";
 
-import { selectPart } from "~/project/actions";
+import { selectPartId } from "~/project/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -16,10 +16,10 @@ class Part extends React.Component {
             <div>
                 <div
                     style={[styles.label,
-                        this.props.selectedPart == this.props.part._id && styles.selected,
+                        this.props.selectedPartId == this.props.part._id && styles.selected,
                         this.props.isHovered && styles.hovered,
                     ]}
-                    onClick={() => this.props.dispatch(selectPart(this.props.part._id))}
+                    onClick={() => this.props.dispatch(selectPartId(this.props.part._id))}
                 >
                     <Glyphicon
                         style={styles.glyph}
@@ -40,7 +40,7 @@ class Part extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectedPart: state.selectedPart,
+        selectedPartId: state.selectedPartId,
     }
 }
 

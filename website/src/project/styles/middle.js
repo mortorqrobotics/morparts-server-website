@@ -11,5 +11,10 @@ export default {
         fontSize: "20px",
         cursor: "pointer",
     },
+    description: {
+        maxWidth: "500px",
+        width: "500px",
+        marginTop: "10px",
+    },
     statusDot: styles.statusDot,
 }

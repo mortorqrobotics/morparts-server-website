@@ -15,6 +15,7 @@ class Middle extends React.Component {
 
     state = {
         isModalOpen: false,
+        isEditingDescription: false,
     }
 
     render() {
@@ -38,7 +39,13 @@ class Middle extends React.Component {
                             </MenuItem>
                         ))}
                     </DropdownButton>
-                    <p>{this.props.selectedPart.description}</p>
+                    <textarea style={styles.description}
+                        readOnly={!this.state.isEditingDescription}
+                        rows="10"
+                        cols="30"
+                    >
+                        {this.props.selectedPart.description}
+                    </textarea>
                     <Glyphicon
                         onClick={() => this.props.dispatch(deletePart(this.props.selectedPart))}
                         glyph="trash"
@@ -53,7 +60,7 @@ class Middle extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectedPart: state.parts.find(part => part._id === state.selectedPart),
+        selectedPart: state.parts.find(part => part._id === state.selectedPartId),
     }
 }
 

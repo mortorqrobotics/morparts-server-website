@@ -70,10 +70,10 @@ const parts = (state = [], action) => {
     }
 }
 
-const selectedPart = (state = null, action) => {
+const selectedPartId = (state = null, action) => {
     switch (action.type) {
-        case "SELECT_PART":
-            return action.part;
+        case "SELECT_PART_ID":
+            return action.partId;
         default:
             return state;
     }
@@ -82,5 +82,5 @@ const selectedPart = (state = null, action) => {
 export default {
     project,
     parts,
-    selectedPart,
+    selectedPartId,
 }

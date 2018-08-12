@@ -131,7 +131,7 @@ module.exports = function(imports) {
 
     router.delete("/parts/id/:partId", handler(function*(req, res) {
 
-        // TODO: deleting completely messes up identifier numbering
+        // TODO: deleting completely messes up identifier numbering, change highestOrder nums
         let part = yield Part.findOne({
             _id: req.params.partId,
         });
