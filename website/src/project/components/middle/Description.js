@@ -4,8 +4,6 @@ import Radium from "radium";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/project/styles/middle";
 import { makeChangeHandlerFactory } from "~/util";
-
-import { setDescription } from "~/project/actions";
 import { connect } from "react-redux";
 
 const RadiumGlyphicon = Radium(Glyphicon);
@@ -28,7 +26,7 @@ class Description extends React.Component {
                     onChange={this.getChangeHandler("description")}
                     onClick={() => this.setState({ isEditing: true })}
                     placeholder="Description"
-                    value={this.state.isEditing ? this.state.description : this.props.selectedPart.description}
+                    value={this.state.description}
                 />
 
                 {this.state.isEditing && (
@@ -37,17 +35,14 @@ class Description extends React.Component {
                             glyph="ok-circle"
                             style={styles.save}
                             onClick={() => {
-                                this.props.dispatch(setDescription(this.props.selectedPart._id, this.state.description))
-                                this.setState({
-                                    isEditing: false,
-                                    description: this.props.selectedPart.description,
-                                })
+                                this.props.onSave(this.state.description);
+                                this.setState({ isEditing: false });
                             }}
                         />
                         <RadiumGlyphicon glyph="ban-circle" style={styles.cancel}
                             onClick={() => this.setState({
                                 isEditing: false,
-                                description: this.props.selectedPart.description,
+                                description: this.props.description,
                             })}
                         />
                     </div>
@@ -57,10 +52,4 @@ class Description extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectedPart: state.parts.find(part => part._id === state.selectedPartId),
-    }
-}
-
-export default connect(mapStateToProps)(Description);
+export default connect()(Description);

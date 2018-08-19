@@ -6,7 +6,7 @@ import styles from "~/project/styles/tree";
 import StatusDot from "~/shared/components/StatusDot";
 import { getIdentifierString } from "~/util/part";
 
-import { selectPartId } from "~/project/actions";
+import { selectPart } from "~/project/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -17,10 +17,10 @@ class Part extends React.Component {
             <div>
                 <div
                     style={[styles.label,
-                        this.props.selectedPartId == this.props.part._id && styles.selected,
+                        this.props.selectedPartId === this.props.part._id && styles.selected,
                         this.props.isHovered && styles.hovered,
                     ]}
-                    onClick={() => this.props.dispatch(selectPartId(this.props.part._id))}
+                    onClick={() => this.props.dispatch(selectPart(this.props.part._id))}
                 >
                     <Glyphicon
                         style={styles.glyph}

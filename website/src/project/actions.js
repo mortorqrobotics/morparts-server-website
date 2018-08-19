@@ -17,7 +17,7 @@ const loadParts = () => async (dispatch) => {
         type: "LOAD_PARTS",
         parts: data,
     });
-    dispatch(selectPartId(data.find(part => part.isRootAssembly)._id));
+    dispatch(selectPart(data.find(part => part.isRootAssembly)._id));
 }
 
 export const addPart = (part) => async (dispatch) => {
@@ -28,9 +28,23 @@ export const addPart = (part) => async (dispatch) => {
     });
 }
 
-export const selectPartId = (partId) => (dispatch) => {
+export const selectPart = (partId) => (dispatch) => {
     dispatch({
-        type: "SELECT_PART_ID",
+        type: "SELECT_PART",
+        partId,
+    });
+}
+
+export const pinPart = (partId) => (dispatch) => {
+    dispatch({
+        type: "PIN_PART",
+        partId,
+    });
+}
+
+export const unpinPart = (partId) => (dispatch) => {
+    dispatch({
+        type: "UNPIN_PART",
         partId,
     });
 }

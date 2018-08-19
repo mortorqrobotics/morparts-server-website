@@ -17,8 +17,20 @@ const glyph = {
 
 export default {
     container: {
-        width: "45%",
+        display: "inline-block",
     },
+    partView: {
+        width: "500px",
+    },
+    pin: [glyph, {
+        float: "right",
+        opacity: "0.3",
+        fontSize: "20px",
+        cursor: "pointer",
+        ":hover": {
+            opacity: "0.5",
+        },
+    }],
     description: {
         editing: [description, {
             outline: "2px solid " + selectedColor,

@@ -48,7 +48,7 @@ const parts = (state = [], action) => {
             index = state.findIndex(part => part._id === action.partId);
             return update(state, {
                 [index]: {
-                    description: { $set: action.name }
+                    description: { $set: action.description }
                 }
             });
         case "DELETE_PART":
@@ -72,8 +72,22 @@ const parts = (state = [], action) => {
 
 const selectedPartId = (state = null, action) => {
     switch (action.type) {
-        case "SELECT_PART_ID":
+        case "SELECT_PART":
             return action.partId;
+        default:
+            return state;
+    }
+}
+
+const pinnedPartIds = (state = [], action) => {
+    switch (action.type) {
+        case "PIN_PART":
+            if (!state.includes(action.partId)) {
+                return [action.partId].concat(state);
+            }
+            return state;
+        case "UNPIN_PART":
+            return state.filter(partId => partId != action.partId);
         default:
             return state;
     }
@@ -83,4 +97,5 @@ export default {
     project,
     parts,
     selectedPartId,
+    pinnedPartIds,
 }
