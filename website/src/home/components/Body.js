@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/home/styles/body";
+import styles from "~/home/styles";
 import WhiteBox from "~/shared/components/WhiteBox"
 
 @Radium
@@ -17,7 +17,7 @@ class Body extends React.Component {
                 <WhiteBox width="30vw" height="70vh">
                     <h2 style={styles.title}>Recent Changes</h2>
                 </WhiteBox>
-                
+
                 <WhiteBox width="30vw" height="70vh">
                     <h2 style={styles.title}>Assignments</h2>
                 </WhiteBox>
