@@ -16,6 +16,4 @@ export function makeChangeHandlerFactory(ctx) {
 
 export const currentUser = window.__userInfo;
 
-console.log(currentUser)
-
 export const pageOptions = window.__options;
