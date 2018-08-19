@@ -35,7 +35,7 @@ module.exports = function(imports) {
         next();
     });
 
-    let InventoryPart = mongoose.model("Inventory", inventoryPartSchema);
+    let InventoryPart = mongoose.model("InventoryPart", inventoryPartSchema);
 
     return InventoryPart;
 
