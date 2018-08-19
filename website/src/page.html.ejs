@@ -18,6 +18,7 @@
     <body style="background-color: #E9E9E9;">
 
         <script type="text/javascript">
+            window.__userInfo = <%- JSON.stringify(userInfo || null) %>;
             window.__options = <%- JSON.stringify(options || null) %>;
         </script>
 
