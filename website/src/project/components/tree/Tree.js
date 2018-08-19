@@ -4,9 +4,10 @@ import Radium from "radium";
 import MakePartModal from "~/project/components/tree/MakePartModal";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Button from "~/shared/components/Button";
+import WhiteBox from "~/shared/components/WhiteBox";
 import Part from "~/project/components/tree/Part";
 import { modalProps } from "~/util/modal"
-import styles from "~/project/styles/tree";
+import { tree as styles } from "~/project/styles";
 import { filterPartType } from "~/util/part";
 
 import { connect } from "react-redux";
@@ -58,7 +59,7 @@ class Tree extends React.Component {
 
     assemblyTree(assembly) {
         return (
-            <div style={styles.assemblyDiv}>
+            <div style={styles.offset}>
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), true))}
                 {this.renderParts(filterPartType(this.findParts(assembly.children.parts), false))}
 
@@ -69,10 +70,10 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <div style={styles.container}>
+            <WhiteBox style={{ width: "400px" }}>
                 {this.props.parts.length > 0 && this.renderParts([this.props.parts.find(part => part.isRootAssembly)])}
                 <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />
-            </div>
+            </WhiteBox>
         )
     }
 }

@@ -4,8 +4,10 @@ import Radium from "radium";
 import { getIdentifierString, statuses } from "~/util/part";
 import DropdownButton from "react-bootstrap/lib/DropdownButton";
 import MenuItem from "react-bootstrap/lib/MenuItem";
-import styles from "~/project/styles/middle"
+import styles from "~/project/styles"
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import Button from "~/shared/components/Button";
+import WhiteBox from "~/shared/components/WhiteBox";
 
 import { updateStatus, deletePart } from "~/project/actions";
 import { connect } from "react-redux";
@@ -21,7 +23,7 @@ class Middle extends React.Component {
     render() {
         if (this.props.selectedPart) {
             return (
-                <div style={styles.container}>
+                <WhiteBox style={{ width: "45%" }}>
                     <h3>{this.props.selectedPart.name}</h3>
                     <h5>{getIdentifierString(this.props.selectedPart)}</h5>
                     <DropdownButton
@@ -39,19 +41,21 @@ class Middle extends React.Component {
                             </MenuItem>
                         ))}
                     </DropdownButton>
-                    <textarea style={styles.description}
-                        readOnly={!this.state.isEditingDescription}
-                        rows="10"
-                        cols="30"
-                    >
-                        {this.props.selectedPart.description}
-                    </textarea>
-                    <Glyphicon
+                    <div>
+                        <textarea style={styles.description}
+                            readOnly={!this.state.isEditingDescription}
+                            selectable={this.state.isEditingDescription}
+                        >
+                            {this.props.selectedPart.description}
+                        </textarea>
+                        <Glyphicon glyph="pencil" onClick={() => this.setState({ isEditingDescription: true })} />
+                    </div>
+                    <Button
                         onClick={() => this.props.dispatch(deletePart(this.props.selectedPart))}
-                        glyph="trash"
                         style={styles.trash}
+                        text="Delete this part"
                     />
-                </div>
+                </WhiteBox>
             )
         }
         return null;

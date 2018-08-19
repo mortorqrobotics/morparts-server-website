@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
-import styles from  "~/project/styles/tree";
+import { tree as styles } from "~/project/styles";
 import { getIdentifierString, statuses } from "~/util/part";
 
 import { selectPartId } from "~/project/actions";
@@ -30,7 +30,7 @@ class Part extends React.Component {
                     <span style={[ styles.statusDot, { backgroundColor: statuses[this.props.part.status].color }]}/>
 
                 </div>
-                <div style={styles.treeLine}>
+                <div style={styles.line}>
                     {this.props.children}
                 </div>
             </div>

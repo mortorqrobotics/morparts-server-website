@@ -6,8 +6,8 @@ import { standardBoxShadow } from "~/shared/styles/boxShadows";
 const styles = {
     whiteBox: {
         verticalAlign: "top",
-        margin: "0 25px",
-        padding: "10px",
+        margin: "0 20px",
+        padding: "30px",
         display: "inline-block",
         background: "white",
         boxShadow: standardBoxShadow,
@@ -15,12 +15,9 @@ const styles = {
 }
 
 const WhiteBox = (props) => {
-    let { width, height, ...rest } = props;
+    let { style, ...rest } = props;
     return React.createElement("div", {
-        style: [styles.whiteBox, {
-            height,
-            width,
-        }],
+        style: [ styles.whiteBox, style || {} ],
         ...rest,
     })
 }

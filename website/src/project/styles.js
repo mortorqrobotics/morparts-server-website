@@ -1,14 +1,15 @@
-import styles from "~/project/styles";
+const statusDot = {
+    width: "8px",
+    height: "8px",
+    display: "inline-block",
+    borderRadius: "4px",
+    margin: "0px 4px",
+}
 
-export default {
-    assemblyDiv: {
+export const tree = {
+    offset: {
         marginLeft: "15px",
     },
-    container: [styles.container, {
-        marginRight: "20px",
-        float: "left",
-        width: "400px",
-    }],
     button: {
         backgroundColor: "#ffc547",
         fontSize: "11px",
@@ -17,7 +18,7 @@ export default {
         cursor: "pointer",
         width: "fit-content",
     },
-    treeLine: {
+    line: {
         borderLeft: "solid 1px",
         margin: "10px 0px 10px 10px",
     },
@@ -40,6 +41,20 @@ export default {
     glyph: {
         marginRight: "2px",
     },
-    statusDot: styles.statusDot,
+    statusDot,
 }
 
+export default {
+    heading: {
+        textAlign: "center",
+        padding: "20px",
+    },
+    description: {
+        marginTop: "10px",
+        maxWidth: "100%",
+        width: "100%",
+        height: "200px",
+        fontSize: "20px",
+    },
+    statusDot,
+}
