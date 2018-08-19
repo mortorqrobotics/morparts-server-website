@@ -7,6 +7,7 @@ import WhiteBox from "~/shared/components/WhiteBox"
 const Container = (props) => (
     <WhiteBox style={{ width: "30vw", height: "70vh" }}>
         <h2 style={styles.title}>{props.title}</h2>
+        {props.children}
     </WhiteBox>
 );
 

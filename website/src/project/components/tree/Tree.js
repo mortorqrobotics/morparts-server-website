@@ -7,7 +7,7 @@ import Button from "~/shared/components/Button";
 import WhiteBox from "~/shared/components/WhiteBox";
 import Part from "~/project/components/tree/Part";
 import { modalProps } from "~/util/modal"
-import { tree as styles } from "~/project/styles";
+import styles from "~/project/styles/tree";
 import { filterPartType } from "~/util/part";
 
 import { connect } from "react-redux";
@@ -27,6 +27,7 @@ class Tree extends React.Component {
                         isModalOpen: true,
                         parentId: parent ? parent._id : null,
                 })}
+                key={parent._id}
                 style={styles.button}
             >
                 <Glyphicon style={styles.glyph} glyph="plus" />
@@ -70,7 +71,7 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <WhiteBox style={{ width: "400px" }}>
+            <WhiteBox style={styles.container}>
                 {this.props.parts.length > 0 && this.renderParts([this.props.parts.find(part => part.isRootAssembly)])}
                 <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />
             </WhiteBox>

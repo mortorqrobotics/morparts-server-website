@@ -1,22 +1,22 @@
-const statusDot = {
-    width: "8px",
-    height: "8px",
-    display: "inline-block",
-    borderRadius: "4px",
-    margin: "0px 4px",
-}
+import { defaultColor, hoverColor } from "~/shared/styles/colors";
 
-export const tree = {
+export default {
+    container: {
+        width: "400px"
+    },
     offset: {
         marginLeft: "15px",
     },
     button: {
-        backgroundColor: "#ffc547",
+        backgroundColor: defaultColor,
         fontSize: "11px",
         padding: "5px",
         borderRadius: "5px",
         cursor: "pointer",
         width: "fit-content",
+        ":hover": {
+            backgroundColor: hoverColor,
+        },
     },
     line: {
         borderLeft: "solid 1px",
@@ -41,20 +41,5 @@ export const tree = {
     glyph: {
         marginRight: "2px",
     },
-    statusDot,
 }
 
-export default {
-    heading: {
-        textAlign: "center",
-        padding: "20px",
-    },
-    description: {
-        marginTop: "10px",
-        maxWidth: "100%",
-        width: "100%",
-        height: "200px",
-        fontSize: "20px",
-    },
-    statusDot,
-}

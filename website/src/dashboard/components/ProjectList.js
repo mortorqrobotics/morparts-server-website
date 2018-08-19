@@ -34,6 +34,7 @@ class ProjectList extends React.Component {
                     <hr style={styles.hr}/>
                     <Button
                         text="Add Project"
+                        style={styles.button}
                         onClick={() => this.setState({ isModalOpen: true })}
                     />
                 </ul>

@@ -4,9 +4,10 @@ import Radium from "radium";
 import { getIdentifierString, statuses } from "~/util/part";
 import DropdownButton from "react-bootstrap/lib/DropdownButton";
 import MenuItem from "react-bootstrap/lib/MenuItem";
-import styles from "~/project/styles"
+import styles from "~/project/styles/middle"
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import Button from "~/shared/components/Button";
+import StatusDot from "~/shared/components/StatusDot";
 import WhiteBox from "~/shared/components/WhiteBox";
 
 import { updateStatus, deletePart } from "~/project/actions";
@@ -23,7 +24,7 @@ class Middle extends React.Component {
     render() {
         if (this.props.selectedPart) {
             return (
-                <WhiteBox style={{ width: "45%" }}>
+                <WhiteBox style={styles.container}>
                     <h3>{this.props.selectedPart.name}</h3>
                     <h5>{getIdentifierString(this.props.selectedPart)}</h5>
                     <DropdownButton
@@ -36,7 +37,7 @@ class Middle extends React.Component {
                                 active={this.props.selectedPart.status === status}
                                 onSelect={() => this.props.dispatch(updateStatus(this.props.selectedPart._id, status))}
                             >
-                                <span style={[ styles.statusDot, { backgroundColor: statuses[status].color }]}/>
+                                <StatusDot status={status} />
                                 {statuses[status].text}
                             </MenuItem>
                         ))}
@@ -44,7 +45,6 @@ class Middle extends React.Component {
                     <div>
                         <textarea style={styles.description}
                             readOnly={!this.state.isEditingDescription}
-                            selectable={this.state.isEditingDescription}
                         >
                             {this.props.selectedPart.description}
                         </textarea>
@@ -52,8 +52,8 @@ class Middle extends React.Component {
                     </div>
                     <Button
                         onClick={() => this.props.dispatch(deletePart(this.props.selectedPart))}
-                        style={styles.trash}
-                        text="Delete this part"
+                        style={styles.delete}
+                        text="Delete Part"
                     />
                 </WhiteBox>
             )

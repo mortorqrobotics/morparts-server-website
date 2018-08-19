@@ -1,3 +1,6 @@
+import { defaultColor, hoverColor } from "~/shared/styles/colors";
+import { standardBoxShadow } from "~/shared/styles/boxShadows";
+
 export default {
     h1: {
         margin: "40px 20px 0px",
@@ -24,5 +27,15 @@ export default {
         borderBottom: "1px dashed #fff",
         marginTop: "0px",
         width: "50%",
+    },
+    button: {
+        fontSize: "20px",
+        height: "40px",
+        width: "150px",
+        backgroundColor: defaultColor,
+        boxShadow: standardBoxShadow,
+        ":hover": {
+            backgroundColor: hoverColor,
+        },
     },
 }
