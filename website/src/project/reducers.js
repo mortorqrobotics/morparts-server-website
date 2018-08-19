@@ -39,14 +39,14 @@ const parts = (state = [], action) => {
             });
         case "SET_NAME":
             index = state.findIndex(part => part._id === action.partId);
-            return upate(state, {
+            return update(state, {
                 [index]: {
                     name: { $set: action.name }
                 }
             });
         case "SET_DESCRIPTION":
             index = state.findIndex(part => part._id === action.partId);
-            return upate(state, {
+            return update(state, {
                 [index]: {
                     description: { $set: action.name }
                 }

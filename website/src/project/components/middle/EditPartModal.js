@@ -1,5 +1,5 @@
 import React from "react";
-import Radium fro "radium";
+import Radium from "radium";
 
 import StandardModal from "~/shared/components/StandardModal";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
