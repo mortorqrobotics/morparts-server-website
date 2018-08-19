@@ -174,7 +174,7 @@ module.exports = function(imports) {
         res.end()
     }));
 
-    router.post("/parts/id/:pardId/description", handler(function*(req, res) {
+    router.post("/parts/id/:partId/description", handler(function*(req, res) {
 
         //TODO: check for hmtl injections
         yield Part.findOneAndUpdate({

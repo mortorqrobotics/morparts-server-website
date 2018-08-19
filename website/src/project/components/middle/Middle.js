@@ -5,7 +5,7 @@ import { getIdentifierString, statuses } from "~/util/part";
 import DropdownButton from "react-bootstrap/lib/DropdownButton";
 import MenuItem from "react-bootstrap/lib/MenuItem";
 import styles from "~/project/styles/middle"
-import Glyphicon from "react-bootstrap/lib/Glyphicon";
+import Description from "~/project/components/middle/Description"
 import Button from "~/shared/components/Button";
 import StatusDot from "~/shared/components/StatusDot";
 import WhiteBox from "~/shared/components/WhiteBox";
@@ -18,7 +18,6 @@ class Middle extends React.Component {
 
     state = {
         isModalOpen: false,
-        isEditingDescription: false,
     }
 
     render() {
@@ -42,17 +41,10 @@ class Middle extends React.Component {
                             </MenuItem>
                         ))}
                     </DropdownButton>
-                    <div>
-                        <textarea style={styles.description}
-                            readOnly={!this.state.isEditingDescription}
-                        >
-                            {this.props.selectedPart.description}
-                        </textarea>
-                        <Glyphicon glyph="pencil" onClick={() => this.setState({ isEditingDescription: true })} />
-                    </div>
+                    <Description description={this.props.selectedPart.description} />
                     <Button
                         onClick={() => this.props.dispatch(deletePart(this.props.selectedPart))}
-                        style={styles.delete}
+                        style={styles.deleteButton}
                         text="Delete Part"
                     />
                 </WhiteBox>

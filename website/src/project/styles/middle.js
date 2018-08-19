@@ -1,17 +1,43 @@
 import { standardBoxShadow } from "~/shared/styles/boxShadows";
+import { standardColor, selectedColor } from "~/shared/styles/colors";
+
+const description = {
+    marginTop: "10px",
+    maxWidth: "100%",
+    minWidth: "100%",
+    fontSize: "20px",
+    padding: "15px",
+};
+
+const glyph = {
+    cursor: "pointer",
+    fontSize: "20px",
+    marginRight: "5px",
+}
 
 export default {
     container: {
         width: "45%",
     },
     description: {
-        marginTop: "10px",
-        maxWidth: "100%",
-        minWidth: "100%",
-        minHeight: "200px",
-        fontSize: "20px",
+        editing: [description, {
+            outline: "2px solid " + selectedColor,
+            border: "5px solid " + standardColor,
+            minHeight: "150px",
+        }],
+        notEditing: [description, {
+            outline: "none",
+            border: "none",
+            resize: "none",
+        }],
     },
-    delete: {
+    save: [glyph, {
+        color: "green",
+    }],
+    cancel: [glyph, {
+        color: "red",
+    }],
+    deleteButton: {
         backgroundColor: "#cc0000",
         color: "white",
         fontSize: "15px",
