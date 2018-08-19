@@ -3,6 +3,7 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
+import FirstLoad from "~/inventory/components/FirstLoad";
 
 @Radium
 class Inventory extends React.Component {
@@ -10,7 +11,8 @@ class Inventory extends React.Component {
         return (
             <Root pageName="inventory">
                 <Navbar />
-                <h1>The inventory!</h1>
+                <FirstLoad />
+
             </Root>
         );
     }
