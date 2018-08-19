@@ -2,7 +2,7 @@ import React from "react";
 import Radium from "radium";
 
 import { currentUser } from "~/util";
-import styles from "~/home/styles/heading";
+import styles from "~/home/styles";
 
 @Radium
 class Heading extends React.Component {
