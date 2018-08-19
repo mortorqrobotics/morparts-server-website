@@ -5,7 +5,7 @@ import styles from "~/home/styles";
 import WhiteBox from "~/shared/components/WhiteBox"
 
 const Container = (props) => (
-    <WhiteBox style={{ width: "30vw", height: "70vh" }}>
+    <WhiteBox style={styles.whiteBox}>
         <h2 style={styles.title}>{props.title}</h2>
         {props.children}
     </WhiteBox>

@@ -24,18 +24,15 @@ class PartView extends React.Component {
     }
 
     render() {
+        let isPinned = this.props.pinnedPartIds.includes(this.props.part._id);
         return (
             <WhiteBox style={styles.partView}>
                 <RadiumGlyphicon
                     glyph="pushpin"
-                    style={styles.pin}
-                    onClick={() => {
-                        if (this.props.selectedPartId === this.props.part._id) {
-                            this.props.dispatch(pinPart(this.props.part._id));
-                        } else {
-                            this.props.dispatch(unpinPart(this.props.part._id));
-                        }
-                    }}
+                    style={isPinned ? styles.pin.selected : styles.pin.unselected }
+                    onClick={() => isPinned ? this.props.dispatch(unpinPart(this.props.part._id))
+                        : this.props.dispatch(pinPart(this.props.part._id))
+                    }
                 />
                 <h3>{this.props.part.name}</h3>
                 <h5>{getIdentifierString(this.props.part)}</h5>
@@ -70,7 +67,7 @@ class PartView extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        selectedPartId: state.selectedPartId,
+        pinnedPartIds: state.pinnedPartIds,
     }
 }
 

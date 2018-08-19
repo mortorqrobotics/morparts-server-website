@@ -71,10 +71,12 @@ class Tree extends React.Component {
 
     render() {
         return (
-            <WhiteBox style={styles.container}>
-                {this.props.parts.length > 0 && this.renderParts([this.props.parts.find(part => part.isRootAssembly)])}
-                <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />
-            </WhiteBox>
+            <div style={styles.container}>
+                <WhiteBox style={styles.whiteBox}>
+                    {this.props.parts.length > 0 && this.renderParts([this.props.parts.find(part => part.isRootAssembly)])}
+                    <MakePartModal parentId={this.state.parentId} { ...modalProps(this, "isModalOpen") } />
+                </WhiteBox>
+            </div>
         )
     }
 }

@@ -2,7 +2,12 @@ import { defaultColor, hoverColor } from "~/shared/styles/colors";
 
 export default {
     container: {
-        width: "400px"
+        float: "left",
+        height: "100vh",
+        marginRight: "20px",
+    },
+    whiteBox: {
+        width: "400px",
     },
     offset: {
         marginLeft: "15px",

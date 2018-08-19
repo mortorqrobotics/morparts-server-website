@@ -6,7 +6,6 @@ import { standardBoxShadow } from "~/shared/styles/boxShadows";
 const styles = {
     whiteBox: {
         verticalAlign: "top",
-        margin: "0 20px",
         padding: "30px",
         display: "inline-block",
         background: "white",

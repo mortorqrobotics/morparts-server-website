@@ -9,4 +9,9 @@ export default {
     title: {
         textAlign: "center",
     },
+    whiteBox: {
+        margin: "0 25px",
+        width: "30vw",
+        height: "70vh",
+    },
 }

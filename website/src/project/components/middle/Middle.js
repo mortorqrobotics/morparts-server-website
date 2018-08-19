@@ -10,7 +10,7 @@ class Middle extends React.Component {
 
     render() {
         return (
-            <div style={styles.container}>
+            <div>
                 {this.props.selectedPart && (
                     <PartView key={this.props.selectedPart._id} part={this.props.selectedPart} />
                 )}

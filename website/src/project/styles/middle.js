@@ -2,7 +2,7 @@ import { standardBoxShadow } from "~/shared/styles/boxShadows";
 import { standardColor, selectedColor } from "~/shared/styles/colors";
 
 const description = {
-    marginTop: "10px",
+    margin: "15px 0",
     maxWidth: "100%",
     minWidth: "100%",
     fontSize: "20px",
@@ -16,21 +16,22 @@ const glyph = {
 }
 
 export default {
-    container: {
-        display: "inline-block",
-    },
     partView: {
         width: "500px",
+        margin: "0 10px 20px",
     },
-    pin: [glyph, {
-        float: "right",
-        opacity: "0.3",
-        fontSize: "20px",
-        cursor: "pointer",
-        ":hover": {
-            opacity: "0.5",
-        },
-    }],
+    pin: {
+        unselected: [glyph, {
+            float: "right",
+            opacity: "0.3",
+            ":hover": {
+                opacity: "0.5",
+            },
+        }],
+        selected: [glyph, {
+            float: "right",
+        }],
+    },
     description: {
         editing: [description, {
             outline: "2px solid " + selectedColor,
