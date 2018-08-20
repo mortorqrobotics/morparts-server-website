@@ -35,7 +35,7 @@ export default {
     description: {
         editing: [description, {
             outline: "2px solid " + selectedColor,
-            border: "5px solid " + standardColor,
+            border: "none",
             minHeight: "150px",
         }],
         notEditing: [description, {

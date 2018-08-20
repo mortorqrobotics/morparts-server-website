@@ -10,6 +10,8 @@ import Description from "~/project/components/middle/Description"
 import Button from "~/shared/components/Button";
 import StatusDot from "~/shared/components/StatusDot";
 import WhiteBox from "~/shared/components/WhiteBox";
+import ConfirmModal from "~/shared/components/ConfirmModal";
+import { modalProps } from "~/util/modal";
 
 import { updateStatus, deletePart, pinPart, unpinPart, setDescription } from "~/project/actions";
 import { connect } from "react-redux";
@@ -56,10 +58,19 @@ class PartView extends React.Component {
                     description={this.props.part.description}
                 />
                 <Button
-                    onClick={() => this.props.dispatch(deletePart(this.props.part))}
+                    onClick={() => this.setState({ isModalOpen: true })}
                     style={styles.deleteButton}
                     text="Delete Part"
                 />
+                {this.state.isModalOpen && (
+                    <ConfirmModal
+                        action={() => this.props.dispatch(deletePart(this.props.part))}
+                        text={
+                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?`
+                        }
+                        { ...modalProps(this, "isModalOpen") }
+                    />
+                )}
             </WhiteBox>
         )
     }
