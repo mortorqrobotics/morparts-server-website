@@ -6,6 +6,7 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import Tree from "~/project/components/tree/Tree";
 import Middle from "~/project/components/middle/Middle";
 import Heading from "~/project/components/Heading";
+import styles from "~/project/styles";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/project/reducers";
@@ -21,7 +22,7 @@ export default class Project extends React.Component {
             <Root pageName="project" store={store}>
                 <Navbar />
                 <Heading />
-                <div style={{ margin: "0 auto", width: "70%" }}>
+                <div style={styles.container}>
                     <Tree />
                     <Middle />
                 </div>

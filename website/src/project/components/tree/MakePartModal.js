@@ -47,12 +47,15 @@ class MakePartModal extends React.Component {
             >
                 <Radio
                     name="type"
+                    text="Assembly"
                     onClick={() => this.setState({ isAssembly: true })}
-                />Assembly
+                />
                 <Radio
+                    style={{ marginLeft: "10px" }}
                     name="type"
+                    text="Part"
                     onClick={() => this.setState({ isAssembly: false })}
-                />Part
+                />
                 <ModalTextBox
                     onChange={this.getChangeHandler("name")}
                     placeholder="Name"

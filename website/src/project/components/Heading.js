@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 
-import styles from "~/project/styles/heading";
+import styles from "~/project/styles";
 import { connect } from "react-redux";
 
 @Radium
