@@ -38,7 +38,7 @@ export default {
             minHeight: "150px",
         }],
         notEditing: [description, {
-            outline: "none",
+            outline: "1px solid #E9E9E9",
             border: "none",
             resize: "none",
         }],
