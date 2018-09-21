@@ -10,7 +10,6 @@
         "rootPathSuffix": "website/src"
     }],
     ["@babel/plugin-transform-runtime", {
-      "polyfill": false,
       "regenerator": true
     }],
     "@babel/plugin-proposal-object-rest-spread",

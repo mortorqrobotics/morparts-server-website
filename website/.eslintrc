@@ -15,5 +15,13 @@
             "aspects": ["invalidHref"]
         }],
         "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "babel-root-import": {
+                "rootPathPrefix": "~",
+                "rootPathSuffix": "src"
+            }
+        }
     }
 }
