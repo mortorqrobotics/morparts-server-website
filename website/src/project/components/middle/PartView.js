@@ -57,17 +57,21 @@ class PartView extends React.Component {
                     onSave={(description) => this.props.dispatch(setDescription(this.props.part._id, description))}
                     description={this.props.part.description}
                 />
-                <Button
-                    onClick={() => this.setState({ isModalOpen: true })}
-                    style={styles.deleteButton}
-                    text="Delete Part"
-                />
+                {!this.props.part.isRootAssembly && (
+                    <Button
+                        onClick={() => this.setState({ isModalOpen: true })}
+                        style={styles.deleteButton}
+                        text="Delete Part"
+                    />
+                )}
                 {this.state.isModalOpen && (
                     <ConfirmModal
                         action={() => this.props.dispatch(deletePart(this.props.part))}
                         text={
-                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?`
+                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}
+                                ?`
                         }
+                        grayConfirm={this.props.part.children.parts.length > 0}
                         { ...modalProps(this, "isModalOpen") }
                     />
                 )}

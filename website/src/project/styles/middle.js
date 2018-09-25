@@ -16,9 +16,13 @@ const glyph = {
 }
 
 export default {
+    container: {
+        display: "inline-block",
+    },
     partView: {
         width: "500px",
-        margin: "0 10px 20px",
+        margin: "0 10px",
+        display: "inline-block",
     },
     pin: {
         unselected: [glyph, {
@@ -32,6 +36,11 @@ export default {
             float: "right",
         }],
     },
+    pinnedPart: {
+        minWidth: "200px",
+        marginBottom: "10px",
+        cursor: "pointer",
+    },
     description: {
         editing: [description, {
             outline: "2px solid " + selectedColor,
@@ -42,6 +51,7 @@ export default {
             outline: "1px solid #E9E9E9",
             border: "none",
             resize: "none",
+            minHeight: "100px",
         }],
     },
     save: [glyph, {
