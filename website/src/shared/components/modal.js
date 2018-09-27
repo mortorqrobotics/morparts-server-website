@@ -8,13 +8,9 @@ import styles from "~/shared/styles/modal";
 
 export const ModalTextBox = withCss(TextBox, styles.textBox);
 
-export const ModalButton = Radium((props) => {
+export const ModalButton = Radium(props => {
     const { style, text, onClick } = props;
     return (
-        <Button
-            style={[styles.button, props.style]}
-            text={props.text}
-            onClick={props.onClick}
-        />
-    )
-})
+        <Button style={[styles.button, style]} text={text} onClick={onClick} />
+    );
+});

@@ -10,13 +10,13 @@ import styles from "~/project/styles";
 
 import { makeStore } from "~/util/redux";
 import reducers from "~/project/reducers";
-const store = makeStore(reducers);
 import { initialActions } from "~/project/actions";
+
+const store = makeStore(reducers);
 initialActions(store.dispatch);
 
 @Radium
-export default class Project extends React.Component {
-
+class Project extends React.Component {
     render() {
         return (
             <Root pageName="project" store={store}>
@@ -27,8 +27,10 @@ export default class Project extends React.Component {
                     <Middle />
                 </div>
             </Root>
-        )
+        );
     }
 }
+
+export default Project;
 
 pageInit(Project);

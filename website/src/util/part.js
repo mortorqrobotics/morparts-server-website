@@ -1,13 +1,12 @@
-export const getIdentifierString = (part) => {
+export const getIdentifierString = part => {
     let str = part.identifier.prefix;
-    str += "-" + (part.isAssembly ? "A" : "P") + "-";
+    str += `-${part.isAssembly ? "A" : "P"}-`;
     str += part.identifier.assembly + part.identifier.part;
     return str;
-}
+};
 
-export const filterPartType = (parts, getAssemblies) => {
-    return parts.filter(part => getAssemblies == part.isAssembly);
-}
+export const filterPartType = (parts, getAssemblies) =>
+    parts.filter(part => getAssemblies === part.isAssembly);
 
 export const statuses = {
     designing: {
@@ -46,4 +45,4 @@ export const statuses = {
         text: "Done",
         color: "#35f700",
     },
-}
+};

@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import PropTypes from "prop-types";
 
 const styles = {
     label: {
@@ -11,20 +12,28 @@ const styles = {
         margin: "0px 2px",
         cursor: "pointer",
     },
-}
+};
 
-const Radio = (props) => {
-    let { style, text, ...rest } = props;
-    return React.createElement("label", {
-            style: [ styles.label, style || {} ]
+const Radio = props => {
+    const { style, text, ...rest } = props;
+    return React.createElement(
+        "label",
+        {
+            style: [styles.label, style || {}],
         },
         React.createElement("input", {
             type: "radio",
             style: styles.radio,
             ...rest,
         }),
-        text
+        text,
     );
-}
+};
+
+Radio.propTypes = {
+    // eslint-disable-next-line react/forbid-prop-types
+    style: PropTypes.object,
+    text: PropTypes.string,
+};
 
 export default Radium(Radio);

@@ -1,5 +1,8 @@
-import { standardBoxShadow } from "~/shared/styles/boxShadows";
-import { standardColor, selectedColor } from "~/shared/styles/colors";
+// import { standardBoxShadow } from '~/shared/styles/boxShadows';
+import {
+    // standardColor,
+    selectedColor,
+} from "~/shared/styles/colors";
 
 const description = {
     margin: "15px 0",
@@ -13,53 +16,61 @@ const glyph = {
     cursor: "pointer",
     fontSize: "20px",
     marginRight: "5px",
-}
+};
 
 export default {
-    container: {
-        display: "inline-block",
-    },
     partView: {
         width: "500px",
-        margin: "0 10px",
-        display: "inline-block",
+        margin: "0 10px 20px",
     },
     pin: {
-        unselected: [glyph, {
-            float: "right",
-            opacity: "0.3",
-            ":hover": {
-                opacity: "0.5",
+        unselected: [
+            glyph,
+            {
+                float: "right",
+                opacity: "0.3",
+                ":hover": {
+                    opacity: "0.5",
+                },
             },
-        }],
-        selected: [glyph, {
-            float: "right",
-        }],
-    },
-    pinnedPart: {
-        minWidth: "200px",
-        marginBottom: "10px",
-        cursor: "pointer",
+        ],
+        selected: [
+            glyph,
+            {
+                float: "right",
+            },
+        ],
     },
     description: {
-        editing: [description, {
-            outline: "2px solid " + selectedColor,
-            border: "none",
-            minHeight: "150px",
-        }],
-        notEditing: [description, {
-            outline: "1px solid #E9E9E9",
-            border: "none",
-            resize: "none",
-            minHeight: "100px",
-        }],
+        editing: [
+            description,
+            {
+                outline: `2px solid ${selectedColor}`,
+                border: "none",
+                minHeight: "150px",
+            },
+        ],
+        notEditing: [
+            description,
+            {
+                outline: "1px solid #E9E9E9",
+                border: "none",
+                resize: "none",
+            },
+        ],
     },
-    save: [glyph, {
-        color: "green",
-    }],
-    cancel: [glyph, {
-        color: "red",
-    }],
+    save: [
+        glyph,
+        {
+            color: "green",
+        },
+    ],
+    cancel: [
+        glyph,
+        {
+            color: "red",
+        },
+    ],
     deleteButton: {
         backgroundColor: "#cc0000",
         color: "white",
@@ -69,5 +80,4 @@ export default {
         padding: "10px",
         float: "right",
     },
-}
-
+};
