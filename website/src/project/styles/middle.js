@@ -59,6 +59,11 @@ export default {
             },
         ],
     },
+    pinnedPart: {
+        minWidth: "200px",
+        marginBottom: "10px",
+        cursor: "pointer",
+    },
     save: [
         glyph,
         {
