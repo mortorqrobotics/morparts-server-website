@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const update = (...objects) => Object.assign({}, ...objects);
+import update from "immutability-helper";
 
 const project = (state = {}, action) => {
     switch (action.type) {
