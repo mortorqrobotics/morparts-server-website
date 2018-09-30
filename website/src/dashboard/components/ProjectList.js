@@ -21,21 +21,22 @@ class ProjectList extends React.Component {
             <div>
                 <h1 style={styles.h1}>Projects</h1>
                 <ul style={styles.container}>
-                    {projects.map(project => (
-                        <div>
-                            <li
-                                key={project._id}
-                                style={styles.project}
-                                onClick={() =>
-                                    window.location.assign(
-                                        `/projects/id/${project._id}`,
-                                    )
-                                }
-                            >
-                                {project.name}
-                            </li>
-                        </div>
-                    ))}
+                    {projects.map(
+                        project =>
+                            project ? (
+                                <li
+                                    key={project._id}
+                                    style={styles.project}
+                                    onClick={() =>
+                                        window.location.assign(
+                                            `/projects/id/${project._id}`,
+                                        )
+                                    }
+                                >
+                                    {project.name}
+                                </li>
+                            ) : null,
+                    )}
                     <hr style={styles.hr} />
                     <Button
                         text="Add Project"

@@ -57,7 +57,7 @@ class Tree extends React.Component {
             <div
                 onClick={() =>
                     this.setState({
-                        // isModalOpen: true,
+                        isModalOpen: true,
                         parentId: parent ? parent._id : null,
                     })
                 }
@@ -85,7 +85,7 @@ class Tree extends React.Component {
     }
 
     render() {
-        const { parts, parentId } = this.props;
+        const { parts, selectedPartId } = this.props;
         return (
             <div style={styles.container}>
                 <WhiteBox style={styles.whiteBox}>
@@ -94,7 +94,7 @@ class Tree extends React.Component {
                             parts.find(part => part.isRootAssembly),
                         ])}
                     <MakePartModal
-                        parentId={parentId}
+                        parentId={selectedPartId}
                         {...modalProps(this, "isModalOpen")}
                     />
                 </WhiteBox>

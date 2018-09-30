@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 @Radium
 class Part extends React.Component {
     static propTypes = {
-        selectedPartId: PropTypes.number,
+        selectedPartId: PropTypes.string,
         isHovered: PropTypes.bool,
         dispatch: PropTypes.func,
         // eslint-disable-next-line react/forbid-prop-types

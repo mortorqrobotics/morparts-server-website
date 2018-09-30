@@ -10,7 +10,7 @@ const Link = props => {
             href: location,
             ...rest,
         },
-        ...text,
+        ...React.Children.toArray(text),
     );
 };
 

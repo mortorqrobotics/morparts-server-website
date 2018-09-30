@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import update from "react/lib/update";
+const update = (...objects) => Object.assign({}, ...objects);
 
 const project = (state = {}, action) => {
     switch (action.type) {

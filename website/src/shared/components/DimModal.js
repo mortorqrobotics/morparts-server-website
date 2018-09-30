@@ -19,7 +19,7 @@ const DimModal = props => {
             contentLabel="Modal"
             style={{ overlay: overlayStyle, content: style }}
         >
-            {...children}
+            {React.Children.map(children, child => child)}
         </Modal>
     );
 };

@@ -89,5 +89,6 @@
     "webpack": "^4.19.1",
     "webpack-dev-server": "^3.1.8"
   },
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "main": "server/server.js"
 }

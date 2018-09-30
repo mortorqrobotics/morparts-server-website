@@ -16,7 +16,7 @@ const styles = {
 };
 
 export default class Root extends React.Component {
-    propTypes = {
+    static propTypes = {
         // eslint-disable-next-line react/no-unused-prop-types
         children: PropTypes.node,
     };
