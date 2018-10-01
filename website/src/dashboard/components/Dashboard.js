@@ -13,15 +13,17 @@ const store = makeStore(reducers);
 initialActions(store.dispatch);
 
 @Radium
-export default class Dashboard extends React.Component {
+class Dashboard extends React.Component {
     render() {
         return (
             <Root pageName="dashboard" store={store}>
                 <Navbar />
                 <ProjectList />
             </Root>
-        )
+        );
     }
 }
+
+export default Dashboard;
 
 pageInit(Dashboard);

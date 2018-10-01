@@ -9,4 +9,4 @@ export default {
         textAlign: "center",
         padding: "20px",
     },
-}
+};

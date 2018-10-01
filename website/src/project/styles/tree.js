@@ -46,5 +46,4 @@ export default {
     glyph: {
         marginRight: "2px",
     },
-}
-
+};
