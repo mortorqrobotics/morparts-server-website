@@ -7,10 +7,8 @@ const projects = (state = [], action) => {
         default:
             return state;
     }
-}
+};
 
 export default {
     projects,
-}
-
-
+};

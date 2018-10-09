@@ -1,7 +1,8 @@
 {
     "extends": [
         "eslint-config-react-app",
-        "eslint-config-airbnb"
+        "eslint-config-airbnb",
+        "plugin:prettier/recommended"
     ],
     "rules": {
         "import/no-unresolved": "off",
@@ -14,7 +15,13 @@
         "jsx-a11y/anchor-is-valid": ["warn", {
             "aspects": ["invalidHref"]
         }],
-        "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
+        "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-indent": ["warn", 4],
+        "react/jsx-indent-props": ["warn", 4]
     },
     "settings": {
         "import/resolver": {

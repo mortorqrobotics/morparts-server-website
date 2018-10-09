@@ -1,4 +1,6 @@
+/* eslint-disable no-underscore-dangle */
 import React from "react";
+import PropTypes from "prop-types";
 import Radium from "radium";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
@@ -11,39 +13,51 @@ import { connect } from "react-redux";
 
 @Radium
 class Part extends React.Component {
+    static propTypes = {
+        selectedPartId: PropTypes.string,
+        isHovered: PropTypes.bool,
+        dispatch: PropTypes.func,
+        // eslint-disable-next-line react/forbid-prop-types
+        part: PropTypes.object,
+        children: PropTypes.node,
+    };
 
     render() {
+        const {
+            selectedPartId,
+            isHovered,
+            dispatch,
+            part,
+            children,
+        } = this.props;
         return (
             <div>
                 <div
-                    style={[styles.label,
-                        this.props.selectedPartId === this.props.part._id && styles.selected,
-                        this.props.isHovered && styles.hovered,
+                    style={[
+                        styles.label,
+                        selectedPartId === part._id && styles.selected,
+                        isHovered && styles.hovered,
                     ]}
-                    onClick={() => this.props.dispatch(selectPart(this.props.part._id))}
+                    onClick={() => dispatch(selectPart(part._id))}
                 >
                     <Glyphicon
                         style={styles.glyph}
-                        glyph={this.props.part.isAssembly ? "th" : "cog"}
+                        glyph={part.isAssembly ? "th" : "cog"}
                     />
-                    <span>{this.props.part.name}</span>
-                    <span style={styles.identifier}>[{getIdentifierString(this.props.part)}]</span>
-                    <StatusDot status={this.props.part.status} />
-
+                    <span>{part.name}</span>
+                    <span style={styles.identifier}>
+                        [{getIdentifierString(part)}]
+                    </span>
+                    <StatusDot status={part.status} />
                 </div>
-                <div style={styles.line}>
-                    {this.props.children}
-                </div>
+                <div style={styles.line}>{children}</div>
             </div>
-        )
+        );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        selectedPartId: state.selectedPartId,
-    }
-}
+const mapStateToProps = state => ({
+    selectedPartId: state.selectedPartId,
+});
 
-
-export default connect(mapStateToProps)(Part)
+export default connect(mapStateToProps)(Part);

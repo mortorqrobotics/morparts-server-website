@@ -2,7 +2,7 @@
   "presets": [
     "@babel/react",
     ["@babel/preset-env", {
-      "useBuiltIns": "entry",
+      "useBuiltIns": "entry"
     }]
   ],
   "plugins": [
