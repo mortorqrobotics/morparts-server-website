@@ -34,15 +34,6 @@ export const addPart = part => async dispatch => {
         `/projects/id/${projectId}/parts`,
         part,
     );
-    // data.then(d => {
-    //     console.log(d);
-    //     dispatch({
-    //         type: "ADD_PART",
-    //         part: d,
-    //     });
-    //     return d;
-    // });
-    console.log(req.data);
     dispatch({
         type: "ADD_PART",
         part: req,
