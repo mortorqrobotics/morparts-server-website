@@ -29,14 +29,23 @@ const loadParts = () => async dispatch => {
 };
 
 export const addPart = part => async dispatch => {
-    const { data } = await request(
+    const { req } = await request(
         "POST",
         `/projects/id/${projectId}/parts`,
         part,
     );
+    // data.then(d => {
+    //     console.log(d);
+    //     dispatch({
+    //         type: "ADD_PART",
+    //         part: d,
+    //     });
+    //     return d;
+    // });
+    console.log(req.data);
     dispatch({
         type: "ADD_PART",
-        part: data,
+        part: req,
     });
 };
 

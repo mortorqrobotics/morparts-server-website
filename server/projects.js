@@ -5,6 +5,7 @@ module.exports = function(imports) {
     let express = imports.modules.express;
     let Part = imports.models.Part;
     let Project = imports.models.Project;
+    let User = imports.models.User;
     let router = express.Router();
     let util = imports.util;
     let handler = util.handler;
@@ -27,6 +28,7 @@ module.exports = function(imports) {
             isAssembly: true,
             isRootAssembly: true,
             project: project._id,
+            lastUpdatedBy: req.user,
         });
 
         res.json(project);
@@ -78,6 +80,7 @@ module.exports = function(imports) {
             isAssembly: req.body.isAssembly,
             project: req.params.projectId,
             parent: req.body.parent,
+            lastUpdatedBy: req.user,
         });
 
         if (!parent.children.parts) parent.children.parts = [];
@@ -121,6 +124,7 @@ module.exports = function(imports) {
         }, {
             $set: {
                 status: req.body.status,
+                lastUpdatedBy: req.user,
             }
         });
 
@@ -166,6 +170,7 @@ module.exports = function(imports) {
         }, {
             $set: {
                 name: req.body.name,
+                lastUpdatedBy: req.user,
             }
         });
 
@@ -180,10 +185,41 @@ module.exports = function(imports) {
         }, {
             $set: {
                 description: req.body.description,
+                lastUpdatedBy: req.user,
             }
         });
 
         res.end();
+    }));
+
+    router.get("/parts/changes/recent", handler(function*(req, res) {
+        let changes = yield Part.find({}).sort("-updated_at").limit(20).exec();
+        let cCount = changes.length;
+        let cs = [];
+        changes.forEach((change, i, arr) => {
+            User.findById(change.lastUpdatedBy).then(user => {
+                let c = {
+                    _id: change._id,
+                    name: change.name,
+                    updated_at: change.updated_at,
+                    lastUpdatedBy: `${user.firstname} ${user.lastname}`,
+                };
+                cs.push(c);
+                if (-- cCount == 0){
+                    res.json(cs);
+                }
+            }).catch(() => {
+                cs.push({
+                    _id: change._id,
+                    name: change.name,
+                    updated_at: change.updated_at,
+                    lastUpdatedBy: "anonymous",
+                });
+                if (-- cCount == 0){
+                    res.json(cs);
+                }
+            });
+        });
     }));
 
     return router;

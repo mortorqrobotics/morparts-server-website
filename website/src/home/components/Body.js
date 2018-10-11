@@ -4,7 +4,9 @@ import Radium from "radium";
 
 import styles from "~/home/styles";
 import LowInventory from "./LowInventory";
-import Container from "./Container";
+import RecentChanges from "./Recent Changes";
+import Assignments from "./Assignments";
+// import Container from "./Container";
 
 @Radium
 class Body extends React.Component {
@@ -12,8 +14,8 @@ class Body extends React.Component {
         return (
             <div style={styles.body}>
                 <LowInventory />
-                <Container title="Recent Changes" />
-                <Container title="Assignments" />
+                <RecentChanges />
+                <Assignments />
             </div>
         );
     }

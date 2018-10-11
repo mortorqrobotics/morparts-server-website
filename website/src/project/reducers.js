@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const update = (...objects) => Object.assign({}, ...objects);
+import update from "immutability-helper";
 
 const project = (state = {}, action) => {
     switch (action.type) {
@@ -30,6 +30,7 @@ const parts = (state = [], action) => {
                     },
                 });
             }
+            console.log(newState);
             return newState;
         case "UPDATE_STATUS":
             index = state.findIndex(part => part._id === action.partId);

@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import LowInventory from "./LowInventory";
+import LowInventory from "./Recent Changes";
 
-const getLowInventoryItems = items =>[]
-    //(items || []).filter(item => item.quantity < item.minQuantity);
+const getRecentChanges = changes => 
+    (changes || []);
 
 const mapStateToProps = state => ({
-    items: getLowInventoryItems(state.items),
+    recentChanges: getRecentChanges(state.changes),
 });
 
 const LowInventoryContainer = connect(
