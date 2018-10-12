@@ -8,8 +8,6 @@ import RecentChanges from "./Recent Changes";
 import Assignments from "./Assignments";
 // import Container from "./Container";
 
-import styles from "~/home/styles";
-
 @Radium
 class Body extends React.Component {
     render() {

@@ -25,7 +25,7 @@ export const loadLowInventory = () => async dispatch => {
 };
 
 export const loadRecentChanges = () => async dispatch => {
-    let {data} = await request("GET", "/parts/changes/recent");
+    const { data } = await request("GET", "/parts/changes/recent");
     dispatch({
         type: "LOAD_RECENT_CHANGES",
         changes: data,
@@ -33,7 +33,6 @@ export const loadRecentChanges = () => async dispatch => {
 };
 
 export function initialActions(dispatch) {
-
     dispatch(loadRecentChanges());
     // dispatch(loadAssignments());
     // dispatch(loadLowInventory());

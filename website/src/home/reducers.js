@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import update from "immutability-helper";
+// import update from "immutability-helper";
 
 const changes = (state = [], action) => {
     switch (action.type) {
@@ -12,7 +12,6 @@ const changes = (state = [], action) => {
 
 const assignments = (state = {}, action) => {
     const newState = Object.assign({}, state);
-    console.log(action);
     switch (action.type) {
         case "LOAD_ASSIGNMENTS":
             newState.assignments = action.data;

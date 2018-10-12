@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import LowInventory from "./Recent Changes";
 
-const getRecentChanges = changes => 
-    (changes || []);
+const getRecentChanges = changes => changes || [];
 
 const mapStateToProps = state => ({
     recentChanges: getRecentChanges(state.changes),

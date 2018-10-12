@@ -1,19 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-// eslint-disable-next-line
-export default class Item extends React.Component {
-    render() {
-        const { props } = this;
-        console.log(props);
-        return (
+const Item = props => {
+    const { name, lastUpdatedBy, updatedAt } = props;
+    return (
+        <div style={{}}>
+            <div style={{}}>{name}</div>
             <div style={{}}>
-                <div style={{}}>
-                    {props.name}
-                </div>
-                <div style={{}}>
-                    {props.lastUpdatedBy} changed this at {props.updated_at}
-                </div>
+                {lastUpdatedBy} changed this at {updatedAt}
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+Item.propTypes = {
+    name: PropTypes.string,
+    lastUpdatedBy: PropTypes.string,
+    updatedAt: PropTypes.instanceOf(Date),
+};
+export default Item;

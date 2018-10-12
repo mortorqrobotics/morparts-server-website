@@ -30,7 +30,6 @@ const parts = (state = [], action) => {
                     },
                 });
             }
-            console.log(newState);
             return newState;
         case "UPDATE_STATUS":
             index = state.findIndex(part => part._id === action.partId);
