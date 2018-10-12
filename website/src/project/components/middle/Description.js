@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import PropTypes from "prop-types";
 
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/project/styles/middle";
@@ -10,45 +11,65 @@ const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
 class Description extends React.Component {
+    static propTypes = {
+        description: PropTypes.string,
+        onSave: PropTypes.func,
+    };
 
-    state = {
-        isEditing: false,
-        description: this.props.description,
+    constructor(props) {
+        super(props);
+        const { description } = props;
+        this.state = {
+            isEditing: false,
+            description,
+        };
     }
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
     render() {
+        const { isEditing, description } = this.state;
+        const { onSave } = this.props;
+        const { props } = this;
+        const prevDescription = props.description;
         return (
             <div>
                 <textarea
-                    style={this.state.isEditing ? styles.description.editing : styles.description.notEditing}
+                    style={
+                        isEditing
+                            ? styles.description.editing
+                            : styles.description.notEditing
+                    }
                     onChange={this.getChangeHandler("description")}
                     onClick={() => this.setState({ isEditing: true })}
                     placeholder="Description"
-                    value={this.state.description}
+                    value={description}
                 />
 
-                {this.state.isEditing && (
+                {isEditing && (
                     <div>
                         <RadiumGlyphicon
                             glyph="ok-circle"
                             style={styles.save}
                             onClick={() => {
-                                this.props.onSave(this.state.description);
+                                onSave(description);
                                 this.setState({ isEditing: false });
                             }}
                         />
-                        <RadiumGlyphicon glyph="ban-circle" style={styles.cancel}
-                            onClick={() => this.setState({
-                                isEditing: false,
-                                description: this.props.description,
-                            })}
+                        <RadiumGlyphicon
+                            glyph="ban-circle"
+                            style={styles.cancel}
+                            onClick={() =>
+                                this.setState({
+                                    isEditing: false,
+                                    description: prevDescription,
+                                })
+                            }
                         />
                     </div>
                 )}
             </div>
-        )
+        );
     }
 }
 

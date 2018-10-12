@@ -14,4 +14,4 @@ export default {
         width: "30vw",
         height: "70vh",
     },
-}
+};

@@ -6,8 +6,7 @@ import Navbar from "~/shared/components/navbar/Navbar";
 import FirstLoad from "~/inventory/components/FirstLoad";
 
 @Radium
-export default class Inventory extends React.Component {
-
+class Inventory extends React.Component {
     render() {
         return (
             <Root pageName="inventory">
@@ -15,8 +14,10 @@ export default class Inventory extends React.Component {
                 <FirstLoad />
 
             </Root>
-        )
+        );
     }
 }
+
+export default Inventory;
 
 pageInit(Inventory);

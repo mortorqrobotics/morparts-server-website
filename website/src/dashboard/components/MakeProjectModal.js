@@ -11,10 +11,9 @@ import { connect } from "react-redux";
 
 @Radium
 class MakeProjectModal extends React.Component {
-
     static propTypes = {
         ...modalPropTypes,
-    }
+    };
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
@@ -24,24 +23,25 @@ class MakeProjectModal extends React.Component {
     };
 
     state = {
-       ...this.initialState,
-    }
+        ...this.initialState,
+    };
 
     handleSubmit = () => {
-        this.props.dispatch(addProject({
-            name: this.state.name,
-            prefix: this.state.prefix,
-        }))
+        const { dispatch, onRequestClose } = this.props;
+        const { name, prefix } = this.state;
+        dispatch(
+            addProject({
+                name,
+                prefix,
+            }),
+        );
         this.setState(this.initialState);
-        this.props.onRequestClose();
-    }
+        onRequestClose();
+    };
 
     render() {
         return (
-            <StandardModal
-                title="New Project"
-                { ...modalPropsForward(this) }
-            >
+            <StandardModal title="New Project" {...modalPropsForward(this)}>
                 <ModalTextBox
                     onChange={this.getChangeHandler("name")}
                     placeholder="Name"
@@ -55,7 +55,7 @@ class MakeProjectModal extends React.Component {
                     onClick={this.handleSubmit}
                 />
             </StandardModal>
-        )
+        );
     }
 }
 

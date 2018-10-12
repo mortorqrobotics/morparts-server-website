@@ -1,5 +1,6 @@
 import React from "react";
-import Radium from "radium"
+import Radium from "radium";
+import PropTypes from "prop-types";
 
 import StandardModal from "~/shared/components/StandardModal";
 import Radio from "~/shared/components/Radio";
@@ -12,11 +13,10 @@ import { connect } from "react-redux";
 
 @Radium
 class MakePartModal extends React.Component {
-
     static propTypes = {
         ...modalPropTypes,
-        parentId: React.PropTypes.string,
-    }
+        parentId: PropTypes.string,
+    };
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
@@ -26,25 +26,26 @@ class MakePartModal extends React.Component {
     };
 
     state = {
-       ...this.initialState,
-    }
+        ...this.initialState,
+    };
 
     handleSubmit = () => {
-        this.props.dispatch(addPart({
-            name: this.state.name,
-            isAssembly: this.state.isAssembly,
-            parent: this.props.parentId,
-        }))
+        const { dispatch, onRequestClose, parentId } = this.props;
+        const { name, isAssembly } = this.state;
+        dispatch(
+            addPart({
+                name,
+                isAssembly,
+                parent: parentId,
+            }),
+        );
         this.setState(this.initialState);
-        this.props.onRequestClose();
-    }
+        onRequestClose();
+    };
 
     render() {
         return (
-            <StandardModal
-                title="New Part"
-                { ...modalPropsForward(this) }
-            >
+            <StandardModal title="New Part" {...modalPropsForward(this)}>
                 <Radio
                     name="type"
                     text="Assembly"
@@ -60,14 +61,10 @@ class MakePartModal extends React.Component {
                     onChange={this.getChangeHandler("name")}
                     placeholder="Name"
                 />
-                <ModalButton
-                    text="Create Part"
-                    onClick={this.handleSubmit}
-                />
+                <ModalButton text="Create Part" onClick={this.handleSubmit} />
             </StandardModal>
-        )
+        );
     }
 }
 
-export default connect()(MakePartModal)
-
+export default connect()(MakePartModal);
