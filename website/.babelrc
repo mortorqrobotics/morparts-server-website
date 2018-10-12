@@ -29,7 +29,8 @@
     "@babel/plugin-proposal-do-expressions",
 
     ["@babel/plugin-proposal-decorators", {
-      "legacy": true
+      "legacy": true,
+      "beforeExport": true
     }],
     "@babel/plugin-proposal-function-sent",
     "@babel/plugin-proposal-export-namespace-from",
