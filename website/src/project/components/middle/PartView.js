@@ -27,6 +27,7 @@ class PartView extends React.Component {
 
     render() {
         let isPinned = this.props.pinnedPartIds.includes(this.props.part._id);
+        let hasChildren = this.props.part.children.parts.length > 0;
         return (
             <WhiteBox style={styles.partView}>
                 <RadiumGlyphicon
@@ -68,11 +69,11 @@ class PartView extends React.Component {
                     <ConfirmModal
                         action={() => this.props.dispatch(deletePart(this.props.part))}
                         text={
-                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}
-                                ?`
+                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?${hasChildren ? " You will also delete all the child parts and assemblies." : ""}`
                         }
-                        grayConfirm={this.props.part.children.parts.length > 0}
                         { ...modalProps(this, "isModalOpen") }
+                        hasTextboxConfirm={hasChildren}
+                        confirmText={this.props.part.name}
                     />
                 )}
             </WhiteBox>
