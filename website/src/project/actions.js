@@ -33,7 +33,7 @@ export const addPart = part => async dispatch => {
         "POST",
         `/projects/id/${projectId}/parts`,
         part,
-    );
+    ).req;
     dispatch({
         type: "ADD_PART",
         part: data,
