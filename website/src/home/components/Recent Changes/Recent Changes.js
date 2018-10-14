@@ -28,7 +28,7 @@ class RecentChanges extends React.Component {
                 {recentChanges.map(change => (
                     <Item
                         partID={change._id}
-                        updated_at={change.updatedAt}
+                        updatedAt={change.updated_at}
                         lastUpdatedBy={change.lastUpdatedBy}
                         name={change.name}
                     />
