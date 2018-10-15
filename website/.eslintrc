@@ -30,5 +30,6 @@
                 "rootPathSuffix": "src"
             }
         }
-    }
+    },
+    "parser": "babel-eslint"
 }
