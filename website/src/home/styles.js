@@ -18,5 +18,13 @@ export default {
     itemBox: {
         margin: "10px auto",
         width: "95%",
+        boxShadow: "1.5px 3px 8px 1px #a9a9a9",
+        ":hover": {
+            backgroundColor: "#fafafa",
+            cursor: "pointer",
+        },
+    },
+    profilePicture: {
+        height: "50px",
     },
 };

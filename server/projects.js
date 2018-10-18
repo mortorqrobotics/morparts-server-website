@@ -202,7 +202,11 @@ module.exports = function(imports) {
                     _id: change._id,
                     name: change.name,
                     updated_at: change.updated_at,
-                    lastUpdatedBy: `${user.firstname} ${user.lastname}`,
+                    lastUpdatedBy: {
+                        name: `${user.firstname} ${user.lastname}`,
+                        picture: user.profpicpath,
+                        profilePage: `https://www.morteam.com/profiles/id/${user._id}`
+                    },
                 };
                 cs.push(c);
                 if (-- cCount == 0){
@@ -213,7 +217,11 @@ module.exports = function(imports) {
                     _id: change._id,
                     name: change.name,
                     updated_at: change.updated_at,
-                    lastUpdatedBy: "anonymous",
+                    lastUpdatedBy: {
+                        name: "anonymous",
+                        picture: "/images/user.jpg",
+                        profilePage: `https://www.morteam.com/`
+                    },
                 });
                 if (-- cCount == 0){
                     res.json(cs);
