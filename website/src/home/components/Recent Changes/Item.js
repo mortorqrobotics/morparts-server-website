@@ -24,7 +24,7 @@ class Item extends React.Component {
                     <img
                         style={style.profilePicture}
                         title={lastUpdatedBy.name}
-                        src={`https://www.morteam.com/${lastUpdatedBy.picture}`}
+                        src={`//www.morteam.com${lastUpdatedBy.picture}`}
                         alt="profile"
                     />
                 </a>

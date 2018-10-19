@@ -218,7 +218,7 @@ module.exports = function(imports) {
                     name: change.name,
                     updated_at: change.updated_at,
                     lastUpdatedBy: {
-                        name: "anonymous",
+                        name: "Anonymous",
                         picture: "/images/user.jpg",
                         profilePage: `https://www.morteam.com/`
                     },
