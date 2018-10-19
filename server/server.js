@@ -33,6 +33,7 @@ module.exports = function(imports) {
 
     let api = express.Router();
     api.use(require("./projects")(imports));
+    api.use(require("./inventory")(imports))
     app.use("/api", api);
 
     return app;

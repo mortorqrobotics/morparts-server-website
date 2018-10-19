@@ -4,12 +4,12 @@ import fuzzyFilterFactory from "react-fuzzy-filter";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
-import Buttons from "~/inventory/components/Buttons";
+import AddItem from "~/inventory/components/AddItem";
 import Parts from "~/inventory/components/Parts";
 
 import { makeStore } from "~/util/redux";
-import reducers from "~/project/reducers";
-import { initialActions } from "~/project/actions";
+import reducers from "~/inventory/reducers";
+import { initialActions } from "~/inventory/actions";
 
 const { InputFilter, FilterResults } = fuzzyFilterFactory();
 
@@ -23,7 +23,7 @@ class Inventory extends React.Component {
             <Root pageName="inventory" store={store}>
                 <Navbar />
                 <InputFilter debounceTime={200} />
-                <Buttons />
+                <AddItem />
                 <Parts Filter={FilterResults} />
             </Root>
         );
