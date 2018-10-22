@@ -14,7 +14,14 @@ export default {
         margin: "0 25px",
         width: "30vw",
         height: "70vh",
+        padding: "30px 0",
+        overflow: "hidden",
+    },
+    container: {
+        height: "100%",
+        width: "100%",
         overflow: "auto",
+        padding: "0 30px",
     },
     itemBox: {
         display: "flex",
@@ -33,5 +40,8 @@ export default {
         marginRight: "2em",
         borderRadius: "5px",
         border: "solid #a9a9a9 1px",
+    },
+    p: {
+        textAlign: "center",
     },
 };

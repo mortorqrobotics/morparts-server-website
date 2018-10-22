@@ -3,6 +3,7 @@ import Radium from "radium";
 import PropTypes from "prop-types";
 import style from "~/home/styles";
 import WhiteBox from "~/shared/components/WhiteBox";
+import styles from "../../styles";
 
 @Radium
 class Item extends React.Component {
@@ -29,9 +30,11 @@ class Item extends React.Component {
                     />
                 </a>
                 <div>
-                    <div style={{}}>{lastUpdatedBy.name}</div>
-                    {name} was updated at
-                    {` ${new Date(updatedAt).toLocaleString()}`}
+                    <p style={styles.p}>{lastUpdatedBy.name}</p>
+                    <p style={styles.p}>
+                        {name} was updated at
+                        {` ${new Date(updatedAt).toLocaleString()}`}
+                    </p>
                 </div>
             </WhiteBox>
         );

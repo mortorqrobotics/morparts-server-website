@@ -25,14 +25,16 @@ class RecentChanges extends React.Component {
         return (
             <WhiteBox style={styles.whiteBox}>
                 <h2 style={styles.title}>{title || "Recent Changes"}</h2>
-                {recentChanges.map(change => (
-                    <Item
-                        partID={change._id}
-                        updatedAt={change.updated_at}
-                        lastUpdatedBy={change.lastUpdatedBy}
-                        name={change.name}
-                    />
-                ))}
+                <div style={styles.container}>
+                    {recentChanges.map(change => (
+                        <Item
+                            partID={change._id}
+                            updatedAt={change.updated_at}
+                            lastUpdatedBy={change.lastUpdatedBy}
+                            name={change.name}
+                        />
+                    ))}
+                </div>
             </WhiteBox>
         );
     }
