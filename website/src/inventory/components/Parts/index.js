@@ -6,4 +6,11 @@ const mapStateToProps = (state, props) => ({
     ...props,
 });
 
-export default connect(mapStateToProps)(Parts);
+const mapDispatchToProps = dispatch => ({
+    dispatch,
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Parts);

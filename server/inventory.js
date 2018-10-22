@@ -16,5 +16,9 @@ module.exports = function(imports) {
         res.end();
     }));
 
+    router.post("/inventory", handler(function* (req, res){
+        
+    }))
+
     return router;
 };
