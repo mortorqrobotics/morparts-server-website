@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 import { StyleRoot } from "radium";
 import { Provider } from "react-redux";
@@ -15,40 +16,43 @@ const styles = {
 };
 
 export default class Root extends React.Component {
-
+    static propTypes = {
+        // eslint-disable-next-line react/no-unused-prop-types
+        children: PropTypes.node,
+    };
     // getChildContext() {
     //   return {
     //     pageName: this.props.pageName
     //   }
     // }
 
-    wrap = (contents) => {
-        if (this.props.store) {
+    wrap = contents => {
+        const { props } = this;
+        if (props.store) {
             return (
-                <Provider store={this.props.store}>
-                    <div>
-                        {contents}
-                    </div>
+                <Provider store={props.store}>
+                    <div>{contents}</div>
                 </Provider>
-            )
-        } else {
-            return contents;
+            );
         }
-    }
+        return contents;
+    };
 
     render() {
+        const { props } = this;
         return (
             <StyleRoot style={styles.global}>
-                {this.wrap(this.props.children)}
+                {this.wrap(props.children)}
             </StyleRoot>
-        )
+        );
     }
 }
 
 export function pageInit(Page) {
+    // eslint-disable-next-line no-underscore-dangle
     window.__pageInit = {
-        React: React,
-        ReactDOM: ReactDOM,
-        Page: Page,
-    }
+        React,
+        ReactDOM,
+        Page,
+    };
 }

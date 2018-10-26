@@ -10,21 +10,28 @@ const item = {
     ":focus": {
         outline: "none",
     },
-}
+};
 
-const textBox = [item, {
-    padding: "8px 4px 8px 4px",
-    fontSize: "15px",
-}]
+const textBox = [
+    item,
+    {
+        padding: "8px 4px 8px 4px",
+        fontSize: "15px",
+        border: "none",
+    },
+];
 
 export default {
-    textBox: textBox,
-    button: [item, {
-        height: "37px",
-        backgroundColor: defaultColor,
-        color: "black",
-        ":hover": {
-            backgroundColor: selectedColor,
+    textBox,
+    button: [
+        item,
+        {
+            height: "37px",
+            backgroundColor: defaultColor,
+            color: "black",
+            ":hover": {
+                backgroundColor: selectedColor,
+            },
         },
-    }],
-}
+    ],
+};

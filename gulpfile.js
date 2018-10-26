@@ -35,18 +35,7 @@ function stuff(bundler) {
         bundler.external(lib);
     }
     return bundler
-        .transform(babelify, {
-            presets: ["es2015", "react"],
-            plugins: [
-                "syntax-async-functions",
-                "transform-regenerator",
-                "transform-decorators-legacy",
-                "transform-class-properties",
-                "transform-object-rest-spread",
-                ["babel-root-import", { rootPathSuffix: "website/src" }],
-                ["transform-runtime", { polyfill: false, regenerator: true }],
-            ],
-        })
+        .transform(babelify)
 }
 
 function build(pages) {

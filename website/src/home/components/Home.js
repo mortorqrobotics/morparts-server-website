@@ -3,12 +3,11 @@ import Radium from "radium";
 
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
-import Heading from "~/home/components/Heading"
+import Heading from "~/home/components/Heading";
 import Body from "~/home/components/Body";
 
 @Radium
-export default class Home extends React.Component {
-
+class Home extends React.Component {
     render() {
         return (
             <Root pageName="home">
@@ -16,8 +15,10 @@ export default class Home extends React.Component {
                 <Heading />
                 <Body />
             </Root>
-        )
+        );
     }
 }
+
+export default Home;
 
 pageInit(Home);

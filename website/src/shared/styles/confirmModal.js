@@ -1,5 +1,6 @@
 export default {
     grayConfirm: {
+        cursor: "hand",
         backgroundColor: "buttonface",
         ":hover": {
             backgroundColor: "buttonface",
@@ -12,4 +13,4 @@ export default {
             backgroundColor: "#C71111",
         },
     },
-}
+};

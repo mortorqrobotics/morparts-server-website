@@ -4,9 +4,10 @@ export default {
         display: "inline-block",
         width: "85%",
         float: "right",
+        listStyle: "none",
     },
     heading: {
         textAlign: "center",
         padding: "20px",
     },
-}
+};

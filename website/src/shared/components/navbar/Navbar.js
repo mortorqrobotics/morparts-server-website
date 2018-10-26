@@ -5,9 +5,8 @@ import styles from "~/shared/styles/navbar";
 import GlyphLink from "~/shared/components/navbar/GlyphLink";
 import Link from "~/shared/components/Link";
 
-
 @Radium
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
     render() {
         return (
             <div>
@@ -17,10 +16,20 @@ export default class Navbar extends React.Component {
                         text="MorParts"
                         location="/"
                     />
-                    <GlyphLink path="/inventory" glyph="wrench" name="inventory" />
-                    <GlyphLink path="/dashboard" glyph="list" name="dashboard" />
+                    <GlyphLink
+                        path="/inventory"
+                        glyph="wrench"
+                        name="inventory"
+                    />
+                    <GlyphLink
+                        path="/dashboard"
+                        glyph="list"
+                        name="dashboard"
+                    />
                 </div>
             </div>
-        )
+        );
     }
 }
+
+export default Navbar;

@@ -1,4 +1,3 @@
-
 import { defaultColor } from "~/shared/styles/colors";
 
 export default {
@@ -28,4 +27,4 @@ export default {
         width: "350px",
         color: "#333",
     },
-}
+};

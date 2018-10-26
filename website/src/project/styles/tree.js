@@ -3,6 +3,7 @@ import { defaultColor, hoverColor } from "~/shared/styles/colors";
 export default {
     container: {
         float: "left",
+        height: "100vh",
         marginRight: "20px",
     },
     whiteBox: {
@@ -45,5 +46,4 @@ export default {
     glyph: {
         marginRight: "2px",
     },
-}
-
+};

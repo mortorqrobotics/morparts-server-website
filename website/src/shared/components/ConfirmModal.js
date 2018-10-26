@@ -1,46 +1,64 @@
 import React from "react";
 import Radium from "radium";
+import PropTypes from "prop-types";
 
 import StandardModal from "~/shared/components/StandardModal";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
-import { modalPropTypes, modalPropsForward } from "~/util/modal";
+import { modalPropTypes } from "~/util/modal";
+import { makeChangeHandlerFactory } from "~/util";
 import styles from "~/shared/styles/confirmModal";
 
 @Radium
 class ConfirmModal extends React.Component {
-    return (
-        <StandardModal
-            title="Are you sure?"
-            isOpen={props.isOpen}
-            onAfterOpen={props.onAfterOpen}
-            onRequestClose={props.onRequestClose}
-        >
-            {props.text}
 
-            {props.hasTextboxConfirm && <ModalTextBox />}
-            <ModalButton
-                onClick={() => {
-                    props.action();
-                    props.onRequestClose();
-                }}
-                text="Confirm"
-                style={props.hasTextboxConfirm && && styles.grayConfirm}
-            />
-            <ModalButton
-                onClick={() => props.onRequestClose()}
-                text="Cancel"
-                style={styles.cancel}
-            />
-        </StandardModal>
-    )
-})
+    state = {
+        confirmText: "",
+    }
+
+    getChangeHandler = makeChangeHandlerFactory(this);
+
+    render() {
+        const isTextConfirmed = !this.props.hasTextConfirm || (this.state.confirmText === this.props.confirmText);
+        return (
+            <StandardModal
+                title="Are you sure?"
+                isOpen={this.props.isOpen}
+                onAfterOpen={this.props.onAfterOpen}
+                onRequestClose={this.props.onRequestClose}
+            >
+                {this.props.text}
+                {this.props.hasTextConfirm &&
+                    <ModalTextBox
+                        onChange={this.getChangeHandler("confirmText")}
+                        placeholder="Type to confirm"
+                    />
+                }
+                <ModalButton
+                    onClick={() => {
+                        if (isTextConfirmed) {
+                            this.props.action();
+                            this.props.onRequestClose();
+                        }
+                    }}
+                    text="Confirm"
+                    style={!isTextConfirmed ? styles.grayConfirm : {} }
+                />
+                <ModalButton
+                    onClick={() => this.props.onRequestClose()}
+                    text="Cancel"
+                    style={styles.cancel}
+                />
+            </StandardModal>
+        );
+    }
+}
 
 ConfirmModal.propTypes = {
-    text: React.PropTypes.string,
-    action: React.PropTypes.func,
-    hasTextboxConfirm: React.PropTypes.bool,
-    confirmText: React.PropTypes.string,
+    text: PropTypes.string,
+    action: PropTypes.func,
+    confirmText: PropTypes.string,
+    hasTextConfirm: PropTypes.bool,
     ...modalPropTypes,
-}
+};
 
 export default ConfirmModal;

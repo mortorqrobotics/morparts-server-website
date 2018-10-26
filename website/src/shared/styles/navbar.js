@@ -1,9 +1,14 @@
-import { defaultColor, hoverColor, selectedColor } from "~/shared/styles/colors";
+import {
+    defaultColor,
+    // hoverColor,
+    selectedColor,
+} from "~/shared/styles/colors";
+
 const navbarHeight = 40;
 
 export default {
     container: {
-        height: navbarHeight + "px",
+        height: `${navbarHeight}px`,
         backgroundColor: defaultColor,
     },
     title: {
@@ -56,4 +61,4 @@ export default {
             backgroundColor: defaultColor,
         },
     },
-}
+};

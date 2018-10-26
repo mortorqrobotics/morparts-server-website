@@ -53,9 +53,7 @@ module.exports = function(imports) {
             return res.status(404).end("This project does not exist");
         }
 
-        let parent = yield Part.findOne({
-            _id: req.body.parent,
-        });
+        let parent = yield Part.findById(req.body.parent);
 
         if (!parent.isAssembly) {
             return res.status(400).end("Only assemblies can have children.");
