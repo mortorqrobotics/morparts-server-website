@@ -3,7 +3,7 @@ const projects = (state = [], action) => {
         case "LOAD_PROJECTS":
             return state.concat(action.projects);
         case "ADD_PROJECT":
-            return [action.project].concat(state);
+            return state.concat([action.project]);
         default:
             return state;
     }

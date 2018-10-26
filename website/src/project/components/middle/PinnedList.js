@@ -20,7 +20,7 @@ class PinnedList extends React.Component {
     render() {
         const { pinnedParts, dispatch } = this.props;
         return (
-            <li style={styles.pinnedList}>
+            <li>
                 {pinnedParts.map(part => (
                     <ul>
                         <WhiteBox

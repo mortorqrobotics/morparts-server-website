@@ -1,7 +1,7 @@
 import { request } from "~/util/ajax";
 
 export const addProject = project => async dispatch => {
-    const { data } = await request("POST", "/projects", project);
+    const { data } = await request("POST", "/projects", project).req;
     dispatch({
         type: "ADD_PROJECT",
         project: data,
