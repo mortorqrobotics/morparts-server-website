@@ -4,7 +4,8 @@ module.exports = function(imports) {
 
     let mongoose = imports.modules.mongoose;
     let Schema = mongoose.Schema;
-    let ObjectID = Schema.Types.ObjectID;
+    let ObjectId = Schema.Types.ObjectId;
+
 
     let inventorySchema = new Schema({
         name: {
@@ -12,7 +13,7 @@ module.exports = function(imports) {
             required: true,
         },
         team: {
-            type: ObjectID,
+            type: ObjectId,
             ref: "Team",
             required: true,
         },

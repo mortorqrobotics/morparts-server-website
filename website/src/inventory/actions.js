@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import { request } from "~/util/ajax";
 
-const fetchInventory = () => async dispatch => {
+const fetchInventories = () => async dispatch => {
     const { data } = await request("GET", "/inventory");
     dispatch({
-        type: "LOAD_INVENTORY",
-        project: data,
+        type: "LOAD_INVENTORIES",
+        inventories: data,
     });
 };
 
@@ -36,6 +36,25 @@ export const addStandardParts = parts => async dispatch => {
     });
 };
 
+export const loadInventory = id => async dispatch => {
+    const { data } = await request("GET", `/inventory/${id}`).req;
+    dispatch({
+        type: "ADD_PART",
+        data,
+    });
+};
+
+export const addInventory = name => async dispatch => {
+    const { data } = await request("POST", `/inventory/${name}`);
+    dispatch({
+        type: "ADD_INVENTORY",
+        data: {
+            name,
+            id: data,
+        },
+    });
+};
+
 export function initialActions(dispatch) {
-    dispatch(fetchInventory());
+    dispatch(fetchInventories());
 }

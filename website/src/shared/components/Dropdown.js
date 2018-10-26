@@ -16,24 +16,29 @@ const styles = {
 
 const Radio = props => {
     const { style, text, children, ...rest } = props;
-    const c = React.Children.toArray(children).map(val => (
-        <option name={val}>{val}</option>
-    ));
+    const c = React.Children.toArray(children).map(
+        val =>
+            React.isValidElement(val) ? val : <option name={val}>{val}</option>,
+    );
     return React.createElement(
         "label",
         {
             style: [styles.label, style || {}],
         },
-        React.createElement("select", {
-            style: styles.radio,
-            ...rest,
-        }),
+        React.createElement(
+            "select",
+            {
+                style: styles.radio,
+                ...rest,
+            },
+            ...c,
+        ),
         text,
-        ...c,
     );
 };
 
 Radio.propTypes = {
+    children: PropTypes.node,
     // eslint-disable-next-line react/forbid-prop-types
     style: PropTypes.object,
     text: PropTypes.string,

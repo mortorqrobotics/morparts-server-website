@@ -4,7 +4,7 @@ module.exports = function(imports) {
 
     let mongoose = imports.modules.mongoose;
     let Schema = mongoose.Schema;
-    let ObjectID = Schema.Types.ObjectID;
+    let ObjectId = Schema.Types.ObjectId;
 
     let inventoryPartSchema = new Schema({
         name: {
@@ -15,7 +15,7 @@ module.exports = function(imports) {
             type: Number,
         },
         inventory: {
-            type: ObjectID,
+            type: ObjectId,
             ref: "Inventory",
             required: true,
         },

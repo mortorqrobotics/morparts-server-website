@@ -6,6 +6,8 @@ module.exports = function(imports) {
     imports.modules.express = require("express");
     imports.modules.Promise = require("bluebird");
 
+    imports.models.Inventory = require("./models/Inventory")(imports);
+    imports.models.InventoryPart = require("./models/InventoryPart")(imports);
     imports.models.Part = require("./models/Part")(imports);
     imports.models.Project = require("./models/Project")(imports);
 

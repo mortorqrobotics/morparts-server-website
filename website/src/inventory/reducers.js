@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import update from "immutability-helper";
 
-const project = (state = {}, action) => {
+const inventories = (state = {}, action) => {
     switch (action.type) {
-        case "SET_PROJECT":
-            return action.project;
+        case "LOAD_INVENTORIES":
+            return action.inventories;
         default:
             return state;
     }
@@ -99,7 +99,7 @@ const pinnedPartIds = (state = [], action) => {
 };
 
 export default {
-    project,
+    inventories,
     parts,
     selectedPartId,
     pinnedPartIds,

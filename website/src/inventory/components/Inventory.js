@@ -1,10 +1,11 @@
 import React from "react";
 import Radium from "radium";
 import fuzzyFilterFactory from "react-fuzzy-filter";
+import PropTypes from "prop-types";
 
 import AddItem from "~/inventory/components/AddItem";
 import Parts from "~/inventory/components/Parts";
-import Dropdown from "~/shared/components/Dropdown";
+import Selector from "~/inventory/components/Inventory Selector";
 import Root, { pageInit } from "~/shared/components/Root";
 import Navbar from "~/shared/components/navbar/Navbar";
 
@@ -19,20 +20,37 @@ initialActions(store.dispatch);
 
 @Radium
 class Inventory extends React.Component {
+    static propTypes = {
+        inventoryId: PropTypes.string,
+        inventories: PropTypes.arrayOf(
+            PropTypes.shape({
+                [PropTypes.string]: PropTypes.string,
+            }),
+        ),
+    };
+
+    constructor(props) {
+        super(props);
+        const { inventoryId, inventories } = props;
+        this.state = {
+            isOpen: false,
+            inventoryId:
+                inventoryId ||
+                Object.keys(inventories || { 1001: "Default" })[0],
+        };
+    }
+
     render() {
-        const { inventoryId, inventories } = this.props;
+        const { inventories } = this.props;
+        const { isOpen, inventoryId } = this.state;
+        const { dispatch } = store;
         return (
             <Root pageName="inventory" store={store}>
                 <Navbar />
                 <InputFilter debounceTime={200} />
                 <div />
-                <Dropdown>
-                    {(inventories || []).map(val => (
-                        <option name={val} selected={val === inventoryId}>
-                            {val}
-                        </option>
-                    ))}
-                </Dropdown>
+                <Selector />
+                <div />
                 <AddItem />
                 <Parts Filter={FilterResults} />
             </Root>
