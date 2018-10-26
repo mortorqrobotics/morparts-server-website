@@ -73,7 +73,12 @@ module.exports = function(imports) {
             required: false,
         },
         created_at: Date,
-        updated_at: Date
+        updated_at: Date,
+        lastUpdatedBy: {
+            type: ObjectId,
+            ref: "User",
+            required: false,
+        },
     });
 
     partSchema.pre("save", function(next) {
