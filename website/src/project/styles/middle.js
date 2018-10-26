@@ -20,6 +20,7 @@ const glyph = {
 
 export default {
     partView: {
+        float: "left",
         width: "500px",
         margin: "0 10px 20px",
     },
@@ -62,6 +63,7 @@ export default {
     pinnedPart: {
         minWidth: "200px",
         marginBottom: "10px",
+        marginLeft: "10px",
         cursor: "pointer",
     },
     save: [

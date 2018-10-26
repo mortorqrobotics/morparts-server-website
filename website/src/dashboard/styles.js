@@ -12,6 +12,9 @@ export default {
         listStyle: "none",
         paddingLeft: "0px",
     },
+    li: {
+        width: "100%",
+    },
     project: {
         fontSize: "1.5em",
         width: "50%",
