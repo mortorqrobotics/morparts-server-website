@@ -11,7 +11,7 @@ class Heading extends React.Component {
             <div style={styles.heading}>
                 <h1>MorParts</h1>
                 <h5>
-                    Welcome,
+                    Welcome,&nbsp;
                     {currentUser.firstname}
                 </h5>
             </div>
