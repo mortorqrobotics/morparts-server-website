@@ -27,6 +27,7 @@ const RadiumGlyphicon = Radium(Glyphicon);
 
 @Radium
 class PartView extends React.Component {
+
     state = {
         isModalOpen: false,
     };
@@ -35,6 +36,7 @@ class PartView extends React.Component {
         const { pinnedPartIds, part, dispatch } = this.props;
         const { isModalOpen } = this.state;
         const isPinned = pinnedPartIds.includes(part._id);
+        let hasChildren = this.props.part.children.parts.length > 0;
         return (
             <WhiteBox style={styles.partView}>
                 <RadiumGlyphicon
@@ -73,17 +75,23 @@ class PartView extends React.Component {
                     }
                     description={part.description}
                 />
-                <Button
-                    onClick={() => this.setState({ isModalOpen: true })}
-                    style={styles.deleteButton}
-                    text="Delete Part"
-                />
+                {!this.props.part.isRootAssembly &&
+                    <Button
+                        onClick={() => this.setState({ isModalOpen: true })}
+                        style={styles.deleteButton}
+                        text="Delete Part"
+                    />
+                }
                 {isModalOpen && (
                     <ConfirmModal
+                        action={() => this.props.dispatch(deletePart(this.props.part))}
+                        text={
+                            `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?${hasChildren ? " You will also delete all the child parts and assemblies. Type the name of this assembly to confirm deletion." : ""}`
+                        }
+                        { ...modalProps(this, "isModalOpen") }
+                        hasTextConfirm={hasChildren}
+                        confirmText={this.props.part.name}
                         action={() => dispatch(deletePart(part))}
-                        text={`Are you sure you want to delete ${
-                            part.name
-                        } ${getIdentifierString(part)}?`}
                         {...modalProps(this, "isModalOpen")}
                     />
                 )}

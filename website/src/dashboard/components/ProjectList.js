@@ -26,14 +26,19 @@ class ProjectList extends React.Component {
                             project ? (
                                 <li
                                     key={project._id}
-                                    style={styles.project}
-                                    onClick={() =>
-                                        window.location.assign(
-                                            `/projects/id/${project._id}`,
-                                        )
-                                    }
+                                    style={styles.li}
                                 >
-                                    {project.name}
+                                    <div
+                                        key={project._id}
+                                        style={styles.project}
+                                        onClick={() =>
+                                                window.location.assign(
+                                                    `/projects/id/${project._id}`,
+                                                )
+                                        }
+                                    >
+                                        {project.name}
+                                    </div>
                                 </li>
                             ) : null,
                     )}

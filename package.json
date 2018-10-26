@@ -8,6 +8,7 @@
     "gulp": "./node_modules/.bin/gulp",
     "gulp-prod": "NODE_ENV=production ./node_modules/.bin/gulp",
     "watch": "./node_modules/.bin/gulp watch",
+    "one-by-one": "for page in $(echo $(cd website/src; echo */) | sed -e 's/\\///g' | tr ' ' \"\\n\" | grep -v '\\(shared\\|util\\)'); do npm run gulp-prod build-$page; done",
     "vendor": "./node_modules/.bin/gulp vendor",
     "vendor-prod": "NODE_ENV=production ./node_modules/.bin/gulp vendor",
     "postinstall": "npm run vendor",

@@ -17,6 +17,7 @@ const textBox = [
     {
         padding: "8px 4px 8px 4px",
         fontSize: "15px",
+        border: "none",
     },
 ];
 
