@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 import Radium from "radium";
+import PropTypes from "prop-types";
 
 import Container from "~/home/components/Container";
 import Button from "~/shared/components/Button";
@@ -11,6 +12,11 @@ import { connect } from "react-redux";
 
 @Radium
 class Assignments extends React.Component {
+    static propTypes = {
+        assignments: PropTypes.arrayOf(PropTypes.object),
+        dispatch: PropTypes.func,
+    };
+
     render() {
         const { assignments, dispatch } = this.props;
         return (

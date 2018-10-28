@@ -1,5 +1,6 @@
 import React from "react";
 import Radium from "radium";
+import PropTypes from "prop-types";
 
 import Container from "~/home/components/Container";
 import styles from "~/home/styles";
@@ -7,6 +8,10 @@ import { connect } from "react-redux";
 
 @Radium
 class LowInventory extends React.Component {
+    static propTypes = {
+        items: PropTypes.arrayOf(PropTypes.object),
+    };
+
     render() {
         const { items } = this.props;
         return (
