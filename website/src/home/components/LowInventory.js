@@ -7,11 +7,11 @@ import { connect } from "react-redux";
 
 @Radium
 class LowInventory extends React.Component {
-
     render() {
+        const { items } = this.props;
         return (
             <Container title="Low Inventory">
-                {this.props.items.map(item => (
+                {items.map(item => (
                     <div style={{}}>
                         <img src={item.image} alt={item.name} />
                         <div style={{}}>

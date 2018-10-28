@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React from "react";
 import Radium from "radium";
 
 import Container from "~/home/components/Container";
+import Button from "~/shared/components/Button";
 import styles from "~/home/styles";
 import { updateStatus } from "~/project/actions";
 import { completeAssignment } from "~/home/actions";
@@ -9,22 +11,27 @@ import { connect } from "react-redux";
 
 @Radium
 class Assignments extends React.Component {
-
     render() {
+        const { assignments, dispatch } = this.props;
         return (
             <Container title="Assignments">
-                {this.props.assignments.map(assignment => (
+                {assignments.map(assignment => (
                     <div style={{}}>
                         <div style={{}}>
                             <Button
                                 style={{}}
                                 text="Completed"
-                                onClick={dispatch(completeAssignment(assignment.id))}
+                                onClick={dispatch(
+                                    completeAssignment(assignment.id),
+                                )}
                             />
                             <Button
                                 style={{}}
                                 text="Work In Progress"
-                                onClick={updateStatus("designing", assignment.part)}
+                                onClick={updateStatus(
+                                    "designing",
+                                    assignment.part,
+                                )}
                             />
                         </div>
                         <p style={{}} tooltip={assignment.description}>

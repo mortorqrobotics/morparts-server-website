@@ -41,6 +41,21 @@ module.exports = function(imports) {
         });
     }));
 
+    // load user profile picture from AWS S3
+    router.get("/pp/:path", handler(function*(req, res) {
+        // TODO: use NODE_ENV everywhere instead of this
+        let isProduction = require("fs").existsSync(require("path").join(__dirname, "../morteam-server-website/server/aws-config.json"));
+        if (isProduction) {
+            res.redirect(profpicDir + req.params.path);
+        } else {
+            res.sendFile(require("path").join(
+                __dirname,
+                "../../morteam-server-website/buckets/profilepics.morteam.com",
+                req.params.path
+            ));
+        }
+    }));
+
     router.use("/js", express.static(webDir + "/build"));
 
     return router;
