@@ -3,6 +3,7 @@ import Selector from "./Selector";
 
 const mapStateToProps = (state, props) => ({
     inventories: state.inventories,
+    inventoryId: state.selectInventory,
     ...props,
 });
 

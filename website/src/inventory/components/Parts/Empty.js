@@ -13,6 +13,7 @@ const standardItems = ["RoboRIO", "Router", "Ethernet Cable"];
 class Empty extends React.Component {
     static propTypes = {
         dispatch: PropTypes.func,
+        inventoryId: PropTypes.string,
     };
 
     constructor(props) {
@@ -83,6 +84,7 @@ class Empty extends React.Component {
                         text="Submit"
                         onClick={() => {
                             const { state } = this;
+                            const { inventoryId } = this.props;
                             const p = [];
                             Object.entries(state.parts).forEach(
                                 ([indx, val]) => {
@@ -91,7 +93,7 @@ class Empty extends React.Component {
                                     }
                                 },
                             );
-                            dispatch(addStandardParts(p));
+                            dispatch(addStandardParts(p, inventoryId));
                             const newState = {
                                 ...state,
                                 isOpen: false,

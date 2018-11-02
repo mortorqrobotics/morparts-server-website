@@ -1,14 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { request } from "~/util/ajax";
 
-const fetchInventories = () => async dispatch => {
-    const { data } = await request("GET", "/inventory");
-    dispatch({
-        type: "LOAD_INVENTORIES",
-        inventories: data,
-    });
-};
-
 export const addPart = (part, inventoryId) => async dispatch => {
     const base = {
         name: "Unnamed",
@@ -24,35 +16,63 @@ export const addPart = (part, inventoryId) => async dispatch => {
     ).req;
     dispatch({
         type: "ADD_PART",
-        data,
+        part: Object.assign({}, base, part, {
+            _id: data,
+            created_at: new Date(),
+            updated_at: new Date(),
+        }),
     });
 };
 
-export const addStandardParts = parts => async dispatch => {
+export const addStandardParts = (parts, inventoryId) => async dispatch => {
     parts.forEach(async val => {
-        addPart({
-            name: val,
-        })(dispatch);
+        addPart(
+            {
+                name: val,
+            },
+            inventoryId,
+        )(dispatch);
     });
 };
 
 export const loadInventory = id => async dispatch => {
-    const { data } = await request("GET", `/inventory/${id}`).req;
+    const { data } = await request("GET", `/inventory/${id}`);
     dispatch({
-        type: "ADD_PART",
-        data,
+        type: "LOAD_INVENTORY",
+        inventory: data,
+    });
+    dispatch({
+        type: "SET_INVENTORY",
+        id,
     });
 };
 
 export const addInventory = name => async dispatch => {
-    const { data } = await request("POST", `/inventory/${name}`);
+    const { data } = await request(
+        "POST",
+        `/inventory`,
+        Object.assign({ name: "Unnamed" }, { name }),
+    ).req;
+    const id = data;
     dispatch({
         type: "ADD_INVENTORY",
-        data: {
+        inventory: {
             name,
-            id: data,
+            id,
         },
     });
+    loadInventory(id)(dispatch);
+};
+
+const fetchInventories = () => async dispatch => {
+    const { data } = await request("GET", "/inventory");
+    dispatch({
+        type: "LOAD_INVENTORIES",
+        inventories: data,
+    });
+    if (Object.keys(data).length > 0) {
+        loadInventory(Object.keys(data)[0])(dispatch);
+    }
 };
 
 export function initialActions(dispatch) {

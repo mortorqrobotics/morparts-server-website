@@ -7,23 +7,24 @@ import StandardModal from "~/shared/components/StandardModal";
 import Button from "~/shared/components/Button";
 import TextBox from "~/shared/components/TextBox";
 
+let firstRender = false;
+
 export default class inventorySelector extends React.Component {
     static propTypes = {
         dispatch: PropTypes.func,
         inventoryId: PropTypes.string,
-        inventories: PropTypes.arrayOf(
-            PropTypes.shape({
-                [PropTypes.string]: PropTypes.string,
-            }),
-        ),
+        inventories: PropTypes.shape({
+            [PropTypes.string]: PropTypes.string,
+        }),
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false,
+            isOpen: !firstRender && Object.keys(props.inventories).length < 0,
             value: "",
         };
+        firstRender = true;
     }
 
     render() {
@@ -46,6 +47,16 @@ export default class inventorySelector extends React.Component {
                             dispatch(loadInventory(id));
                         }
                         this.setState(newState);
+                    }}
+                    onClick={() => {
+                        if (Object.keys(inventories).length < 1) {
+                            const { state } = this;
+                            const newState = {
+                                ...state,
+                                isOpen: true,
+                            };
+                            this.setState(newState);
+                        }
                     }}
                 >
                     {Object.entries(inventories || { 1001: "Default" })

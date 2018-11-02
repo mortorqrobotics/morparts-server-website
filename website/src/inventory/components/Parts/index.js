@@ -3,6 +3,7 @@ import Parts from "./Parts";
 
 const mapStateToProps = (state, props) => ({
     parts: state.parts,
+    inventoryId: state.selectInventory,
     ...props,
 });
 

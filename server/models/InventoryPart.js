@@ -13,6 +13,11 @@ module.exports = function(imports) {
         },
         quantity: {
             type: Number,
+            default: 0,
+        },
+        minQuantity: {
+            type: Number,
+            default: 0,
         },
         inventory: {
             type: ObjectId,
@@ -21,6 +26,10 @@ module.exports = function(imports) {
         },
         purchaseLink: {
             type: String,
+        },
+        barcode: {
+            type: String,
+            default: "",
         },
         created_at: Date,
         updated_at: Date,

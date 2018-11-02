@@ -20,30 +20,7 @@ initialActions(store.dispatch);
 
 @Radium
 class Inventory extends React.Component {
-    static propTypes = {
-        inventoryId: PropTypes.string,
-        inventories: PropTypes.arrayOf(
-            PropTypes.shape({
-                [PropTypes.string]: PropTypes.string,
-            }),
-        ),
-    };
-
-    constructor(props) {
-        super(props);
-        const { inventoryId, inventories } = props;
-        this.state = {
-            isOpen: false,
-            inventoryId:
-                inventoryId ||
-                Object.keys(inventories || { 1001: "Default" })[0],
-        };
-    }
-
     render() {
-        const { inventories } = this.props;
-        const { isOpen, inventoryId } = this.state;
-        const { dispatch } = store;
         return (
             <Root pageName="inventory" store={store}>
                 <Navbar />

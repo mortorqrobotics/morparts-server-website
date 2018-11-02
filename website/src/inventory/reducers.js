@@ -5,102 +5,62 @@ const inventories = (state = {}, action) => {
     switch (action.type) {
         case "LOAD_INVENTORIES":
             return action.inventories;
+        case "ADD_INVENTORY":
+            return Object.assign({}, state, {
+                [action.inventory.id]: action.inventory.name,
+            });
         default:
             return state;
     }
 };
 
-const parts = (state = [], action) => {
-    let newState = [];
-    let index;
-    let parentIndex;
-    let childIndex;
+const parts = (state = {}, action) => {
+    let part;
+    let newState;
     switch (action.type) {
-        case "LOAD_PARTS":
-            return state.concat(action.parts);
+        case "LOAD_INVENTORY":
+            return (
+                action.inventory.reduce((object, item) => {
+                    const newObject = Object.assign({}, object);
+                    newObject[item._id] = item;
+                    if (newObject[item._id].created_at) {
+                        newObject[item._id].created_at = new Date(
+                            newObject[item._id].created_at,
+                        );
+                    }
+                    if (newObject[item._id].updated_at) {
+                        newObject[item._id].updated_at = new Date(
+                            newObject[item._id].updated_at,
+                        );
+                    }
+                    delete newObject[item._id]._id;
+                    return newObject;
+                }, {}) || {}
+            );
         case "ADD_PART":
-            newState = state.concat(action.part);
-            index = newState.findIndex(part => part._id === action.part.parent);
-            if (action.part.parent) {
-                newState = update(newState, {
-                    [index]: {
-                        children: {
-                            parts: { $push: [action.part._id] },
-                        },
-                    },
-                });
-            }
-            return newState;
-        case "UPDATE_STATUS":
-            index = state.findIndex(part => part._id === action.partId);
-            return update(state, {
-                [index]: {
-                    status: { $set: action.status },
-                },
+            console.log(action);
+            part = Object.assign({}, action.part);
+            delete part._id;
+            newState = Object.assign({}, state, {
+                [action.part._id]: part,
             });
-        case "SET_NAME":
-            index = state.findIndex(part => part._id === action.partId);
-            return update(state, {
-                [index]: {
-                    name: { $set: action.name },
-                },
-            });
-        case "SET_DESCRIPTION":
-            index = state.findIndex(part => part._id === action.partId);
-            return update(state, {
-                [index]: {
-                    description: { $set: action.description },
-                },
-            });
-        case "DELETE_PART":
-            newState = state.filter(part => part._id !== action.part._id);
-            if (action.part.parent) {
-                parentIndex = newState.findIndex(
-                    part => part._id === action.part.parent,
-                );
-                childIndex = newState[parentIndex].children.parts.findIndex(
-                    part => part === action.part._id,
-                );
-                newState = update(newState, {
-                    [parentIndex]: {
-                        children: {
-                            parts: { $splice: [[childIndex, 1]] },
-                        },
-                    },
-                });
-            }
             return newState;
         default:
             return state;
     }
 };
 
-const selectedPartId = (state = null, action) => {
+const selectInventory = (state = "", action) => {
     switch (action.type) {
-        case "SELECT_PART":
-            return action.partId;
-        default:
-            return state;
-    }
-};
-
-const pinnedPartIds = (state = [], action) => {
-    switch (action.type) {
-        case "PIN_PART":
-            if (!state.includes(action.partId)) {
-                return [action.partId].concat(state);
-            }
-            return state;
-        case "UNPIN_PART":
-            return state.filter(partId => partId !== action.partId);
+        case "SET_INVENTORY":
+            return action.id || "";
         default:
             return state;
     }
 };
 
 export default {
-    inventories,
     parts,
-    selectedPartId,
-    pinnedPartIds,
+    inventories,
+    selectInventory,
 };
