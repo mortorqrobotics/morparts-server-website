@@ -3,6 +3,20 @@ export default {
         textAlign: "center",
         padding: "20px",
     },
+    heading:{
+        textAlign: "center",
+        float: "cemter",
+        marginTop: '20vh'
+    },
+    header: {
+        color: "#ff8900",
+        fontWeight: 100,
+        /* sets large "MorScout" text color to #FFC547 */
+        fontSize: "8em",
+        /* sets font size of large "MorScout" text */
+        textAlign: "center",
+        /* horizontal alignment of large "MorScout" text */
+    },
     body: {
         textAlign: "center",
     },
