@@ -9,11 +9,8 @@ class Heading extends React.Component {
     render() {
         return (
             <div style={styles.heading}>
-                <h1>MorParts</h1>
-                <h5>
-                    Welcome,&nbsp;
-                    {currentUser.firstname}
-                </h5>
+                <h1 style={styles.title}>MorParts</h1>
+                <h3 style={styles.description}>Welcome, {currentUser.firstname}</h3>
             </div>
         );
     }

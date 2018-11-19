@@ -1,17 +1,16 @@
 export default {
     heading: {
         textAlign: "center",
-        padding: "20px",
-    },
-    body: {
-        textAlign: "center",
+        marginTop: "25vh",
     },
     title: {
         textAlign: "center",
+        color: "#ff8900",
+        fontSize: "8em",
+        fontWeight: "200",
     },
-    whiteBox: {
-        margin: "0 25px",
-        width: "30vw",
-        height: "70vh",
+    description: {
+        fontWeight: "300",
+        fontSize: "24px",
     },
 };
