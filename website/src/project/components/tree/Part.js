@@ -8,7 +8,7 @@ import styles from "~/project/styles/tree";
 import StatusDot from "~/shared/components/StatusDot";
 import { getIdentifierString } from "~/util/part";
 
-import { selectPart } from "~/project/actions";
+import { selectPart, toggleAssemblyCollapse } from "~/project/actions";
 import { connect } from "react-redux";
 
 @Radium
@@ -43,6 +43,9 @@ class Part extends React.Component {
                     <Glyphicon
                         style={styles.glyph}
                         glyph={part.isAssembly ? "th" : "cog"}
+                        onClick={part.isAssembly && part.children.parts.length > 0 ?
+                                () => dispatch(toggleAssemblyCollapse(part._id)) : () => {}
+                        }
                     />
                     <StatusDot status={part.status} />
                     <span>{part.name}</span>

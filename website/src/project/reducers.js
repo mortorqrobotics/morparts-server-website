@@ -31,6 +31,13 @@ const parts = (state = [], action) => {
                 });
             }
             return newState;
+        case "TOGGLE_ASSEMBLY_COLLAPSE":
+            index = state.findIndex(part => part._id === action.partId);
+             return update(state, {
+                [index]: {
+                    isCollapsed: { $set: !state[index].isCollapsed },
+                },
+            });
         case "UPDATE_STATUS":
             index = state.findIndex(part => part._id === action.partId);
             return update(state, {

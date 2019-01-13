@@ -26,6 +26,9 @@ export default {
         borderLeft: "solid 1px",
         margin: "10px 0px 10px 10px",
     },
+    collapse: {
+        marginLeft: "10px",
+    },
     label: {
         fontSize: "15px",
         cursor: "pointer",
