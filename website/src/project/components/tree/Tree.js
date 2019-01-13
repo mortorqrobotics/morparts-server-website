@@ -76,7 +76,12 @@ class Tree extends React.Component {
                 {parts.map(part => (
                     <div key={part._id}>
                         <Part part={part}>
-                            {part.isAssembly && this.assemblyTree(part)}
+                            {part.isAssembly && (!part.isCollapsed
+                                ? this.assemblyTree(part)
+                                : (
+                                    <Glyphicon glyph="option-horizontal" style={styles.collapse}/>
+                                )
+                            )}
                         </Part>
                     </div>
                 ))}

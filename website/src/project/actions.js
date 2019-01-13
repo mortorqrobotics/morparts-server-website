@@ -40,6 +40,13 @@ export const addPart = part => async dispatch => {
     });
 };
 
+export const toggleAssemblyCollapse = partId => dispatch => {
+    dispatch({
+        type: "TOGGLE_ASSEMBLY_COLLAPSE",
+        partId,
+    })
+};
+
 export const pinPart = partId => dispatch => {
     dispatch({
         type: "PIN_PART",
