@@ -7,7 +7,7 @@ import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { modalPropTypes } from "~/util/modal";
 import { makeChangeHandlerFactory } from "~/util";
 
-styles = {
+const styles = {
     grayConfirm: {
         cursor: "hand",
         backgroundColor: "buttonface",
