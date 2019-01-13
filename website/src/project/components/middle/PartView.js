@@ -71,6 +71,13 @@ class PartView extends React.Component {
                     ))}
                 </DropdownButton>
                 <h5>{part.description}</h5>
+                {!part.isRootAssembly && (
+                    <Button
+                        onClick={() => this.setState({ isDeleteModalOpen: true })}
+                        style={styles.deleteButton}
+                        text="Delete"
+                    />
+                )}
                 <Button
                     onClick={() => this.setState({ isEditModalOpen: true })}
                     style={styles.editButton}
@@ -88,11 +95,10 @@ class PartView extends React.Component {
                         text={
                             `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?${hasChildren ? " You will also delete all the child parts and assemblies. Type the name of this assembly to confirm deletion." : ""}`
                         }
-                        { ...modalProps(this, "isModalOpen") }
+                        { ...modalProps(this, "isDeleteModalOpen") }
                         hasTextConfirm={hasChildren}
-                        confirmText={this.props.part.name}
+                        confirmText={part.name}
                         action={() => dispatch(deletePart(part))}
-                        {...modalProps(this, "isModalOpen")}
                     />
                 )}
             </WhiteBox>

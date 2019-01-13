@@ -6,7 +6,23 @@ import StandardModal from "~/shared/components/StandardModal";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { modalPropTypes } from "~/util/modal";
 import { makeChangeHandlerFactory } from "~/util";
-import styles from "~/shared/styles/confirmModal";
+
+styles = {
+    grayConfirm: {
+        cursor: "hand",
+        backgroundColor: "buttonface",
+        ":hover": {
+            backgroundColor: "buttonface",
+        },
+    },
+    cancel: {
+        color: "white",
+        backgroundColor: "#DD2818",
+        ":hover": {
+            backgroundColor: "#C71111",
+        },
+    },
+};
 
 @Radium
 class ConfirmModal extends React.Component {

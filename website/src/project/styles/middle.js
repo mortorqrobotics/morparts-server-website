@@ -15,6 +15,7 @@ const button = {
     width: "100px",
     fontWeight: "300",
     padding: "10px",
+    margin: "5px",
     float: "right",
 }
 
@@ -69,16 +70,17 @@ export default {
             backgroundColor: defaultColor,
             ":hover": {
                 backgroundColor: hoverColor,
-            }
+            },
         },
     ],
-    doneButton: [
+    deleteButton: [
         button,
         {
-             backgroundColor: "#32bc16",
+            color: "white",
+            backgroundColor: "#DD2818",
             ":hover": {
-                backgroundColor: "#2dcc0e",
-            }
+                backgroundColor: "#C71111",
+            },
         },
     ],
 };
