@@ -6,7 +6,7 @@ import StandardModal from "~/shared/components/StandardModal";
 import { modalPropTypes, modalPropsForward } from "~/util/modal";
 import { ModalButton, ModalTextBox } from "~/shared/components/modal";
 import { makeChangeHandlerFactory } from "~/util";
-import { setDescription } from "~/project/actions";
+import { setDescription, setName } from "~/project/actions";
 
 import { connect } from "react-redux";
 
@@ -19,16 +19,24 @@ class EditPartModal extends React.Component {
 
     getChangeHandler = makeChangeHandlerFactory(this);
 
-    state = {
+    initialState = {
         name: this.props.part.name,
         description: this.props.part.description || "",
     };
 
+    state = { ...this.initialState };
+
     handleSubmit = () => {
         const { dispatch, onRequestClose, part } = this.props;
         const { name, description } = this.state;
-        console.log(description)
-        dispatch(setDescription(part._id, description));
+
+        if (name !== this.initialState.name) {
+            dispatch(setName(part._id, name));
+        }
+        if (description !== this.initialState.description) {
+            dispatch(setDescription(part._id, description));
+        }
+
         onRequestClose();
     };
 

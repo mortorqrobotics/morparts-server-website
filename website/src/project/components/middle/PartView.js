@@ -70,7 +70,7 @@ class PartView extends React.Component {
                         </MenuItem>
                     ))}
                 </DropdownButton>
-                <h5>{part.description}</h5>
+                <div style={styles.description}>{part.description}</div>
                 {!part.isRootAssembly && (
                     <Button
                         onClick={() => this.setState({ isDeleteModalOpen: true })}

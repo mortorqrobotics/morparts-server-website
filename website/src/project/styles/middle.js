@@ -64,6 +64,10 @@ export default {
         width: "50%",
         padding: "10px",
     },
+    description: {
+        margin: "20px",
+        fontSize: "20px",
+    },
     editButton: [
         button,
         {
