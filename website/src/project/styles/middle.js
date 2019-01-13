@@ -1,22 +1,22 @@
-// import { standardBoxShadow } from '~/shared/styles/boxShadows';
 import {
-    // standardColor,
+    defaultColor,
+    hoverColor,
     selectedColor,
 } from "~/shared/styles/colors";
-
-const description = {
-    margin: "15px 0",
-    maxWidth: "100%",
-    minWidth: "100%",
-    fontSize: "20px",
-    padding: "15px",
-};
 
 const glyph = {
     cursor: "pointer",
     fontSize: "20px",
     marginRight: "5px",
 };
+
+const button = {
+    fontSize: "17px",
+    width: "100px",
+    fontWeight: "300",
+    padding: "10px",
+    float: "right",
+}
 
 export default {
     partView: {
@@ -43,22 +43,13 @@ export default {
         ],
     },
     description: {
-        editing: [
-            description,
-            {
-                outline: `2px solid ${selectedColor}`,
-                border: "none",
-                minHeight: "150px",
-            },
-        ],
-        notEditing: [
-            description,
-            {
-                outline: "1px solid #E9E9E9",
-                border: "none",
-                resize: "none",
-            },
-        ],
+        margin: "15px 0",
+        maxWidth: "100%",
+        minWidth: "100%",
+        fontSize: "20px",
+        padding: "15px",
+        minHeight: "30px",
+        height: "auto",
     },
     pinnedPart: {
         minWidth: "200px",
@@ -66,25 +57,28 @@ export default {
         marginLeft: "10px",
         cursor: "pointer",
     },
-    save: [
-        glyph,
-        {
-            color: "green",
-        },
-    ],
-    cancel: [
-        glyph,
-        {
-            color: "red",
-        },
-    ],
-    deleteButton: {
-        backgroundColor: "#cc0000",
-        color: "white",
-        fontSize: "15px",
-        width: "100px",
-        fontWeight: "300",
+    name: {
+        fontSize: "20px",
+        fontWeight: "400",
+        width: "50%",
         padding: "10px",
-        float: "right",
     },
+    editButton: [
+        button,
+        {
+            backgroundColor: defaultColor,
+            ":hover": {
+                backgroundColor: hoverColor,
+            }
+        },
+    ],
+    doneButton: [
+        button,
+        {
+             backgroundColor: "#32bc16",
+            ":hover": {
+                backgroundColor: "#2dcc0e",
+            }
+        },
+    ],
 };
