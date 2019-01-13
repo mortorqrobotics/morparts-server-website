@@ -27,7 +27,7 @@ export default {
         margin: "10px 0px 10px 10px",
     },
     collapse: {
-        marginLeft: "10px",
+        height: "15px",
     },
     label: {
         fontSize: "15px",

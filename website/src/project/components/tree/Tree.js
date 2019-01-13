@@ -79,7 +79,7 @@ class Tree extends React.Component {
                             {part.isAssembly && (!part.isCollapsed
                                 ? this.assemblyTree(part)
                                 : (
-                                    <Glyphicon glyph="option-horizontal" style={styles.collapse}/>
+                                    <div style={styles.collapse}/>
                                 )
                             )}
                         </Part>
