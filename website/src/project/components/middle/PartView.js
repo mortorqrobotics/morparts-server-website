@@ -7,7 +7,7 @@ import DropdownButton from "react-bootstrap/lib/DropdownButton";
 import MenuItem from "react-bootstrap/lib/MenuItem";
 import Glyphicon from "react-bootstrap/lib/Glyphicon";
 import styles from "~/project/styles/middle";
-import Description from "~/project/components/middle/Description";
+import EditPartModal from "~/project/components/middle/EditPartModal";
 import Button from "~/shared/components/Button";
 import StatusDot from "~/shared/components/StatusDot";
 import WhiteBox from "~/shared/components/WhiteBox";
@@ -29,12 +29,13 @@ const RadiumGlyphicon = Radium(Glyphicon);
 class PartView extends React.Component {
 
     state = {
-        isModalOpen: false,
+        isEditModalOpen: false,
+        isDeleteModalOpen: false,
     };
 
     render() {
         const { pinnedPartIds, part, dispatch } = this.props;
-        const { isModalOpen } = this.state;
+        const { isEditModalOpen, isDeleteModalOpen } = this.state;
         const isPinned = pinnedPartIds.includes(part._id);
         let hasChildren = this.props.part.children.parts.length > 0;
         return (
@@ -61,7 +62,7 @@ class PartView extends React.Component {
                             key={status}
                             active={part.status === status}
                             onSelect={() =>
-                                dispatch(updateStatus(part._id, status))
+                                    dispatch(updateStatus(part._id, status))
                             }
                         >
                             <StatusDot status={status} />
@@ -69,30 +70,35 @@ class PartView extends React.Component {
                         </MenuItem>
                     ))}
                 </DropdownButton>
-                <Description
-                    onSave={description =>
-                        dispatch(setDescription(part._id, description))
-                    }
-                    description={part.description}
-                />
-                {!this.props.part.isRootAssembly &&
+                <div style={styles.description}>{part.description}</div>
+                {!part.isRootAssembly && (
                     <Button
-                        onClick={() => this.setState({ isModalOpen: true })}
+                        onClick={() => this.setState({ isDeleteModalOpen: true })}
                         style={styles.deleteButton}
-                        text="Delete Part"
+                        text="Delete"
                     />
-                }
-                {isModalOpen && (
+                )}
+                <Button
+                    onClick={() => this.setState({ isEditModalOpen: true })}
+                    style={styles.editButton}
+                    text="Edit"
+                />
+                {isEditModalOpen && (
+                    <EditPartModal
+                        part={part}
+                        {...modalProps(this, "isEditModalOpen")}
+                    />
+                )}
+                {isDeleteModalOpen && (
                     <ConfirmModal
                         action={() => this.props.dispatch(deletePart(this.props.part))}
                         text={
                             `Are you sure you want to delete ${this.props.part.name} ${getIdentifierString(this.props.part)}?${hasChildren ? " You will also delete all the child parts and assemblies. Type the name of this assembly to confirm deletion." : ""}`
                         }
-                        { ...modalProps(this, "isModalOpen") }
+                        { ...modalProps(this, "isDeleteModalOpen") }
                         hasTextConfirm={hasChildren}
-                        confirmText={this.props.part.name}
+                        confirmText={part.name}
                         action={() => dispatch(deletePart(part))}
-                        {...modalProps(this, "isModalOpen")}
                     />
                 )}
             </WhiteBox>

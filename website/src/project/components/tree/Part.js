@@ -44,11 +44,11 @@ class Part extends React.Component {
                         style={styles.glyph}
                         glyph={part.isAssembly ? "th" : "cog"}
                     />
+                    <StatusDot status={part.status} />
                     <span>{part.name}</span>
                     <span style={styles.identifier}>
                         [{getIdentifierString(part)}]
                     </span>
-                    <StatusDot status={part.status} />
                 </div>
                 <div style={styles.line}>{children}</div>
             </div>
