@@ -31,6 +31,9 @@ module.exports = function(imports) {
     app.set("view engine", "ejs");
     app.use(require("./views")(imports));
 
+    let publicDir = imports.publicDir;
+    app.use(express.static(publicDir));
+
     let api = express.Router();
     api.use(require("./projects")(imports));
     app.use("/api", api);
