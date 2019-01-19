@@ -11,6 +11,7 @@ module.exports = function(imports) {
 
     imports.util = require("./util/index")(imports);
     imports.webDir = require("path").join(__dirname, "../website");
+    imports.publicDir = imports.webDir + "/public";
 
     module.exports.imports = imports;
     return(imports);
