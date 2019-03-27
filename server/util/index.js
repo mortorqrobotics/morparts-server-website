@@ -2,9 +2,9 @@
 
 module.exports = function(imports) {
 
-    // let fs = require("fs");
     let config = imports.config;
     let Promise = imports.modules.Promise;
+    let Part = imports.models.Part;
 
     let util = {};
 
@@ -23,6 +23,23 @@ module.exports = function(imports) {
     util.toDoubleDigit = function(num) {
         return (num < 10 ? "0" : "") + num;
     }
+
+    util.getAllChildren = Promise.coroutine(function*(partId, children) {
+        let parts = yield Part.find({
+            parent: partId,
+        });
+
+        if (parts) {
+            for (let part of parts) {
+                children.push(part._id);
+                if (part.isAssembly) {
+                    children.concat(yield util.getAllChildren(part._id, children));
+                }
+            };
+        }
+
+        return children;
+    });
 
     return util;
 }

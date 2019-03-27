@@ -142,8 +142,11 @@ module.exports = function(imports) {
             return res.status(400).end("You cannot delete the root assembly");
         }
 
-        if (part.isAssembly && part.children.parts.length > 0) {
-            return res.status(400).end("You cannot delete an assembly with children");
+        if (part.isAssembly) {
+            let children = yield util.getAllChildren(part._id, []);
+            yield Part.remove({
+                _id: { $in : children }
+            });
         }
 
         if (part.parent) {
