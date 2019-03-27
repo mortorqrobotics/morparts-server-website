@@ -78,7 +78,7 @@
     "eslint-plugin-prettier": "^2.7.0",
     "eslint-plugin-react": "^7.11.1",
     "event-stream": "^4.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-streamify": "^1.0.2",
     "gulp-tap": "^1.0.1",
     "gulp-uglify": "^3.0.1",
@@ -87,9 +87,9 @@
     "prettier": "^1.14.3",
     "semver": "^5.5.1",
     "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.7.0",
+    "watchify": "^3.11.1",
     "webpack": "^4.19.1",
-    "webpack-dev-server": "^3.1.8"
+    "webpack-dev-server": "^3.2.1"
   },
   "license": "GPL-3.0",
   "main": "server/server.js"
