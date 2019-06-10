@@ -89,7 +89,7 @@
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.1",
     "webpack": "^4.19.1",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.7.1"
   },
   "license": "GPL-3.0",
   "main": "server/server.js"
