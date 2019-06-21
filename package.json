@@ -68,7 +68,7 @@
     "babel-root-import": "^4.0.1",
     "babelify": "^10.0.0",
     "browserify": "^16.2.2",
-    "eslint": "^5.6.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-react-app": "^2.1.0",
