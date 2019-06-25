@@ -31,7 +31,7 @@
     "dompurify": "^1.0.8",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
-    "radium": "^0.25.0",
+    "radium": "^0.25.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
