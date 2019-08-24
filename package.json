@@ -31,7 +31,7 @@
     "dompurify": "^1.0.8",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
-    "radium": "^0.25.0",
+    "radium": "^0.25.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
@@ -42,29 +42,45 @@
     "immutability-helper": "^2.8.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "@babel/core": "^7.5.5",
+=======
     "@babel/core": "^7.1.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
+>>>>>>> b9e8cea... Bump @babel/plugin-proposal-class-properties from 7.1.0 to 7.5.5 (#65)
+=======
+    "@babel/core": "^7.5.5",
+>>>>>>> d74551d... Bump @babel/core from 7.1.0 to 7.5.5 (#66)
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.1.0",
-    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-do-expressions": "^7.5.0",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
     "@babel/plugin-proposal-function-bind": "^7.0.0",
+<<<<<<< HEAD
     "@babel/plugin-proposal-function-sent": "^7.2.0",
+=======
+    "@babel/plugin-proposal-function-sent": "^7.5.0",
+>>>>>>> security
     "@babel/plugin-proposal-json-strings": "^7.0.0",
     "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
+<<<<<<< HEAD
     "@babel/plugin-transform-runtime": "^7.4.4",
+=======
+    "@babel/plugin-transform-runtime": "^7.5.5",
+>>>>>>> security
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
     "babel-root-import": "^4.0.1",
     "babelify": "^10.0.0",
     "browserify": "^16.2.2",
@@ -73,10 +89,10 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.50.3",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react": "^7.14.3",
     "event-stream": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-streamify": "^1.0.2",
@@ -88,7 +104,11 @@
     "semver": "^5.5.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.1",
+<<<<<<< HEAD
     "webpack": "^4.19.1",
+=======
+    "webpack": "^4.39.2",
+>>>>>>> security
     "webpack-dev-server": "^3.7.2"
   },
   "license": "GPL-3.0",
